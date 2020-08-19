@@ -14,6 +14,11 @@ class GeoLocation {
   });
 }
 
+enum AvailabilityMode {
+  TeleMedication,
+  PhysicalConsultation,
+}
+
 class AvailabilityTime {
   final DateTime from;
   final DateTime till;
@@ -39,6 +44,7 @@ class Doctor {
   final DateTime experience;
   final int rating;
   final bool varificationBadge;
+  final AvailabilityMode availabilityMode;
   final AvailabilityTime teleMedication;
   final AvailabilityTime physicalConsultation;
 
@@ -57,6 +63,7 @@ class Doctor {
     @required this.experience,
     @required this.rating,
     @required this.varificationBadge,
+    @required this.availabilityMode,
     @required this.teleMedication,
     @required this.physicalConsultation,
   });
