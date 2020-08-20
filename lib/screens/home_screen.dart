@@ -43,16 +43,36 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           HSSearchBar(),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0),
-            child: Text(
-              "Categories",
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          SizedBox(
+            height: 8,
           ),
+          Padding(
+              padding: EdgeInsets.only(
+                left: 10.0,
+                right: 20.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Categories",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  InkWell(
+                    child: Text(
+                      "See All",
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ],
+              )),
           Container(
             margin: EdgeInsets.symmetric(
               vertical: 20,
@@ -62,21 +82,35 @@ class HomeScreen extends StatelessWidget {
             width: double.infinity,
             child: HSGridView(),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 10.0),
-            child: Text(
-              "Top Doctors",
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
           SizedBox(
             height: 8,
           ),
+          Padding(
+              padding: EdgeInsets.only(left: 10.0, right: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Top Doctors",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  InkWell(
+                    child: Text(
+                      "See All",
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Theme.of(context).accentColor,
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ],
+              )),
           Container(
-            height: MediaQuery.of(context).size.height * 0.46,
+            height: 120,
             child: HSListView(),
           ),
         ],
