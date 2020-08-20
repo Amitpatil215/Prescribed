@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import '../widgets/h_s_searchBar.dart';
 import '../widgets/h_s_gridview.dart';
 import '../widgets/h_s_listView.dart';
+import '../widgets/h_s_helpButton.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -47,32 +48,33 @@ class HomeScreen extends StatelessWidget {
             height: 8,
           ),
           Padding(
-              padding: EdgeInsets.only(
-                left: 10.0,
-                right: 20.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Categories",
+            padding: EdgeInsets.only(
+              left: 10.0,
+              right: 20.0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Categories",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                InkWell(
+                  child: Text(
+                    "See All",
                     style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 10,
+                      color: Theme.of(context).accentColor,
                     ),
                   ),
-                  InkWell(
-                    child: Text(
-                      "See All",
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: Theme.of(context).accentColor,
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                ],
-              )),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
           Container(
             margin: EdgeInsets.symmetric(
               vertical: 20,
@@ -82,6 +84,20 @@ class HomeScreen extends StatelessWidget {
             width: double.infinity,
             child: HSGridView(),
           ),
+          SizedBox(
+            height: 8,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0),
+            child: Text(
+              "How can we help you?",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          HSHelpButton(),
           SizedBox(
             height: 8,
           ),
@@ -110,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               )),
           Container(
-            height: 120,
+            height: 80,
             child: HSListView(),
           ),
         ],
