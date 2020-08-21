@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'screens/home_screen.dart';
 
@@ -13,9 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: HomeScreen(),
       theme: ThemeData(
-          textTheme: GoogleFonts.robotoSlabTextTheme(
-            Theme.of(context).textTheme,
-          ),
+          fontFamily: 'Glaciallndifference',
           primarySwatch: Colors.blue,
           errorColor: Colors.red,
           accentColor: Colors.blueAccent),

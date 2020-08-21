@@ -23,7 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^1.1.0
   provider: ^4.3.2
   floating_search_bar: ^0.3.0
 
@@ -63,11 +62,11 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+      - family: Glaciallndifference
+        fonts:
+          - asset: assets/fonts/Glaciallndifference-Regular.ttf
+          - asset: assets/fonts/Glaciallndifference-Bold.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
