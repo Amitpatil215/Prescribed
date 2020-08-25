@@ -1,6 +1,6 @@
 # doctor_duniya
 
-A new Flutter project.
+Doctors appointment booking
 
 ## Getting Started
 
