@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "309807562469",
+    "firebase_url": "https://doc-dun.firebaseio.com",
+    "project_id": "doc-dun",
+    "storage_bucket": "doc-dun.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309807562469:android:000c0c3ee30bf7f8a55e0c",
+        "android_client_info": {
+          "package_name": "com.doctorpro.doctor_duniya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309807562469-o4i0af47fs03vmtmrhbsaql8laoo0qs6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBNrdoAmNTXbWQcPQ16-NkArhQGIBxqso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309807562469-o4i0af47fs03vmtmrhbsaql8laoo0qs6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
