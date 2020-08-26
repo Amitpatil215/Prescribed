@@ -5,13 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ASOTPForm extends StatefulWidget {
-  final String phone;
-
   final bool isGuestCheckOut;
 
   const ASOTPForm({
     Key key,
-    @required this.phone,
     this.isGuestCheckOut,
   }) : super(key: key);
 
@@ -40,7 +37,6 @@ class _ASOTPFormState extends State<ASOTPForm>
   int totalTimeInSeconds;
   bool _hideResendButton;
 
-  String userName = "";
   bool didReadNotifications = false;
   int unReadNotificationsCount = 0;
 
@@ -122,11 +118,14 @@ class _ASOTPFormState extends State<ASOTPForm>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Icon(Icons.access_time),
+            new Icon(
+              Icons.access_time,
+              color: Colors.purple,
+            ),
             new SizedBox(
               width: 5.0,
             ),
-            OtpTimer(_controller, 15.0, Colors.black)
+            OtpTimer(_controller, 15.0, Colors.purple)
           ],
         ),
       ),
@@ -136,23 +135,25 @@ class _ASOTPFormState extends State<ASOTPForm>
   // Returns "Resend" button
   get _getResendButton {
     return new InkWell(
-      child: new Container(
+      child: Container(
         height: 32,
         width: 120,
         decoration: BoxDecoration(
-            color: Colors.black,
+            color: _isResendOtp ? Colors.green : Theme.of(context).buttonColor,
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(32)),
         alignment: Alignment.center,
-        child: new Text(
-          "Resend OTP",
+        child: Text(
+          _isResendOtp ? "OTP Requested.." : "Resend OTP",
           style:
               new TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
       onTap: () {
         // Resend you OTP via API or anything
-        _isResendOtp = true;
+        setState(() {
+          _isResendOtp = true;
+        });
       },
     );
   }
@@ -320,15 +321,16 @@ class _ASOTPFormState extends State<ASOTPForm>
         digit != null ? digit.toString() : "",
         style: new TextStyle(
           fontSize: 30.0,
+          fontWeight: FontWeight.w300,
           color: Colors.black,
         ),
       ),
       decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.4),
+          color: Colors.white,
           border: Border(
               bottom: BorderSide(
             width: 2.0,
-            color: Colors.black,
+            color: Colors.blue,
           ))),
     );
   }
@@ -379,7 +381,7 @@ class _ASOTPFormState extends State<ASOTPForm>
   }
 
   // Current digit
-  void _setCurrentDigit(int i) {
+  _setCurrentDigit(int i) {
     setState(() {
       _currentDigit = i;
       if (_firstDigit == null) {
@@ -403,83 +405,9 @@ class _ASOTPFormState extends State<ASOTPForm>
             _sixthDigit.toString();
 
         // Verify your otp by here. API call
-        print(widget.phone + otp);
-        _submitAuthForm(widget.phone, otp);
+        Navigator.of(context).pop(otp);
       }
     });
-  }
-
-  void _submitAuthForm(String phoneNo, String otp) async {
-    try {
-      final _auth = FirebaseAuth.instance;
-      int _forceResendingToken;
-      String _verificationId;
-
-      await _auth.verifyPhoneNumber(
-        phoneNumber: '\+91$phoneNo',
-        timeout: Duration(seconds: 60),
-        forceResendingToken: _isResendOtp ? _forceResendingToken : null,
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          // only call back when it automatically signs in user not manually
-          // signing in user by credentials
-          final authResult = await _auth.signInWithCredential(credential);
-
-          //containes additionl user specific information
-          User user = authResult.user;
-          print(
-              "Signed in user automatically by otp sent no need to provide otp");
-          Navigator.of(context).pop();
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          //if wrong no or wrong otp entered
-          print("Reason due to varification failed: $e");
-        },
-        codeSent: (String verificationId, [int resendToken]) async {
-          print("Code Sent running");
-          //it will run even if it fiding automatically
-          //once code is sent it calls
-          // first .trim()
-          final credential = PhoneAuthProvider.credential(
-              verificationId: verificationId, smsCode: otp);
-          try {
-            // signing in user by credentials
-            final authResult = await _auth.signInWithCredential(credential);
-
-            //containes additionl user specific information
-            User user = authResult.user;
-            print("Logging in user by otp sent");
-            Navigator.of(context).pop();
-          } catch (error) {
-            if (error == "invalid-verification-code") {
-              Scaffold.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Invalid OTP entered"),
-                  backgroundColor: Theme.of(context).errorColor,
-                ),
-              );
-            }
-            _verificationId = verificationId;
-            _forceResendingToken = resendToken;
-          }
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          print("code auto retrival running");
-          _verificationId = verificationId;
-          _isResendOtp = false;
-        },
-      );
-    } catch (error) {
-      var message = "An error occured, Please check your credientials!";
-      if (error.message != null) {
-        message = error.message;
-      }
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: Theme.of(context).errorColor,
-        ),
-      );
-    }
   }
 
   Future<Null> _startCountdown() async {

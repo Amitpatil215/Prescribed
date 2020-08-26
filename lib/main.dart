@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         errorColor: Colors.red,
         accentColor: Colors.blueAccent,
+        buttonColor: Colors.purple,
         buttonTheme: ButtonTheme.of(context).copyWith(
           buttonColor: Colors.pink,
           shape: RoundedRectangleBorder(

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'a_s_authOTPForm.dart';
 
@@ -18,12 +20,81 @@ class _ASAuthFormState extends State<ASAuthForm> {
 
     if (isValid) {
       _formKey.currentState.save();
+      _submitAuthForm(_phoneNo, false);
+    }
+  }
 
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ASOTPForm(
-          phone: _phoneNo,
-        ),
-      ));
+  Future<void> _submitAuthForm(String phone, bool isResendOtp) async {
+    try {
+      final _auth = FirebaseAuth.instance;
+      int _forceResendingToken;
+      String _verificationId;
+
+      await _auth.verifyPhoneNumber(
+        phoneNumber: '\+91$phone',
+        timeout: Duration(minutes: 2),
+        forceResendingToken: isResendOtp ? _forceResendingToken : null,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // only call back when it automatically signs in user not manually
+          // signing in user by credentials
+          final authResult = await _auth.signInWithCredential(credential);
+
+          //containes additionl user specific information
+          User user = authResult.user;
+          print(
+              "Signed in user automatically by otp sent no need to provide otp");
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          //if wrong no or wrong otp entered
+          print("Reason due to varification failed: $e");
+        },
+        codeSent: (String verificationId, [int resendToken]) async {
+          print("Code Sent run start");
+          //it will run even if it fiding automatically
+          //once code is sent it calls
+          // first .trim()
+          await Navigator.of(context)
+              .push(MaterialPageRoute(
+            builder: (context) => ASOTPForm(),
+          ))
+              .then((otp) async {
+            print("Done bro" + otp);
+            final credential = PhoneAuthProvider.credential(
+                verificationId: verificationId, smsCode: otp);
+            try {
+              // signing in user by credentials
+              final authResult = await _auth.signInWithCredential(credential);
+
+              //containes additionl user specific information
+              User user = authResult.user;
+              print("Logging in user by otp sent");
+
+              _verificationId = verificationId;
+              _forceResendingToken = resendToken;
+            } catch (error) {
+              if (error == "invalid-verification-code") {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Invalid OTP entered"),
+                    backgroundColor: Theme.of(context).errorColor,
+                  ),
+                );
+              }
+            }
+          });
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          print("code auto retrival running");
+          _verificationId = verificationId;
+          setState(() {
+            isResendOtp = false;
+          });
+        },
+      );
+    } on PlatformException catch (error) {
+      print("platform exception error handling" + error.code);
+    } catch (error) {
+      print("Errorr getting from: Authentication page" + error);
     }
   }
 
