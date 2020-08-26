@@ -22,7 +22,8 @@ class ASOTPForm extends StatefulWidget {
 class _ASOTPFormState extends State<ASOTPForm>
     with SingleTickerProviderStateMixin {
   // Constants
-  final int time = 30;
+  var _isResendOtp = false;
+  final int time = 60;
   AnimationController _controller;
 
   // Variables
@@ -151,6 +152,7 @@ class _ASOTPFormState extends State<ASOTPForm>
       ),
       onTap: () {
         // Resend you OTP via API or anything
+        _isResendOtp = true;
       },
     );
   }
@@ -402,7 +404,7 @@ class _ASOTPFormState extends State<ASOTPForm>
 
         // Verify your otp by here. API call
         print(widget.phone + otp);
-        //_submitAuthForm(widget.phone, otp);
+        _submitAuthForm(widget.phone, otp);
       }
     });
   }
@@ -410,10 +412,13 @@ class _ASOTPFormState extends State<ASOTPForm>
   void _submitAuthForm(String phoneNo, String otp) async {
     try {
       final _auth = FirebaseAuth.instance;
+      int _forceResendingToken;
+      String _verificationId;
 
       await _auth.verifyPhoneNumber(
         phoneNumber: '\+91$phoneNo',
         timeout: Duration(seconds: 60),
+        forceResendingToken: _isResendOtp ? _forceResendingToken : null,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // only call back when it automatically signs in user not manually
           // signing in user by credentials
@@ -423,25 +428,45 @@ class _ASOTPFormState extends State<ASOTPForm>
           User user = authResult.user;
           print(
               "Signed in user automatically by otp sent no need to provide otp");
+          Navigator.of(context).pop();
         },
         verificationFailed: (FirebaseAuthException e) {
           //if wrong no or wrong otp entered
           print("Reason due to varification failed: $e");
         },
-        codeSent: (String verificationId, int resendToken) async {
+        codeSent: (String verificationId, [int resendToken]) async {
+          print("Code Sent running");
           //it will run even if it fiding automatically
           //once code is sent it calls
           // first .trim()
           final credential = PhoneAuthProvider.credential(
               verificationId: verificationId, smsCode: otp);
+          try {
+            // signing in user by credentials
+            final authResult = await _auth.signInWithCredential(credential);
 
-          // signing in user by credentials
-          final authResult = await _auth.signInWithCredential(credential);
-          //containes additionl user specific information
-          User user = authResult.user;
-          print("Logging in user by otp sent");
+            //containes additionl user specific information
+            User user = authResult.user;
+            print("Logging in user by otp sent");
+            Navigator.of(context).pop();
+          } catch (error) {
+            if (error == "invalid-verification-code") {
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Invalid OTP entered"),
+                  backgroundColor: Theme.of(context).errorColor,
+                ),
+              );
+            }
+            _verificationId = verificationId;
+            _forceResendingToken = resendToken;
+          }
         },
-        codeAutoRetrievalTimeout: (String verificationId) {},
+        codeAutoRetrievalTimeout: (String verificationId) {
+          print("code auto retrival running");
+          _verificationId = verificationId;
+          _isResendOtp = false;
+        },
       );
     } catch (error) {
       var message = "An error occured, Please check your credientials!";
