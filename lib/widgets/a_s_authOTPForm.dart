@@ -1,17 +1,14 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ASOTPForm extends StatefulWidget {
-  final String email;
-  final String newEmail;
   final bool isGuestCheckOut;
 
   const ASOTPForm({
     Key key,
-    @required this.email,
-    this.newEmail = "",
     this.isGuestCheckOut,
   }) : super(key: key);
 
@@ -22,7 +19,8 @@ class ASOTPForm extends StatefulWidget {
 class _ASOTPFormState extends State<ASOTPForm>
     with SingleTickerProviderStateMixin {
   // Constants
-  final int time = 30;
+  var _isResendOtp = false;
+  final int time = 60;
   AnimationController _controller;
 
   // Variables
@@ -32,12 +30,13 @@ class _ASOTPFormState extends State<ASOTPForm>
   int _secondDigit;
   int _thirdDigit;
   int _fourthDigit;
+  int _fifthDigit;
+  int _sixthDigit;
 
   Timer timer;
   int totalTimeInSeconds;
   bool _hideResendButton;
 
-  String userName = "";
   bool didReadNotifications = false;
   int unReadNotificationsCount = 0;
 
@@ -71,12 +70,12 @@ class _ASOTPFormState extends State<ASOTPForm>
   }
 
   // Return "Email" label
-  get _getEmailLabel {
+  get _getPhoneLabel {
     return new Text(
-      "Please enter the OTP sent\non your registered Email ID.",
+      "Please enter the OTP sent\non your registered Mobile No.",
       textAlign: TextAlign.center,
       style: new TextStyle(
-          fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600),
+          fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w300),
     );
   }
 
@@ -89,6 +88,8 @@ class _ASOTPFormState extends State<ASOTPForm>
         _otpTextField(_secondDigit),
         _otpTextField(_thirdDigit),
         _otpTextField(_fourthDigit),
+        _otpTextField(_fifthDigit),
+        _otpTextField(_sixthDigit),
       ],
     );
   }
@@ -100,7 +101,7 @@ class _ASOTPFormState extends State<ASOTPForm>
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         _getVerificationCodeLabel,
-        _getEmailLabel,
+        _getPhoneLabel,
         _getInputField,
         _hideResendButton ? _getTimerText : _getResendButton,
         _getOtpKeyboard
@@ -117,11 +118,14 @@ class _ASOTPFormState extends State<ASOTPForm>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Icon(Icons.access_time),
+            new Icon(
+              Icons.access_time,
+              color: Colors.purple,
+            ),
             new SizedBox(
               width: 5.0,
             ),
-            OtpTimer(_controller, 15.0, Colors.black)
+            OtpTimer(_controller, 15.0, Colors.purple)
           ],
         ),
       ),
@@ -131,22 +135,25 @@ class _ASOTPFormState extends State<ASOTPForm>
   // Returns "Resend" button
   get _getResendButton {
     return new InkWell(
-      child: new Container(
+      child: Container(
         height: 32,
         width: 120,
         decoration: BoxDecoration(
-            color: Colors.black,
+            color: _isResendOtp ? Colors.green : Theme.of(context).buttonColor,
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(32)),
         alignment: Alignment.center,
-        child: new Text(
-          "Resend OTP",
+        child: Text(
+          _isResendOtp ? "OTP Requested.." : "Resend OTP",
           style:
               new TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
       onTap: () {
         // Resend you OTP via API or anything
+        setState(() {
+          _isResendOtp = true;
+        });
       },
     );
   }
@@ -242,7 +249,11 @@ class _ASOTPFormState extends State<ASOTPForm>
                       ),
                       onPressed: () {
                         setState(() {
-                          if (_fourthDigit != null) {
+                          if (_sixthDigit != null) {
+                            _sixthDigit = null;
+                          } else if (_fifthDigit != null) {
+                            _fifthDigit = null;
+                          } else if (_fourthDigit != null) {
                             _fourthDigit = null;
                           } else if (_thirdDigit != null) {
                             _thirdDigit = null;
@@ -288,12 +299,13 @@ class _ASOTPFormState extends State<ASOTPForm>
   @override
   Widget build(BuildContext context) {
     _screenSize = MediaQuery.of(context).size;
+
     return new Scaffold(
       appBar: _getAppbar,
       backgroundColor: Colors.white,
       body: new Container(
         width: _screenSize.width,
-//        padding: new EdgeInsets.only(bottom: 16.0),
+        padding: new EdgeInsets.only(bottom: 16.0),
         child: _getInputPart,
       ),
     );
@@ -309,16 +321,17 @@ class _ASOTPFormState extends State<ASOTPForm>
         digit != null ? digit.toString() : "",
         style: new TextStyle(
           fontSize: 30.0,
+          fontWeight: FontWeight.w300,
           color: Colors.black,
         ),
       ),
       decoration: BoxDecoration(
-//            color: Colors.grey.withOpacity(0.4),
+          color: Colors.white,
           border: Border(
               bottom: BorderSide(
-        width: 2.0,
-        color: Colors.black,
-      ))),
+            width: 2.0,
+            color: Colors.blue,
+          ))),
     );
   }
 
@@ -368,7 +381,7 @@ class _ASOTPFormState extends State<ASOTPForm>
   }
 
   // Current digit
-  void _setCurrentDigit(int i) {
+  _setCurrentDigit(int i) {
     setState(() {
       _currentDigit = i;
       if (_firstDigit == null) {
@@ -379,13 +392,20 @@ class _ASOTPFormState extends State<ASOTPForm>
         _thirdDigit = _currentDigit;
       } else if (_fourthDigit == null) {
         _fourthDigit = _currentDigit;
+      } else if (_fifthDigit == null) {
+        _fifthDigit = _currentDigit;
+      } else if (_sixthDigit == null) {
+        _sixthDigit = _currentDigit;
 
         var otp = _firstDigit.toString() +
             _secondDigit.toString() +
             _thirdDigit.toString() +
-            _fourthDigit.toString();
+            _fourthDigit.toString() +
+            _fifthDigit.toString() +
+            _sixthDigit.toString();
 
         // Verify your otp by here. API call
+        Navigator.of(context).pop(otp);
       }
     });
   }
@@ -400,10 +420,12 @@ class _ASOTPFormState extends State<ASOTPForm>
   }
 
   void clearOtp() {
-    _fourthDigit = null;
-    _thirdDigit = null;
-    _secondDigit = null;
     _firstDigit = null;
+    _secondDigit = null;
+    _thirdDigit = null;
+    _fourthDigit = null;
+    _fifthDigit = null;
+    _sixthDigit = null;
     setState(() {});
   }
 }
