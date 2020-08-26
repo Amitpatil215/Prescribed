@@ -246,7 +246,11 @@ class _ASOTPFormState extends State<ASOTPForm>
                       ),
                       onPressed: () {
                         setState(() {
-                          if (_fourthDigit != null) {
+                          if (_sixthDigit != null) {
+                            _sixthDigit = null;
+                          } else if (_fifthDigit != null) {
+                            _fifthDigit = null;
+                          } else if (_fourthDigit != null) {
                             _fourthDigit = null;
                           } else if (_thirdDigit != null) {
                             _thirdDigit = null;
@@ -384,9 +388,9 @@ class _ASOTPFormState extends State<ASOTPForm>
         _thirdDigit = _currentDigit;
       } else if (_fourthDigit == null) {
         _fourthDigit = _currentDigit;
-      } else if (_thirdDigit == null) {
+      } else if (_fifthDigit == null) {
         _fifthDigit = _currentDigit;
-      } else if (_fourthDigit == null) {
+      } else if (_sixthDigit == null) {
         _sixthDigit = _currentDigit;
 
         var otp = _firstDigit.toString() +
@@ -463,10 +467,12 @@ class _ASOTPFormState extends State<ASOTPForm>
   }
 
   void clearOtp() {
-    _fourthDigit = null;
-    _thirdDigit = null;
-    _secondDigit = null;
     _firstDigit = null;
+    _secondDigit = null;
+    _thirdDigit = null;
+    _fourthDigit = null;
+    _fifthDigit = null;
+    _sixthDigit = null;
     setState(() {});
   }
 }
