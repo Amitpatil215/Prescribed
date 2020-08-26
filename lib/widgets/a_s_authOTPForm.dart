@@ -1,17 +1,17 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ASOTPForm extends StatefulWidget {
-  final String email;
-  final String newEmail;
+  final String phone;
+
   final bool isGuestCheckOut;
 
   const ASOTPForm({
     Key key,
-    @required this.email,
-    this.newEmail = "",
+    @required this.phone,
     this.isGuestCheckOut,
   }) : super(key: key);
 
@@ -32,6 +32,8 @@ class _ASOTPFormState extends State<ASOTPForm>
   int _secondDigit;
   int _thirdDigit;
   int _fourthDigit;
+  int _fifthDigit;
+  int _sixthDigit;
 
   Timer timer;
   int totalTimeInSeconds;
@@ -71,12 +73,12 @@ class _ASOTPFormState extends State<ASOTPForm>
   }
 
   // Return "Email" label
-  get _getEmailLabel {
+  get _getPhoneLabel {
     return new Text(
-      "Please enter the OTP sent\non your registered Email ID.",
+      "Please enter the OTP sent\non your registered Mobile No.",
       textAlign: TextAlign.center,
       style: new TextStyle(
-          fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w600),
+          fontSize: 18.0, color: Colors.black, fontWeight: FontWeight.w300),
     );
   }
 
@@ -89,6 +91,8 @@ class _ASOTPFormState extends State<ASOTPForm>
         _otpTextField(_secondDigit),
         _otpTextField(_thirdDigit),
         _otpTextField(_fourthDigit),
+        _otpTextField(_fifthDigit),
+        _otpTextField(_sixthDigit),
       ],
     );
   }
@@ -100,7 +104,7 @@ class _ASOTPFormState extends State<ASOTPForm>
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         _getVerificationCodeLabel,
-        _getEmailLabel,
+        _getPhoneLabel,
         _getInputField,
         _hideResendButton ? _getTimerText : _getResendButton,
         _getOtpKeyboard
@@ -288,12 +292,13 @@ class _ASOTPFormState extends State<ASOTPForm>
   @override
   Widget build(BuildContext context) {
     _screenSize = MediaQuery.of(context).size;
+
     return new Scaffold(
       appBar: _getAppbar,
       backgroundColor: Colors.white,
       body: new Container(
         width: _screenSize.width,
-//        padding: new EdgeInsets.only(bottom: 16.0),
+        padding: new EdgeInsets.only(bottom: 16.0),
         child: _getInputPart,
       ),
     );
@@ -313,12 +318,12 @@ class _ASOTPFormState extends State<ASOTPForm>
         ),
       ),
       decoration: BoxDecoration(
-//            color: Colors.grey.withOpacity(0.4),
+          color: Colors.grey.withOpacity(0.4),
           border: Border(
               bottom: BorderSide(
-        width: 2.0,
-        color: Colors.black,
-      ))),
+            width: 2.0,
+            color: Colors.black,
+          ))),
     );
   }
 
@@ -379,15 +384,73 @@ class _ASOTPFormState extends State<ASOTPForm>
         _thirdDigit = _currentDigit;
       } else if (_fourthDigit == null) {
         _fourthDigit = _currentDigit;
+      } else if (_thirdDigit == null) {
+        _fifthDigit = _currentDigit;
+      } else if (_fourthDigit == null) {
+        _sixthDigit = _currentDigit;
 
         var otp = _firstDigit.toString() +
             _secondDigit.toString() +
             _thirdDigit.toString() +
-            _fourthDigit.toString();
+            _fourthDigit.toString() +
+            _fifthDigit.toString() +
+            _sixthDigit.toString();
 
         // Verify your otp by here. API call
+        print(widget.phone + otp);
+        //_submitAuthForm(widget.phone, otp);
       }
     });
+  }
+
+  void _submitAuthForm(String phoneNo, String otp) async {
+    try {
+      final _auth = FirebaseAuth.instance;
+
+      await _auth.verifyPhoneNumber(
+        phoneNumber: '\+91$phoneNo',
+        timeout: Duration(seconds: 60),
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // only call back when it automatically signs in user not manually
+          // signing in user by credentials
+          final authResult = await _auth.signInWithCredential(credential);
+
+          //containes additionl user specific information
+          User user = authResult.user;
+          print(
+              "Signed in user automatically by otp sent no need to provide otp");
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          //if wrong no or wrong otp entered
+          print("Reason due to varification failed: $e");
+        },
+        codeSent: (String verificationId, int resendToken) async {
+          //it will run even if it fiding automatically
+          //once code is sent it calls
+          // first .trim()
+          final credential = PhoneAuthProvider.credential(
+              verificationId: verificationId, smsCode: otp);
+
+          // signing in user by credentials
+          final authResult = await _auth.signInWithCredential(credential);
+          //containes additionl user specific information
+          User user = authResult.user;
+          print("Logging in user by otp sent");
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
+      );
+    } catch (error) {
+      var message = "An error occured, Please check your credientials!";
+      if (error.message != null) {
+        message = error.message;
+      }
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+    }
   }
 
   Future<Null> _startCountdown() async {

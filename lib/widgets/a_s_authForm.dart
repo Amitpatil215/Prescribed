@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'a_s_authOTPForm.dart';
+
 class ASAuthForm extends StatefulWidget {
-  final void Function(
-    String phoneNo,
-  ) submitAuthForm;
-
-  const ASAuthForm(this.submitAuthForm);
-
   @override
   _ASAuthFormState createState() => _ASAuthFormState();
 }
@@ -21,18 +17,13 @@ class _ASAuthFormState extends State<ASAuthForm> {
     FocusScope.of(context).unfocus();
 
     if (isValid) {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text(
-          'Sending OTP request...',
-        ),
-        backgroundColor: Colors.green,
-      ));
-
       _formKey.currentState.save();
 
-      widget.submitAuthForm(
-        _phoneNo,
-      );
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ASOTPForm(
+          phone: _phoneNo,
+        ),
+      ));
     }
   }
 
