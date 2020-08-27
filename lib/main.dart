@@ -13,7 +13,7 @@ void main() async {
       systemNavigationBarColor: Colors.white, // navigation bar color
       statusBarColor: Colors.green, // status bar color
       statusBarIconBrightness: Brightness.light,
-      systemNavigationBarIconBrightness: Brightness.light));
+      systemNavigationBarIconBrightness: Brightness.dark));
   runApp(MyApp());
 }
 

@@ -44,10 +44,13 @@ class ProfileScreen extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
-              child: Column(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
@@ -58,6 +61,9 @@ class ProfileScreen extends StatelessWidget {
                           Text("anubhavsingh21@gmail.com"),
                         ],
                       ),
+                      SizedBox(
+                        height: 2,
+                      ),
                       Row(
                         children: [
                           Icon(Icons.phone_android),
@@ -66,13 +72,33 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           Text("+91 1234567890"),
                         ],
-                      )
+                      ),
                     ],
+                  ),
+                  OutlineButton.icon(
+                    icon: Icon(Icons.edit),
+                    label: Text("Edit"),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    onPressed: () {},
                   )
                 ],
               ),
             ),
-            
+            Container(
+                color: Colors.yellow,
+                height: 150,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text("Health Data"),
+                      ],
+                    )
+                  ],
+                )),
           ],
         ),
       ),
