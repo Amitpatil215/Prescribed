@@ -1,17 +1,9 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ASOTPForm extends StatefulWidget {
-  final bool isGuestCheckOut;
-
-  const ASOTPForm({
-    Key key,
-    this.isGuestCheckOut,
-  }) : super(key: key);
-
   @override
   _ASOTPFormState createState() => new _ASOTPFormState();
 }
@@ -19,7 +11,6 @@ class ASOTPForm extends StatefulWidget {
 class _ASOTPFormState extends State<ASOTPForm>
     with SingleTickerProviderStateMixin {
   // Constants
-  var _isResendOtp = false;
   final int time = 60;
   AnimationController _controller;
 
@@ -32,6 +23,7 @@ class _ASOTPFormState extends State<ASOTPForm>
   int _fourthDigit;
   int _fifthDigit;
   int _sixthDigit;
+  var _isResendOTP = false;
 
   Timer timer;
   int totalTimeInSeconds;
@@ -134,27 +126,28 @@ class _ASOTPFormState extends State<ASOTPForm>
 
   // Returns "Resend" button
   get _getResendButton {
-    return new InkWell(
-      child: Container(
-        height: 32,
-        width: 120,
-        decoration: BoxDecoration(
-            color: _isResendOtp ? Colors.green : Theme.of(context).buttonColor,
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(32)),
-        alignment: Alignment.center,
-        child: Text(
-          _isResendOtp ? "OTP Requested.." : "Resend OTP",
-          style:
-              new TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+    return Column(
+      children: [
+        Text("OTP not recived yet?"),
+        SizedBox(height: 8),
+        RaisedButton.icon(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back_ios),
+          label: Text(
+            "Authentication Screen",
+            style: TextStyle(
+              color: Colors.purple,
+            ),
+          ),
+          color: Colors.white,
+          shape: ContinuousRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+          elevation: 10,
         ),
-      ),
-      onTap: () {
-        // Resend you OTP via API or anything
-        setState(() {
-          _isResendOtp = true;
-        });
-      },
+      ],
     );
   }
 

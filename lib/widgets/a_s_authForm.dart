@@ -20,20 +20,20 @@ class _ASAuthFormState extends State<ASAuthForm> {
 
     if (isValid) {
       _formKey.currentState.save();
-      _submitAuthForm(_phoneNo, false);
+      _submitAuthForm(phoneNo: _phoneNo);
     }
   }
 
-  Future<void> _submitAuthForm(String phone, bool isResendOtp) async {
+  Future<void> _submitAuthForm({String phoneNo}) async {
+    int _forceResendingToken;
+    print("------submit auth form running");
     try {
       final _auth = FirebaseAuth.instance;
-      int _forceResendingToken;
-      String _verificationId;
 
+      String _verificationId;
       await _auth.verifyPhoneNumber(
-        phoneNumber: '\+91$phone',
+        phoneNumber: '\+91$phoneNo',
         timeout: Duration(minutes: 2),
-        forceResendingToken: isResendOtp ? _forceResendingToken : null,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // only call back when it automatically signs in user not manually
           // signing in user by credentials
@@ -50,6 +50,8 @@ class _ASAuthFormState extends State<ASAuthForm> {
         },
         codeSent: (String verificationId, [int resendToken]) async {
           print("Code Sent run start");
+          _verificationId = verificationId;
+          _forceResendingToken = resendToken;
           //it will run even if it fiding automatically
           //once code is sent it calls
           // first .trim()
@@ -58,19 +60,24 @@ class _ASAuthFormState extends State<ASAuthForm> {
             builder: (context) => ASOTPForm(),
           ))
               .then((otp) async {
+            if (otp == null) {
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Try loging in again.."),
+                  backgroundColor: Theme.of(context).errorColor,
+                ),
+              );
+              return;
+            }
             print("Done bro" + otp);
             final credential = PhoneAuthProvider.credential(
                 verificationId: verificationId, smsCode: otp);
             try {
               // signing in user by credentials
               final authResult = await _auth.signInWithCredential(credential);
-
               //containes additionl user specific information
               User user = authResult.user;
               print("Logging in user by otp sent");
-
-              _verificationId = verificationId;
-              _forceResendingToken = resendToken;
             } catch (error) {
               if (error == "invalid-verification-code") {
                 Scaffold.of(context).showSnackBar(
@@ -86,9 +93,6 @@ class _ASAuthFormState extends State<ASAuthForm> {
         codeAutoRetrievalTimeout: (String verificationId) {
           print("code auto retrival running");
           _verificationId = verificationId;
-          setState(() {
-            isResendOtp = false;
-          });
         },
       );
     } on PlatformException catch (error) {
