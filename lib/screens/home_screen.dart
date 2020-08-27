@@ -1,3 +1,4 @@
+import 'package:doctor_duniya/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../widgets/h_s_searchBar.dart';
@@ -26,7 +27,9 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: GestureDetector(
                     child: CircleAvatar(),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed(ProfileScreen.rountName);
+                    },
                   ),
                 ),
               ],
