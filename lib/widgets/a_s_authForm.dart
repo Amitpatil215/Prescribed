@@ -20,12 +20,17 @@ class _ASAuthFormState extends State<ASAuthForm> {
 
     if (isValid) {
       _formKey.currentState.save();
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Sending OTP request..."),
+          backgroundColor: Colors.purple,
+        ),
+      );
       _submitAuthForm(phoneNo: _phoneNo);
     }
   }
 
   Future<void> _submitAuthForm({String phoneNo}) async {
-    int _forceResendingToken;
     print("------submit auth form running");
     try {
       final _auth = FirebaseAuth.instance;
@@ -51,7 +56,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
         codeSent: (String verificationId, [int resendToken]) async {
           print("Code Sent run start");
           _verificationId = verificationId;
-          _forceResendingToken = resendToken;
+
           //it will run even if it fiding automatically
           //once code is sent it calls
           // first .trim()
@@ -61,6 +66,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
           ))
               .then((otp) async {
             if (otp == null) {
+              Scaffold.of(context).removeCurrentSnackBar();
               Scaffold.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Try loging in again.."),
