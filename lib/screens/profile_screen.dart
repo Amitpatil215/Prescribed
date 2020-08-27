@@ -6,19 +6,21 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white.withOpacity(0.9),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 30),
         child: Column(
           children: [
             Container(
-              color: Colors.white54,
               margin: EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                     icon: Icon(Icons.arrow_back),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
                   IconButton(
                     icon: Icon(Icons.settings),
@@ -87,18 +89,23 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             Container(
-                color: Colors.yellow,
-                height: 150,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text("Health Data"),
-                      ],
-                    )
-                  ],
-                )),
+              height: 150,
+              margin: EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Text("Health Data"),
+                    ],
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),

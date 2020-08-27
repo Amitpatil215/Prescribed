@@ -1,7 +1,6 @@
 import 'package:doctor_duniya/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../widgets/h_s_searchBar.dart';
 import '../widgets/h_s_gridview.dart';
 import '../widgets/h_s_listView.dart';
 import '../widgets/h_s_helpButton.dart';
@@ -10,6 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -19,9 +19,19 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  icon: Icon(Icons.more_horiz),
-                  onPressed: () {},
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Clinic near"),
+                      FlatButton.icon(
+                        onPressed: () {},
+                        icon: Icon(Icons.location_on),
+                        label: Text("Pune"),
+                      )
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
@@ -46,7 +56,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          HSSearchBar(),
+          // HSSearchBar(),
           SizedBox(
             height: 8,
           ),
