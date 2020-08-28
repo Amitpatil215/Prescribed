@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../widgets/profile_Screen/p_s_email_phone_Card.dart';
+import '../widgets/profile_Screen/p_s_pic_name_ListTile.dart';
+import '../widgets/profile_Screen/p_s_details_card.dart';
+import '../widgets/profile_Screen/p_s_appointment_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const rountName = '/profile';
@@ -6,19 +10,21 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white.withOpacity(0.9),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 30),
+        margin: EdgeInsets.only(top: 30),
         child: Column(
           children: [
             Container(
-              color: Colors.white54,
               margin: EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
                     icon: Icon(Icons.arrow_back),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
                   IconButton(
                     icon: Icon(Icons.settings),
@@ -27,78 +33,21 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            ListTile(
-              leading: CircleAvatar(
-                maxRadius: 50,
-                child: Text("Profile Pic"),
-              ),
-              title: Text(
-                "Anubhav Bassi",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-              subtitle: Text(
-                "Sector,62 Noida",
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+            PSPicNameListTile(),
+            PSEmailPhoneCard(),
+            PSAppointmentButton(),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index) => Column(
                         children: [
-                          Icon(Icons.email),
+                          PSDetailCard(),
                           SizedBox(
-                            width: 10,
-                          ),
-                          Text("anubhavsingh21@gmail.com"),
+                            height: 20,
+                          )
                         ],
-                      ),
-                      SizedBox(
-                        height: 2,
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.phone_android),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text("+91 1234567890"),
-                        ],
-                      ),
-                    ],
-                  ),
-                  OutlineButton.icon(
-                    icon: Icon(Icons.edit),
-                    label: Text("Edit"),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    onPressed: () {},
-                  )
-                ],
-              ),
-            ),
-            Container(
-                color: Colors.yellow,
-                height: 150,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text("Health Data"),
-                      ],
-                    )
-                  ],
-                )),
+                      )),
+            )
           ],
         ),
       ),
