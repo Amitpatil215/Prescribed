@@ -125,17 +125,17 @@ class _ASAuthFormState extends State<ASAuthForm> {
                   text: TextSpan(children: <TextSpan>[
                     TextSpan(
                       text: 'We will send you an ',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.black),
                     ),
                     TextSpan(
                         text: 'One Time Password ',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black54,
+                          color: Colors.black,
                         )),
                     TextSpan(
                       text: 'on this mobile number',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.black),
                     ),
                   ]),
                 ),
@@ -145,7 +145,9 @@ class _ASAuthFormState extends State<ASAuthForm> {
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: "Phone No",
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     hintText: "+91..",
                   ),
                   keyboardType: TextInputType.number,
@@ -172,6 +174,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
                       Text(
                         "Next..",
                         style: TextStyle(
+                          fontSize: 18,
                           color: Colors.white,
                         ),
                       ),
@@ -182,10 +185,16 @@ class _ASAuthFormState extends State<ASAuthForm> {
                     ],
                   ),
                   onPressed: _trySubmit,
+                  elevation: 10,
+                  color: Colors.purpleAccent,
                 )
               ],
             ),
           ),
+        ),
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
         ),
       ),
     );

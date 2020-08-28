@@ -1,9 +1,9 @@
 import 'package:doctor_duniya/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../widgets/h_s_gridview.dart';
-import '../widgets/h_s_listView.dart';
-import '../widgets/h_s_helpButton.dart';
+import '../widgets/home_screen/h_s_gridview.dart';
+import '../widgets/home_screen/h_s_listView.dart';
+import '../widgets/home_screen/h_s_helpButton.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
