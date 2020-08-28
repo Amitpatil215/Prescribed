@@ -5,14 +5,16 @@ import 'package:flutter/services.dart';
 import 'screens/auth_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/appointment_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white, // navigation bar color
-      statusBarColor: Colors.green, // status bar color
-      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor:
+          Colors.white.withOpacity(0.95), // navigation bar color
+      statusBarColor: Colors.white.withOpacity(0.95), // status bar color
+      statusBarIconBrightness: Brightness.dark,
       systemNavigationBarIconBrightness: Brightness.dark));
   runApp(MyApp());
 }
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'ProductSans',
         backgroundColor: Colors.white.withOpacity(0.95),
@@ -50,6 +53,9 @@ class MyApp extends StatelessWidget {
       routes: {
         ProfileScreen.rountName: (ctx) {
           return ProfileScreen();
+        },
+        AppointmentScreen.routName: (ctx) {
+          return AppointmentScreen();
         }
       },
     );

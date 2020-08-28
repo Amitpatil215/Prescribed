@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/profile_Screen/p_s_email_phone_Card.dart';
 import '../widgets/profile_Screen/p_s_pic_name_ListTile.dart';
 import '../widgets/profile_Screen/p_s_details_card.dart';
+import '../widgets/profile_Screen/p_s_appointment_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const rountName = '/profile';
@@ -34,11 +35,18 @@ class ProfileScreen extends StatelessWidget {
             ),
             PSPicNameListTile(),
             PSEmailPhoneCard(),
+            PSAppointmentButton(),
             Expanded(
               child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) => PSDetailCard(),
-              ),
+                  itemCount: 5,
+                  itemBuilder: (context, index) => Column(
+                        children: [
+                          PSDetailCard(),
+                          SizedBox(
+                            height: 20,
+                          )
+                        ],
+                      )),
             )
           ],
         ),
