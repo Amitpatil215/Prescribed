@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/auth_screen/a_s_authForm.dart';
 import '../widgets/auth_screen/a_s_login_image.dart';
+import '../widgets/auth_screen/a_s_type_button.dart';
 
 class AuthScreen extends StatelessWidget {
   @override
@@ -11,7 +12,13 @@ class AuthScreen extends StatelessWidget {
           child: SingleChildScrollView(
         child: Column(
           children: [
-            ASLoginImage(),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                ASLoginImage(),
+                ASTypeButton(),
+              ],
+            ),
             ASAuthForm(),
           ],
         ),
