@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import '../widgets/appointment_screen/a_s_tab_button.dart';
 
 class AppointmentScreen extends StatelessWidget {
   static const routName = '/appointment';
@@ -25,24 +27,10 @@ class AppointmentScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            OutlineButton(
-              child: Text("Upcoming"),
-              onPressed: () {},
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            OutlineButton(
-              child: Text("Past"),
-              onPressed: () {},
-            ),
-            Container(),
-          ],
-        ),
+      body: Column(
+        children: [
+          ASTabButton(),
+        ],
       ),
     );
   }
