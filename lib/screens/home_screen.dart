@@ -1,4 +1,4 @@
-import 'package:doctor_duniya/screens/profile_screen.dart';
+import 'package:doctor_duniya/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../widgets/home_screen/h_s_gridview.dart';
@@ -10,6 +10,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
+      floatingActionButton: FloatingActionButton(
+          elevation: 9,
+          backgroundColor: Colors.white,
+          child: Icon(
+            Icons.search,
+            color: Colors.black,
+            size: 30,
+          ),
+          onPressed: () {}),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -56,7 +65,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          // HSSearchBar(),
           SizedBox(
             height: 8,
           ),
@@ -79,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                   child: Text(
                     "See All",
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 14,
                       color: Theme.of(context).accentColor,
                     ),
                   ),
@@ -130,7 +138,7 @@ class HomeScreen extends StatelessWidget {
                     child: Text(
                       "See All",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 14,
                         color: Theme.of(context).accentColor,
                       ),
                     ),
@@ -140,6 +148,7 @@ class HomeScreen extends StatelessWidget {
               )),
           Expanded(
             child: Container(
+              //color: Colors.white,
               height: 600,
               child: HSListView(),
             ),

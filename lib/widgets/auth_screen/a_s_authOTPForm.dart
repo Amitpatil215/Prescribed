@@ -292,7 +292,6 @@ class _ASOTPFormState extends State<ASOTPForm>
   @override
   Widget build(BuildContext context) {
     _screenSize = MediaQuery.of(context).size;
-
     return new Scaffold(
       appBar: _getAppbar,
       backgroundColor: Colors.white,

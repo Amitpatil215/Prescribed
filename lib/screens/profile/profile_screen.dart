@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/profile_Screen/p_s_email_phone_Card.dart';
-import '../widgets/profile_Screen/p_s_pic_name_ListTile.dart';
-import '../widgets/profile_Screen/p_s_details_card.dart';
-import '../widgets/profile_Screen/p_s_appointment_button.dart';
+import '../../widgets/profile_Screen/p_s_email_phone_Card.dart';
+import '../../widgets/profile_Screen/p_s_pic_name_ListTile.dart';
+import '../../widgets/profile_Screen/p_s_details_card.dart';
+import '../../widgets/profile_Screen/p_s_appointment_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const rountName = '/profile';

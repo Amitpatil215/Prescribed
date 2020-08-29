@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'a_s_authOTPForm.dart';
 
 class ASAuthForm extends StatefulWidget {
@@ -47,7 +46,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
           //containes additionl user specific information
           User user = authResult.user;
           print(
-              "Signed in user automatically by otp sent no need to provide otp");
+              "Signed in user automatically by otp sent no need to provide otp $user");
         },
         verificationFailed: (FirebaseAuthException e) {
           //if wrong no or wrong otp entered
