@@ -1,3 +1,4 @@
+import 'package:doctor_duniya/screens/profile/profile_edit_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'screens/auth_screen.dart';
 import 'screens/home_screen.dart';
-import 'screens/profile_screen.dart';
-import 'screens/appointment_screen.dart';
+import 'screens/profile/profile_screen.dart';
+import 'screens/profile/appointment_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +31,20 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white.withOpacity(0.95),
         primarySwatch: Colors.blue,
         errorColor: Colors.red,
+        appBarTheme: AppBarTheme(
+          color: Colors.white,
+          brightness: Brightness.light,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+          textTheme: TextTheme(
+            headline6: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w300,
+            ),
+          ),
+        ),
         accentColor: Colors.blueAccent,
         buttonColor: Colors.white,
         iconTheme: IconThemeData(opacity: 0.6),
@@ -58,7 +73,10 @@ class MyApp extends StatelessWidget {
         },
         AppointmentScreen.routName: (ctx) {
           return AppointmentScreen();
-        }
+        },
+        ProfileEditScreen.routName: (ctx) {
+          return ProfileEditScreen();
+        },
       },
     );
   }

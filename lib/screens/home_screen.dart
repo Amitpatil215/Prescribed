@@ -1,4 +1,4 @@
-import 'package:doctor_duniya/screens/profile_screen.dart';
+import 'package:doctor_duniya/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../widgets/home_screen/h_s_gridview.dart';
