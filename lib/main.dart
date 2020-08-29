@@ -68,6 +68,9 @@ class MyApp extends StatelessWidget {
         },
       ),
       routes: {
+        AuthScreen.routName: (ctx) {
+          return AuthScreen();
+        },
         ProfileScreen.rountName: (ctx) {
           return ProfileScreen();
         },
