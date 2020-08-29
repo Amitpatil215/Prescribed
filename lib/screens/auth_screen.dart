@@ -23,7 +23,7 @@ class AuthScreen extends StatelessWidget {
                 ),
                 ASAuthForm(),
               ],
-            )),
+            ),),
       ),
     );
   }
