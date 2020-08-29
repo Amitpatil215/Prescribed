@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:doctor_duniya/widgets/appointment_screen/a_s_appointment_title.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ASTabButton extends StatefulWidget {
   @override
@@ -52,89 +54,10 @@ class _ASTabButtonState extends State<ASTabButton> {
           ],
         ),
         Container(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          child: Row(
-            children: [
-              Column(
-                children: [
-                  Text(
-                    "25 \nSept",
-                    style: TextStyle(fontSize: 26),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Container(
-                    height: 125,
-                    width: 280,
-                    margin: EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 8.0,
-                                    left: 9,
-                                  ),
-                                  child: Text(
-                                    "7:30 PM",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  "2 h 30 min",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  "Meeting with Dr. Duva",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                Container(
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.location_on),
-                                      Text(
-                                        "Indira gandhi internationl",
-                                        overflow: TextOverflow.fade,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                        Card(
-                          child: Text("Add buttons here"),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
+          height: 1580.h,
+          child: ListView.builder(
+            itemCount: 8,
+            itemBuilder: (context, index) => ASAppointmentTile(),
           ),
         )
       ],
