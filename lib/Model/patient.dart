@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/foundation.dart';
 
 enum Gender {
@@ -26,7 +24,7 @@ class Patient {
   final DateTime dateOfBirth;
   final int phone;
   final String email;
-  final Geolocation location;
+  final GeoLocation location;
   final String orgId;
   final double weight;
   final double bloodPressure;
