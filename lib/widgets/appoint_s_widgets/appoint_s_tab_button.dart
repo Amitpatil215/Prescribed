@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:doctor_duniya/widgets/appointment_screen/a_s_appointment_title.dart';
+import '../appoint_s_widgets/appoint_s_appointment_title.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ASTabButton extends StatefulWidget {

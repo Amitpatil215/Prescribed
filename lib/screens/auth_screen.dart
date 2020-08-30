@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-import '../widgets/auth_screen/a_s_authForm.dart';
-import '../widgets/auth_screen/a_s_login_image.dart';
-import '../widgets/auth_screen/a_s_type_button.dart';
+import '../widgets/a_s_widgets/a_s_authForm.dart';
+import '../widgets/a_s_widgets/a_s_login_image.dart';
+import '../widgets/a_s_widgets/a_s_type_button.dart';
 
 class AuthScreen extends StatelessWidget {
   static const routName = "/auth-screen";
