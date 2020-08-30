@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileEditScreen extends StatefulWidget {
@@ -17,10 +19,35 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
 
   List<DropdownMenuItem<int>> genderList = [];
 
-  void _saveForm() {
+  void _saveForm() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
+
+      final userID = FirebaseAuth.instance.currentUser.uid;
+      try {
+        await FirebaseFirestore.instance.collection("user").doc(userID).set({
+          "name": _name,
+          "gender": genderString,
+          "location": _location,
+          "phone": _contactNo,
+          "email": _emailAddress,
+        });
+      } catch (error) {
+        print("Error in storing profile edit page with $error");
+      }
+      Navigator.of(context).pop();
     }
+  }
+
+  String get genderString {
+    if (_selectedGender == 0) {
+      return "Male";
+    } else if (_selectedGender == 1) {
+      return "Female";
+    } else if (_selectedGender == 2) {
+      return "Other";
+    }
+    return null;
   }
 
   void loadGenderList() {
@@ -42,6 +69,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
   @override
   Widget build(BuildContext context) {
     loadGenderList();
+
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
@@ -226,6 +254,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                             } else {
                               return "Enter Valid Email Address";
                             }
+                          },
+                          onSaved: (value) {
+                            _emailAddress = value;
                           },
                         ),
                       )
