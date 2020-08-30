@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'ProductSans',
-        backgroundColor: Colors.white.withOpacity(0.95),
+        backgroundColor: Colors.white.withOpacity(0.97),
         primarySwatch: Colors.blue,
         errorColor: Colors.red,
         appBarTheme: AppBarTheme(

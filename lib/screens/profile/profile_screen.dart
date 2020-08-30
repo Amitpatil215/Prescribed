@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../widgets/profile_Screen/p_s_email_phone_Card.dart';
-import '../../widgets/profile_Screen/p_s_pic_name_ListTile.dart';
-import '../../widgets/profile_Screen/p_s_details_card.dart';
-import '../../widgets/profile_Screen/p_s_appointment_button.dart';
+import '../../widgets/p_s_widgets/p_s_email_phone_Card.dart';
+import '../../widgets/p_s_widgets/p_s_pic_name_ListTile.dart';
+import '../../widgets/p_s_widgets/p_s_details_card.dart';
+import '../../widgets/p_s_widgets/p_s_appointment_button.dart';
+import '../../widgets/p_s_widgets/p_s_setting_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const rountName = '/profile';
@@ -26,10 +27,7 @@ class ProfileScreen extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                   ),
-                  IconButton(
-                    icon: Icon(Icons.settings),
-                    onPressed: () {},
-                  ),
+                  PSSettingButton(),
                 ],
               ),
             ),

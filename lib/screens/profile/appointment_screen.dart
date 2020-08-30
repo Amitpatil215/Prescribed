@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../../widgets/appointment_screen/a_s_tab_button.dart';
+import '../../widgets/a_s_widgets/a_s_tab_button.dart';
 
 class AppointmentScreen extends StatelessWidget {
   static const routName = '/appointment';
