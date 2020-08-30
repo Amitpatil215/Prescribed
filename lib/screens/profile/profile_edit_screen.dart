@@ -10,8 +10,18 @@ class ProfileEditScreen extends StatefulWidget {
 class _ProfileEditScreenState extends State<ProfileEditScreen> {
   final _formKey = GlobalKey<FormState>();
   int _selectedGender = 0;
+  String _name = '';
+  String _location = '';
+  int _contactNo;
+  String _emailAddress = '';
 
   List<DropdownMenuItem<int>> genderList = [];
+
+  void _saveForm() {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+    }
+  }
 
   void loadGenderList() {
     genderList = [];
@@ -40,6 +50,7 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
         body: Container(
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           child: Form(
+            key: _formKey,
             child: Column(
               children: [
                 Container(
@@ -62,6 +73,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
+                          validator: (value) {
+                            if (value.isNotEmpty) {
+                              return null;
+                            } else {
+                              return "Please provide your name";
+                            }
+                          },
+                          onSaved: (value) {
+                            _name = value;
+                          },
                         ),
                       )
                     ],
@@ -129,6 +150,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
+                          validator: (value) {
+                            if (value.isNotEmpty) {
+                              return null;
+                            } else {
+                              return "Enter Valid Location";
+                            }
+                          },
+                          onSaved: (value) {
+                            _location = value;
+                          },
                         ),
                       )
                     ],
@@ -154,6 +185,16 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
+                          validator: (value) {
+                            if (value.length == 10) {
+                              return null;
+                            } else {
+                              return "Enter Correct Contact Details";
+                            }
+                          },
+                          onSaved: (value) {
+                            _contactNo = int.parse(value);
+                          },
                         ),
                       )
                     ],
@@ -179,11 +220,31 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
+                          validator: (value) {
+                            if (value.isNotEmpty) {
+                              return null;
+                            } else {
+                              return "Enter Valid Email Address";
+                            }
+                          },
                         ),
                       )
                     ],
                   ),
                 ),
+                Spacer(),
+                Container(
+                    margin: EdgeInsets.only(bottom: 25),
+                    child: RaisedButton(
+                      child: Text(
+                        "Save",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: _saveForm,
+                      elevation: 5,
+                    )),
               ],
             ),
           ),
