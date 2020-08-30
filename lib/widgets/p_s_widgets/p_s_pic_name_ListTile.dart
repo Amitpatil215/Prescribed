@@ -30,7 +30,7 @@ class PSPicNameListTile extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "Noida Sector 62",
+              userData['location'],
             ),
           );
         });
