@@ -11,6 +11,7 @@ import 'screens/profile/profile_screen.dart';
 import 'screens/profile/appointment_screen.dart';
 import 'providers/patient_profile_provider.dart';
 import 'screens/home/categories_see_all_screen.dart';
+import 'screens/home/top_doctors_see_all_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,6 +79,9 @@ class MyApp extends StatelessWidget {
           },
           CatergoriesSeeAllScreen.routName: (ctx) {
             return CatergoriesSeeAllScreen();
+          },
+          TopDoctorsSeeAllScreen.routeName: (ctx) {
+            return TopDoctorsSeeAllScreen();
           },
           ProfileScreen.rountName: (ctx) {
             return ProfileScreen();

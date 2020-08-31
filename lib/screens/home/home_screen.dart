@@ -5,6 +5,7 @@ import '../../widgets/h_s_widgets/h_s_gridview.dart';
 import '../../widgets/h_s_widgets/h_s_listView.dart';
 import '../../widgets/h_s_widgets/h_s_helpButton.dart';
 import '../../screens/home/categories_see_all_screen.dart';
+import '../../screens/home/top_doctors_see_all_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -146,7 +147,10 @@ class HomeScreen extends StatelessWidget {
                         color: Theme.of(context).accentColor,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushNamed(TopDoctorsSeeAllScreen.routeName);
+                    },
                   ),
                 ],
               )),
