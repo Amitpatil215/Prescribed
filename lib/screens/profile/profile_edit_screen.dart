@@ -1,54 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../widgets/p_edit_s_widgets/p_e_s_dropDownButton.dart';
 
-class ProfileEditScreen extends StatefulWidget {
+class ProfileEditScreen extends StatelessWidget {
   static const routName = '/profile-edit';
   final userId = FirebaseAuth.instance.currentUser.uid;
-  @override
-  _ProfileEditScreenState createState() => _ProfileEditScreenState();
-}
 
-class _ProfileEditScreenState extends State<ProfileEditScreen> {
   final _formKey = GlobalKey<FormState>();
-  int _selectedGender = 0;
+
   String _name = '';
   String _location = '';
   int _contactNo;
   String _emailAddress = '';
-
-  List<DropdownMenuItem<int>> genderList = [];
-
-  void _saveForm() async {
-    if (_formKey.currentState.validate()) {
-      _formKey.currentState.save();
-
-      final userID = FirebaseAuth.instance.currentUser.uid;
-      try {
-        await FirebaseFirestore.instance.collection("user").doc(userID).set({
-          "name": _name,
-          "gender": genderString,
-          "location": _location,
-          "phone": _contactNo,
-          "email": _emailAddress,
-        });
-      } catch (error) {
-        print("Error in storing profile edit page with $error");
-      }
-      Navigator.of(context).pop();
-    }
-  }
-
-  String get genderString {
-    if (_selectedGender == 0) {
-      return "Male";
-    } else if (_selectedGender == 1) {
-      return "Female";
-    } else if (_selectedGender == 2) {
-      return "Other";
-    }
-    return null;
-  }
+  String _genderString = '';
 
   int genderIndex(String _initialValue) {
     if (_initialValue == "Male") {
@@ -61,25 +26,38 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
     return null;
   }
 
-  void loadGenderList() {
-    genderList = [];
-    genderList.add(new DropdownMenuItem(
-      child: new Text('Male'),
-      value: 0,
-    ));
-    genderList.add(new DropdownMenuItem(
-      child: new Text('Female'),
-      value: 1,
-    ));
-    genderList.add(new DropdownMenuItem(
-      child: new Text('Other'),
-      value: 2,
-    ));
+  void getGenderString(int _selectedGender) {
+    if (_selectedGender == 0) {
+      _genderString = "Male";
+    } else if (_selectedGender == 1) {
+      _genderString = "Female";
+    } else if (_selectedGender == 2) {
+      _genderString = "Other";
+    }
+  }
+
+  void _saveForm(BuildContext context) async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+
+      final userID = FirebaseAuth.instance.currentUser.uid;
+      try {
+        await FirebaseFirestore.instance.collection("user").doc(userID).set({
+          "name": _name,
+          "gender": _genderString,
+          "location": _location,
+          "phone": _contactNo,
+          "email": _emailAddress,
+        });
+      } catch (error) {
+        print("Error in storing profile edit page with $error");
+      }
+      Navigator.of(context).pop();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    loadGenderList();
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         backgroundColor: Theme.of(context).backgroundColor,
@@ -89,18 +67,21 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
         body: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection("user")
-                .doc(widget.userId)
+                .doc(userId)
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return CircularProgressIndicator();
               }
               final userData = snapshot.data.data();
-              _name = userData['name'];
-              //  _selectedGender = genderIndex(userData['gender']);
-              _location = userData['location'];
-              _contactNo = userData['phone'];
-              _emailAddress = userData['email'];
+              if (userData != null) {
+                _name = userData['name'];
+                _genderString = userData['gender'];
+                _location = userData['location'];
+                _contactNo = userData['phone'];
+                _emailAddress = userData['email'];
+              }
+
               return Container(
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Form(
@@ -143,48 +124,8 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 10),
-                        child: Row(
-                          children: [
-                            Icon(
-                              null,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Expanded(
-                              child: FormField(
-                                builder: (FormFieldState<String> state) {
-                                  return InputDecorator(
-                                    decoration: InputDecoration(
-                                      labelText: "Gender",
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                    ),
-                                    child: DropdownButtonHideUnderline(
-                                      child: DropdownButton(
-                                        isDense: true,
-                                        hint: Text("Select Gender"),
-                                        items: [...genderList],
-                                        value: _selectedGender,
-                                        isExpanded: true,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            _selectedGender = value;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                      GenderDropDownButton(
+                          genderIndex(_genderString), getGenderString),
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         child: Row(
@@ -303,7 +244,9 @@ class _ProfileEditScreenState extends State<ProfileEditScreen> {
                                 color: Colors.white,
                               ),
                             ),
-                            onPressed: _saveForm,
+                            onPressed: () {
+                              _saveForm(context);
+                            },
                             elevation: 5,
                           )),
                     ],
