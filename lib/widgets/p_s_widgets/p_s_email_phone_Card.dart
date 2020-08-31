@@ -33,7 +33,9 @@ class PSEmailPhoneCard extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Text(userData['email']),
+                        Text(userData != null
+                            ? userData['email']
+                            : "Email Address"),
                       ],
                     ),
                     SizedBox(
@@ -45,7 +47,9 @@ class PSEmailPhoneCard extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Text(userData['phone'].toString()),
+                        Text(userData != null
+                            ? userData['phone'].toString()
+                            : "Contact Number"),
                       ],
                     ),
                   ],

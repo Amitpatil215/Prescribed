@@ -74,11 +74,14 @@ class ProfileEditScreen extends StatelessWidget {
                 return CircularProgressIndicator();
               }
               final userData = snapshot.data.data();
-              _name = userData['name'];
-              _genderString = userData['gender'];
-              _location = userData['location'];
-              _contactNo = userData['phone'];
-              _emailAddress = userData['email'];
+              if (userData != null) {
+                _name = userData['name'];
+                _genderString = userData['gender'];
+                _location = userData['location'];
+                _contactNo = userData['phone'];
+                _emailAddress = userData['email'];
+              }
+
               return Container(
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Form(

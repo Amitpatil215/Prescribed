@@ -24,13 +24,13 @@ class PSPicNameListTile extends StatelessWidget {
               child: Text("Profile Pic"),
             ),
             title: Text(
-              userData['name'],
+              userData != null ? userData['name'] : "Your Name",
               style: TextStyle(
                 fontSize: 20,
               ),
             ),
             subtitle: Text(
-              userData['location'],
+              userData != null ? userData['location'] : "Current Location",
             ),
           );
         });
