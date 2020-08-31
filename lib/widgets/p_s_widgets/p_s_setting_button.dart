@@ -1,4 +1,4 @@
-import 'package:doctor_duniya/screens/home_screen.dart';
+import 'package:doctor_duniya/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

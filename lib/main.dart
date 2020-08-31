@@ -6,18 +6,19 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'screens/auth_screen.dart';
-import 'screens/home_screen.dart';
+import 'screens/home/home_screen.dart';
 import 'screens/profile/profile_screen.dart';
 import 'screens/profile/appointment_screen.dart';
 import 'providers/patient_profile_provider.dart';
+import 'screens/home/categories_see_all_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor:
-          Colors.white.withOpacity(0.95), // navigation bar color
-      statusBarColor: Colors.white.withOpacity(0.95), // status bar color
+          Colors.white.withOpacity(0.70), // navigation bar color
+      statusBarColor: Colors.white.withOpacity(0.70), // status bar color
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarIconBrightness: Brightness.dark));
   runApp(MyApp());
@@ -74,6 +75,9 @@ class MyApp extends StatelessWidget {
         routes: {
           AuthScreen.routName: (ctx) {
             return AuthScreen();
+          },
+          CatergoriesSeeAllScreen.routName: (ctx) {
+            return CatergoriesSeeAllScreen();
           },
           ProfileScreen.rountName: (ctx) {
             return ProfileScreen();
