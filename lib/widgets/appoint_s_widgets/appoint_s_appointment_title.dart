@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import '../../widgets/appoint_s_widgets/presription_bookAgain_button.dart';
 
 class ASAppointmentTile extends StatelessWidget {
   @override
@@ -22,7 +23,7 @@ class ASAppointmentTile extends StatelessWidget {
           Column(
             children: [
               Container(
-                height: 125,
+                height: ScreenUtil().setHeight(350),
                 width: ScreenUtil().setWidth(850),
                 margin: EdgeInsets.only(left: ScreenUtil().setWidth(30)),
                 decoration: BoxDecoration(
@@ -104,9 +105,7 @@ class ASAppointmentTile extends StatelessWidget {
                       ],
                     ),
                     Spacer(),
-                    Card(
-                      child: Text("Add buttons here"),
-                    ),
+                    PrescriptionBookAgainButton(),
                   ],
                 ),
               ),

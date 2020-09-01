@@ -10,6 +10,8 @@ import 'screens/profile/profile_screen.dart';
 import 'screens/profile/appointment_screen.dart';
 import 'screens/home/categories_see_all_screen.dart';
 import 'screens/home/top_doctors_see_all_screen.dart';
+import 'screens/medicine/prescribe_medicine_screen.dart';
+import 'screens/medicine/add_medicine.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,8 +33,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'ProductSans',
         backgroundColor: Colors.white.withOpacity(0.97),
+        scaffoldBackgroundColor: Colors.white.withOpacity(0.97),
         primarySwatch: Colors.blue,
         errorColor: Colors.red,
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.white,
+        ),
         appBarTheme: AppBarTheme(
           color: Colors.white,
           brightness: Brightness.light,
@@ -46,6 +52,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
           ),
+        ),
+        cardTheme: CardTheme(
+          elevation: 5,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          margin: EdgeInsets.symmetric(vertical: 10),
         ),
         accentColor: Colors.blueAccent,
         buttonColor: Colors.white,
@@ -84,6 +96,12 @@ class MyApp extends StatelessWidget {
         },
         AppointmentScreen.routName: (ctx) {
           return AppointmentScreen();
+        },
+        PrescribeMedicineButton.routName: (ctx) {
+          return PrescribeMedicineButton();
+        },
+        AddMedicine.routeName: (ctx) {
+          return AddMedicine();
         },
         ProfileEditScreen.routName: (ctx) {
           return ProfileEditScreen();
