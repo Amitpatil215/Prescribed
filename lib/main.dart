@@ -10,6 +10,7 @@ import 'screens/profile/profile_screen.dart';
 import 'screens/profile/appointment_screen.dart';
 import 'screens/home/categories_see_all_screen.dart';
 import 'screens/home/top_doctors_see_all_screen.dart';
+import 'screens/medicine/prescribe_medicine_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,6 +47,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
           ),
+        ),
+        cardTheme: CardTheme(
+          elevation: 5,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          margin: EdgeInsets.symmetric(vertical: 10),
         ),
         accentColor: Colors.blueAccent,
         buttonColor: Colors.white,
@@ -84,6 +91,9 @@ class MyApp extends StatelessWidget {
         },
         AppointmentScreen.routName: (ctx) {
           return AppointmentScreen();
+        },
+        PrescribeMedicineButton.routName: (ctx) {
+          return PrescribeMedicineButton();
         },
         ProfileEditScreen.routName: (ctx) {
           return ProfileEditScreen();
