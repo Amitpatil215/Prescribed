@@ -11,6 +11,7 @@ import 'screens/profile/appointment_screen.dart';
 import 'screens/home/categories_see_all_screen.dart';
 import 'screens/home/top_doctors_see_all_screen.dart';
 import 'screens/medicine/prescribe_medicine_screen.dart';
+import 'screens/medicine/add_medicine.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,8 +33,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'ProductSans',
         backgroundColor: Colors.white.withOpacity(0.97),
+        scaffoldBackgroundColor: Colors.white.withOpacity(0.97),
         primarySwatch: Colors.blue,
         errorColor: Colors.red,
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.white,
+        ),
         appBarTheme: AppBarTheme(
           color: Colors.white,
           brightness: Brightness.light,
@@ -94,6 +99,9 @@ class MyApp extends StatelessWidget {
         },
         PrescribeMedicineButton.routName: (ctx) {
           return PrescribeMedicineButton();
+        },
+        AddMedicine.routeName: (ctx) {
+          return AddMedicine();
         },
         ProfileEditScreen.routName: (ctx) {
           return ProfileEditScreen();

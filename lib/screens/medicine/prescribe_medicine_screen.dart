@@ -1,3 +1,4 @@
+import 'package:doctor_duniya/screens/medicine/add_medicine.dart';
 import 'package:flutter/material.dart';
 
 class PrescribeMedicineButton extends StatelessWidget {
@@ -8,6 +9,21 @@ class PrescribeMedicineButton extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text("Prescribed Medications"),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+        label: Text(
+          "Add Medicine",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(AddMedicine.routeName);
+        },
       ),
       body: Column(
         children: [
