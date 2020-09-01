@@ -6,7 +6,9 @@ class TimeOfDayChip extends StatefulWidget {
 }
 
 class _TimeOfDayChipState extends State<TimeOfDayChip> {
-  var _selectedText = '';
+  var _isMorning = true;
+  var _isNoon = false;
+  var _isNight = true;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,19 +24,16 @@ class _TimeOfDayChipState extends State<TimeOfDayChip> {
                   "Morning",
                   style: TextStyle(
                     fontSize: 16,
-                    color: _selectedText == "Morning"
-                        ? Colors.white
-                        : Colors.black,
+                    color: _isMorning ? Colors.white : Colors.black,
                   ),
                 ),
               ),
-              backgroundColor: _selectedText == "Morning"
-                  ? Colors.purpleAccent
-                  : Colors.grey.shade300,
+              backgroundColor:
+                  _isMorning ? Colors.purpleAccent : Colors.grey.shade300,
             ),
             onTap: () {
               setState(() {
-                _selectedText = "Morning";
+                _isMorning = !_isMorning;
               });
             },
           ),
@@ -47,18 +46,16 @@ class _TimeOfDayChipState extends State<TimeOfDayChip> {
                   "Noon",
                   style: TextStyle(
                     fontSize: 16,
-                    color:
-                        _selectedText == "Noon" ? Colors.white : Colors.black,
+                    color: _isNoon ? Colors.white : Colors.black,
                   ),
                 ),
               ),
-              backgroundColor: _selectedText == "Noon"
-                  ? Colors.purpleAccent
-                  : Colors.grey.shade300,
+              backgroundColor:
+                  _isNoon ? Colors.purpleAccent : Colors.grey.shade300,
             ),
             onTap: () {
               setState(() {
-                _selectedText = "Noon";
+                _isNoon = !_isNoon;
               });
             },
           ),
@@ -71,18 +68,16 @@ class _TimeOfDayChipState extends State<TimeOfDayChip> {
                   "Night",
                   style: TextStyle(
                     fontSize: 16,
-                    color:
-                        _selectedText == "Night" ? Colors.white : Colors.black,
+                    color: _isNight ? Colors.white : Colors.black,
                   ),
                 ),
               ),
-              backgroundColor: _selectedText == "Night"
-                  ? Colors.purpleAccent
-                  : Colors.grey.shade300,
+              backgroundColor:
+                  _isNight ? Colors.purpleAccent : Colors.grey.shade300,
             ),
             onTap: () {
               setState(() {
-                _selectedText = "Night";
+                _isNight = !_isNight;
               });
             },
           ),

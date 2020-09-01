@@ -6,7 +6,7 @@ class TakenWhenChip extends StatefulWidget {
 }
 
 class _TakenWhenChipState extends State<TakenWhenChip> {
-  var _selectedText = '';
+  var _selectedText = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,19 +22,17 @@ class _TakenWhenChipState extends State<TakenWhenChip> {
                   "After Food",
                   style: TextStyle(
                     fontSize: 16,
-                    color: _selectedText == "After Food"
-                        ? Colors.white
-                        : Colors.black,
+                    color: _selectedText == 0 ? Colors.white : Colors.black,
                   ),
                 ),
               ),
-              backgroundColor: _selectedText == "After Food"
+              backgroundColor: _selectedText == 0
                   ? Colors.purpleAccent
                   : Colors.grey.shade300,
             ),
             onTap: () {
               setState(() {
-                _selectedText = "After Food";
+                _selectedText = 0;
               });
             },
           ),
@@ -47,19 +45,17 @@ class _TakenWhenChipState extends State<TakenWhenChip> {
                   "Before Food",
                   style: TextStyle(
                     fontSize: 16,
-                    color: _selectedText == "Before Food"
-                        ? Colors.white
-                        : Colors.black,
+                    color: _selectedText == 1 ? Colors.white : Colors.black,
                   ),
                 ),
               ),
-              backgroundColor: _selectedText == "Before Food"
+              backgroundColor: _selectedText == 1
                   ? Colors.purpleAccent
                   : Colors.grey.shade300,
             ),
             onTap: () {
               setState(() {
-                _selectedText = "Before Food";
+                _selectedText = 1;
               });
             },
           ),
