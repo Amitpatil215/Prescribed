@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TimeOfDayChip extends StatefulWidget {
+class TakenWhenChip extends StatefulWidget {
   @override
-  _TimeOfDayChipState createState() => _TimeOfDayChipState();
+  _TakenWhenChipState createState() => _TakenWhenChipState();
 }
 
-class _TimeOfDayChipState extends State<TimeOfDayChip> {
+class _TakenWhenChipState extends State<TakenWhenChip> {
   var _selectedText = '';
   @override
   Widget build(BuildContext context) {
@@ -19,22 +19,22 @@ class _TimeOfDayChipState extends State<TimeOfDayChip> {
               label: Container(
                 padding: EdgeInsets.all(8),
                 child: Text(
-                  "Morning",
+                  "After Food",
                   style: TextStyle(
                     fontSize: 16,
-                    color: _selectedText == "Morning"
+                    color: _selectedText == "After Food"
                         ? Colors.white
                         : Colors.black,
                   ),
                 ),
               ),
-              backgroundColor: _selectedText == "Morning"
+              backgroundColor: _selectedText == "After Food"
                   ? Colors.purpleAccent
                   : Colors.grey.shade300,
             ),
             onTap: () {
               setState(() {
-                _selectedText = "Morning";
+                _selectedText = "After Food";
               });
             },
           ),
@@ -44,45 +44,22 @@ class _TimeOfDayChipState extends State<TimeOfDayChip> {
               label: Container(
                 padding: EdgeInsets.all(8),
                 child: Text(
-                  "Noon",
+                  "Before Food",
                   style: TextStyle(
                     fontSize: 16,
-                    color:
-                        _selectedText == "Noon" ? Colors.white : Colors.black,
+                    color: _selectedText == "Before Food"
+                        ? Colors.white
+                        : Colors.black,
                   ),
                 ),
               ),
-              backgroundColor: _selectedText == "Noon"
+              backgroundColor: _selectedText == "Before Food"
                   ? Colors.purpleAccent
                   : Colors.grey.shade300,
             ),
             onTap: () {
               setState(() {
-                _selectedText = "Noon";
-              });
-            },
-          ),
-          SizedBox(width: 5),
-          GestureDetector(
-            child: Chip(
-              label: Container(
-                padding: EdgeInsets.all(8),
-                child: Text(
-                  "Night",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color:
-                        _selectedText == "Night" ? Colors.white : Colors.black,
-                  ),
-                ),
-              ),
-              backgroundColor: _selectedText == "Night"
-                  ? Colors.purpleAccent
-                  : Colors.grey.shade300,
-            ),
-            onTap: () {
-              setState(() {
-                _selectedText = "Night";
+                _selectedText = "Before Food";
               });
             },
           ),

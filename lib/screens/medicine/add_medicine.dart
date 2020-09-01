@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/a_m_widgets/time_of_day_Chip.dart';
+import '../../widgets/a_m_widgets/taken_when_chip.dart';
 
 class AddMedicine extends StatelessWidget {
   static const routeName = 'add-medicine';
@@ -72,6 +73,18 @@ class AddMedicine extends StatelessWidget {
             ],
           ),
           TimeOfDayChip(),
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Text(
+                  "To be taken",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            ],
+          ),
+          TakenWhenChip(),
         ],
       ),
     );
