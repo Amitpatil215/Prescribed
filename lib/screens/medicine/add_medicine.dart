@@ -8,10 +8,33 @@ import '../../widgets/a_m_widgets/medicine_type_grid.dart';
 class AddMedicine extends StatelessWidget {
   static const routeName = 'add-medicine';
   String medicineName = "";
+  List<String> timeOfday = ["Morning", "Night"];
   final _formKey = GlobalKey<FormState>();
+  void _saveForm(BuildContext context) async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      print(medicineName);
+      print(timeOfday);
+      // final userID = FirebaseAuth.instance.currentUser.uid;
+      // try {
+      //   await FirebaseFirestore.instance.collection("user").doc(userID).set({
+      //     "name": _name,
+      //     "gender": _genderString,
+      //     "location": _location,
+      //     "phone": _contactNo,
+      //     "email": _emailAddress,
+      //   });
+      // } catch (error) {
+      //   print("Error in storing profile edit page with $error");
+      // }
+      Navigator.of(context).pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text("Add Medicine"),
       ),
@@ -70,9 +93,24 @@ class AddMedicine extends StatelessWidget {
           NameOfSubTitle("Dosage"),
           CountDosage(),
           NameOfSubTitle("Time of the Day"),
-          TimeOfDayChip(),
+          TimeOfDayChip(timeOfday),
           NameOfSubTitle("To be taken"),
           TakenWhenChip(),
+          Spacer(),
+          Container(
+              margin: EdgeInsets.only(bottom: 25),
+              child: RaisedButton(
+                child: Text(
+                  "Save",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  _saveForm(context);
+                },
+                elevation: 5,
+              )),
         ],
       ),
     );

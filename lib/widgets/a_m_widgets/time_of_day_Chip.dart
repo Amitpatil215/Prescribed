@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TimeOfDayChip extends StatefulWidget {
+  List<String> timeOfday;
+  TimeOfDayChip(this.timeOfday);
   @override
   _TimeOfDayChipState createState() => _TimeOfDayChipState();
 }
@@ -34,6 +36,11 @@ class _TimeOfDayChipState extends State<TimeOfDayChip> {
             onTap: () {
               setState(() {
                 _isMorning = !_isMorning;
+                if (_isMorning) {
+                  widget.timeOfday.add("Morning");
+                } else {
+                  widget.timeOfday.remove("Morning");
+                }
               });
             },
           ),
@@ -56,6 +63,11 @@ class _TimeOfDayChipState extends State<TimeOfDayChip> {
             onTap: () {
               setState(() {
                 _isNoon = !_isNoon;
+                if (_isNoon) {
+                  widget.timeOfday.add("Noon");
+                } else {
+                  widget.timeOfday.remove("Noon");
+                }
               });
             },
           ),
@@ -78,6 +90,11 @@ class _TimeOfDayChipState extends State<TimeOfDayChip> {
             onTap: () {
               setState(() {
                 _isNight = !_isNight;
+                if (_isNight) {
+                  widget.timeOfday.add("Night");
+                } else {
+                  widget.timeOfday.remove("Night");
+                }
               });
             },
           ),
