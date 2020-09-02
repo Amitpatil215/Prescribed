@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import '../../widgets/a_m_widgets/time_of_day_Chip.dart';
 import '../../widgets/a_m_widgets/taken_when_chip.dart';
 import '../../widgets/a_m_widgets/count_dosage.dart';
+import '../../widgets/a_m_widgets/medicine_type_grid.dart';
 
 class AddMedicine extends StatelessWidget {
   static const routeName = 'add-medicine';
@@ -27,7 +29,8 @@ class AddMedicine extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(
-                          Icons.donut_large,
+                          FlutterIcons.file_prescription_faw5s,
+                          color: Colors.purple.shade900,
                           size: 30,
                         ),
                         SizedBox(
@@ -62,44 +65,36 @@ class AddMedicine extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text(
-                  "Dosage",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ],
-          ),
+          NameOfSubTitle("Medicine Type"),
+          MedicineTypeGrid(),
+          NameOfSubTitle("Dosage"),
           CountDosage(),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text(
-                  "Time of the Day",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ],
-          ),
+          NameOfSubTitle("Time of the Day"),
           TimeOfDayChip(),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text(
-                  "To be taken",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ],
-          ),
+          NameOfSubTitle("To be taken"),
           TakenWhenChip(),
         ],
       ),
+    );
+  }
+}
+
+class NameOfSubTitle extends StatelessWidget {
+  String subTitle;
+  NameOfSubTitle(this.subTitle);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Text(
+            subTitle,
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      ],
     );
   }
 }
