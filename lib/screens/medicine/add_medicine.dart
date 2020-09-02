@@ -7,14 +7,21 @@ import '../../widgets/a_m_widgets/medicine_type_grid.dart';
 
 class AddMedicine extends StatelessWidget {
   static const routeName = 'add-medicine';
-  String medicineName = "";
+  String medicineName;
+  var medicineType = "";
+  var dosageCount = 1;
+  var takenWhen = 0; // 0 for after food
   List<String> timeOfday = ["Morning", "Night"];
   final _formKey = GlobalKey<FormState>();
   void _saveForm(BuildContext context) async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       print(medicineName);
+      print(medicineType);
+      print(dosageCount.toString());
       print(timeOfday);
+      print(takenWhen.toString());
+
       // final userID = FirebaseAuth.instance.currentUser.uid;
       // try {
       //   await FirebaseFirestore.instance.collection("user").doc(userID).set({
@@ -27,7 +34,7 @@ class AddMedicine extends StatelessWidget {
       // } catch (error) {
       //   print("Error in storing profile edit page with $error");
       // }
-      Navigator.of(context).pop();
+      // Navigator.of(context).pop();
     }
   }
 
@@ -89,13 +96,13 @@ class AddMedicine extends StatelessWidget {
             ),
           ),
           NameOfSubTitle("Medicine Type"),
-          MedicineTypeGrid(),
+          MedicineTypeGrid(medicineType),
           NameOfSubTitle("Dosage"),
-          CountDosage(),
+          CountDosage(dosageCount),
           NameOfSubTitle("Time of the Day"),
           TimeOfDayChip(timeOfday),
           NameOfSubTitle("To be taken"),
-          TakenWhenChip(),
+          TakenWhenChip(takenWhen),
           Spacer(),
           Container(
               margin: EdgeInsets.only(bottom: 25),

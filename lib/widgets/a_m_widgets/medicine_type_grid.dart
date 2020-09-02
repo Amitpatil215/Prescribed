@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class MedicineTypeGrid extends StatefulWidget {
+  String medicineType;
+  MedicineTypeGrid(this.medicineType);
   @override
   _MedicineTypeGridState createState() => _MedicineTypeGridState();
 }
 
 class _MedicineTypeGridState extends State<MedicineTypeGrid> {
-  var _SelectedType = 1;
+  var _selectedType = 1;
 
   var _mTypeList = [
     ["Syrup", FlutterIcons.prescription_bottle_faw5s],
@@ -41,7 +43,7 @@ class _MedicineTypeGridState extends State<MedicineTypeGrid> {
                 borderRadius: BorderRadius.all(
                   Radius.circular(15.0),
                 ),
-                border: _SelectedType == index
+                border: _selectedType == index
                     ? Border.all(color: Colors.purple)
                     : null,
               ),
@@ -57,8 +59,9 @@ class _MedicineTypeGridState extends State<MedicineTypeGrid> {
             ),
             onTap: () {
               setState(() {
-                _SelectedType = index;
+                _selectedType = index;
               });
+              widget.medicineType = _mTypeList[_selectedType][0];
             },
           );
         },
