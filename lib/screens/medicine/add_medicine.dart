@@ -1,15 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import '../../widgets/a_m_widgets/time_of_day_Chip.dart';
 import '../../widgets/a_m_widgets/taken_when_chip.dart';
 import '../../widgets/a_m_widgets/count_dosage.dart';
+import '../../widgets/a_m_widgets/medicine_type_grid.dart';
 
 class AddMedicine extends StatelessWidget {
   static const routeName = 'add-medicine';
-  String medicineName = "";
+  String medicineName;
+  var medicineType = "";
+  var dosageCount = 1;
+  var takenWhen = 0; // 0 for after food
+  List<String> timeOfday = ["Morning", "Night"];
   final _formKey = GlobalKey<FormState>();
+  void _saveForm(BuildContext context) async {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      print(medicineName);
+      print(medicineType);
+      print(dosageCount.toString());
+      print(timeOfday);
+      print(takenWhen.toString());
+
+      // final userID = FirebaseAuth.instance.currentUser.uid;
+      // try {
+      //   await FirebaseFirestore.instance.collection("user").doc(userID).set({
+      //     "name": _name,
+      //     "gender": _genderString,
+      //     "location": _location,
+      //     "phone": _contactNo,
+      //     "email": _emailAddress,
+      //   });
+      // } catch (error) {
+      //   print("Error in storing profile edit page with $error");
+      // }
+      // Navigator.of(context).pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text("Add Medicine"),
       ),
@@ -27,7 +59,8 @@ class AddMedicine extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(
-                          Icons.donut_large,
+                          FlutterIcons.file_prescription_faw5s,
+                          color: Colors.purple.shade900,
                           size: 30,
                         ),
                         SizedBox(
@@ -62,44 +95,51 @@ class AddMedicine extends StatelessWidget {
               ),
             ),
           ),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          NameOfSubTitle("Medicine Type"),
+          MedicineTypeGrid(medicineType),
+          NameOfSubTitle("Dosage"),
+          CountDosage(dosageCount),
+          NameOfSubTitle("Time of the Day"),
+          TimeOfDayChip(timeOfday),
+          NameOfSubTitle("To be taken"),
+          TakenWhenChip(takenWhen),
+          Spacer(),
+          Container(
+              margin: EdgeInsets.only(bottom: 25),
+              child: RaisedButton(
                 child: Text(
-                  "Dosage",
-                  style: TextStyle(fontSize: 20),
+                  "Save",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          CountDosage(),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text(
-                  "Time of the Day",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ],
-          ),
-          TimeOfDayChip(),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text(
-                  "To be taken",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ],
-          ),
-          TakenWhenChip(),
+                onPressed: () {
+                  _saveForm(context);
+                },
+                elevation: 5,
+              )),
         ],
       ),
+    );
+  }
+}
+
+class NameOfSubTitle extends StatelessWidget {
+  String subTitle;
+  NameOfSubTitle(this.subTitle);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Text(
+            subTitle,
+            style: TextStyle(fontSize: 20),
+          ),
+        ),
+      ],
     );
   }
 }
