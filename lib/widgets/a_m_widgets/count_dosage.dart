@@ -43,7 +43,7 @@ class _CountDosageState extends State<CountDosage> {
           SizedBox(width: 5),
           OutlineButton(
               child: Text(
-                "${_dosageCount.toString()} Tablet",
+                "${_dosageCount.toString()} ",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,

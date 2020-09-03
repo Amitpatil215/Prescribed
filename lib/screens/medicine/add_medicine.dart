@@ -9,7 +9,7 @@ class AddMedicine extends StatelessWidget {
   static const routeName = 'add-medicine';
   Map<String, dynamic> medicine = {
     "medicineName": '',
-    "medicineType": '',
+    "medicineType": 'Tablet',
     "timeOfday": ["Morning", "Night"],
     "dosageCount": 1,
     "takenWhen": 0,
@@ -33,7 +33,7 @@ class AddMedicine extends StatelessWidget {
       // } catch (error) {
       //   print("Error in storing profile edit page with $error");
       // }
-      // Navigator.of(context).pop();
+      Navigator.of(context).pop();
     }
   }
 
