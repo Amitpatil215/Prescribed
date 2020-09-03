@@ -7,20 +7,19 @@ import '../../widgets/a_m_widgets/medicine_type_grid.dart';
 
 class AddMedicine extends StatelessWidget {
   static const routeName = 'add-medicine';
-  String medicineName;
-  var medicineType = "";
-  var dosageCount = 1;
-  var takenWhen = 0; // 0 for after food
-  List<String> timeOfday = ["Morning", "Night"];
+  Map<String, dynamic> medicine = {
+    "medicineName": '',
+    "medicineType": '',
+    "timeOfday": ["Morning", "Night"],
+    "dosageCount": 1,
+    "takenWhen": 0,
+  };
+
   final _formKey = GlobalKey<FormState>();
   void _saveForm(BuildContext context) async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      print(medicineName);
-      print(medicineType);
-      print(dosageCount.toString());
-      print(timeOfday);
-      print(takenWhen.toString());
+      print(medicine);
 
       // final userID = FirebaseAuth.instance.currentUser.uid;
       // try {
@@ -84,7 +83,7 @@ class AddMedicine extends StatelessWidget {
                               }
                             },
                             onSaved: (value) {
-                              medicineName = value;
+                              medicine["medicineName"] = value;
                             },
                           ),
                         )
@@ -96,13 +95,13 @@ class AddMedicine extends StatelessWidget {
             ),
           ),
           NameOfSubTitle("Medicine Type"),
-          MedicineTypeGrid(medicineType),
+          MedicineTypeGrid(medicine),
           NameOfSubTitle("Dosage"),
-          CountDosage(dosageCount),
+          CountDosage(medicine),
           NameOfSubTitle("Time of the Day"),
-          TimeOfDayChip(timeOfday),
+          TimeOfDayChip(medicine),
           NameOfSubTitle("To be taken"),
-          TakenWhenChip(takenWhen),
+          TakenWhenChip(medicine),
           Spacer(),
           Container(
               margin: EdgeInsets.only(bottom: 25),

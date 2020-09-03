@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TakenWhenChip extends StatefulWidget {
-  int takenWhen;
-  TakenWhenChip(this.takenWhen);
+  var medicine;
+  TakenWhenChip(this.medicine);
   @override
   _TakenWhenChipState createState() => _TakenWhenChipState();
 }
@@ -36,7 +36,7 @@ class _TakenWhenChipState extends State<TakenWhenChip> {
               setState(() {
                 _selectedText = 0;
               });
-              widget.takenWhen = 0;
+              widget.medicine["takenWhen"] = 0;
             },
           ),
           const SizedBox(width: 5),
@@ -60,7 +60,7 @@ class _TakenWhenChipState extends State<TakenWhenChip> {
               setState(() {
                 _selectedText = 1;
               });
-              widget.takenWhen = 1;
+              widget.medicine["takenWhen"] = 1;
             },
           ),
         ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CountDosage extends StatefulWidget {
-  int dosageCount;
-  CountDosage(this.dosageCount);
+  var medicine;
+  CountDosage(this.medicine);
 
   @override
   _CountDosageState createState() => _CountDosageState();
@@ -36,7 +36,7 @@ class _CountDosageState extends State<CountDosage> {
                 setState(() {
                   _dosageCount -= 1;
                 });
-                widget.dosageCount = _dosageCount;
+                widget.medicine["dosageCount"] = _dosageCount;
               }
             },
           ),
@@ -70,7 +70,7 @@ class _CountDosageState extends State<CountDosage> {
               setState(() {
                 _dosageCount += 1;
               });
-              widget.dosageCount = _dosageCount;
+              widget.medicine["dosageCount"] = _dosageCount;
             },
           ),
         ],
