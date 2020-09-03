@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class MedicineTypeGrid extends StatefulWidget {
-  String medicineType;
-  MedicineTypeGrid(this.medicineType);
+  var medicine;
+  MedicineTypeGrid(this.medicine);
   @override
   _MedicineTypeGridState createState() => _MedicineTypeGridState();
 }
@@ -61,7 +61,7 @@ class _MedicineTypeGridState extends State<MedicineTypeGrid> {
               setState(() {
                 _selectedType = index;
               });
-              widget.medicineType = _mTypeList[_selectedType][0];
+              widget.medicine["medicineType"] = _mTypeList[_selectedType][0];
             },
           );
         },
