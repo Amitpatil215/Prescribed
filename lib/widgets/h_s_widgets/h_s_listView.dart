@@ -1,3 +1,4 @@
+import 'package:doctor_duniya/screens/doctor_know_more_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -115,7 +116,10 @@ class HSListView extends StatelessWidget {
                                 ),
                               ),
                               color: Colors.purple.withOpacity(0.80),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(DoctorKnowMoreScreen.routName);
+                              },
                             ),
                             SizedBox(
                               width: 10,

@@ -12,14 +12,15 @@ import 'screens/home/categories_see_all_screen.dart';
 import 'screens/home/top_doctors_see_all_screen.dart';
 import 'screens/medicine/prescribe_medicine_screen.dart';
 import 'screens/medicine/add_medicine.dart';
+import 'screens/doctor_know_more_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor:
-          Colors.white.withOpacity(0.70), // navigation bar color
-      statusBarColor: Colors.white.withOpacity(0.70), // status bar color
+          Colors.white.withOpacity(0), // navigation bar color
+      statusBarColor: Colors.white.withOpacity(0), // status bar color
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarIconBrightness: Brightness.dark));
   runApp(MyApp());
@@ -93,6 +94,9 @@ class MyApp extends StatelessWidget {
         },
         ProfileScreen.rountName: (ctx) {
           return ProfileScreen();
+        },
+        DoctorKnowMoreScreen.routName: (ctx) {
+          return DoctorKnowMoreScreen();
         },
         AppointmentScreen.routName: (ctx) {
           return AppointmentScreen();
