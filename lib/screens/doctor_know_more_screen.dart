@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorKnowMoreScreen extends StatelessWidget {
@@ -119,7 +120,7 @@ class DoctorKnowMoreScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "About",
+                  "Information",
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
@@ -143,6 +144,50 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                   "1. Graduated from AIIMS Delhi\n 2. Consulted over 200 Patients",
                   style: TextStyle(fontSize: 16),
                 ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "Education",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 8,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        FlutterIcons.graduation_cap_ent,
+                        size: 30,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Graduated',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                            TextSpan(
+                              text: ' Loyala University Chicago SSom',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
             Spacer(),
