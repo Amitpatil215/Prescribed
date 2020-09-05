@@ -13,6 +13,7 @@ import 'screens/home/top_doctors_see_all_screen.dart';
 import 'screens/medicine/prescribe_medicine_screen.dart';
 import 'screens/medicine/add_medicine.dart';
 import 'screens/doctor_know_more_screen.dart';
+import 'screens/book_appointment/book_appointment_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -97,6 +98,9 @@ class MyApp extends StatelessWidget {
         },
         DoctorKnowMoreScreen.routName: (ctx) {
           return DoctorKnowMoreScreen();
+        },
+        BookAppointmentScreen.routName: (ctx) {
+          return BookAppointmentScreen();
         },
         AppointmentScreen.routName: (ctx) {
           return AppointmentScreen();
