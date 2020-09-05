@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'book_appointment/book_appointment_screen.dart';
 
 class DoctorKnowMoreScreen extends StatelessWidget {
   static const routName = "know-doctor";
@@ -197,7 +198,10 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                 color: Colors.white,
                 elevation: 8,
                 child: Text("Book Appointment"),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed(BookAppointmentScreen.routName);
+                },
               ),
             )
           ],

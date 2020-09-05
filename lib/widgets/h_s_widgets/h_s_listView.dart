@@ -10,142 +10,146 @@ class HSListView extends StatelessWidget {
       itemBuilder: (context, index) {
         return Column(
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 30.w),
-              width: double.infinity,
-              //height: 100,
-              decoration: BoxDecoration(
-                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)],
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: EdgeInsets.all(0),
-              child: Row(
-                children: [
-                  Container(
-                    height: 130,
-                    width: 180.h,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(20),
+            GestureDetector(
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 30.w),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: EdgeInsets.all(0),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 130,
+                      width: 180.h,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Dr. Shashikant Chaturvedhi",
-                          style: TextStyle(
-                            fontSize: 18,
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Dr. Shashikant Chaturvedhi",
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
                           ),
-                        ),
-                        RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(children: <TextSpan>[
-                            TextSpan(
-                              text: 'Psychiatrist',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            TextSpan(
-                              text: '  (MBBS,MD)',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ]),
-                        ),
-                        RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(children: <TextSpan>[
-                            TextSpan(
-                              text: 'Knows',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                            TextSpan(
-                              text: '  Hindi, English, Marathi',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ]),
-                        ),
-                        RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            children: <TextSpan>[
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(children: <TextSpan>[
                               TextSpan(
-                                text: '₹ 400',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
+                                text: 'Psychiatrist',
+                                style: TextStyle(color: Colors.black),
                               ),
                               TextSpan(
-                                text: ' (Save 20%)',
+                                text: '  (MBBS,MD)',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w300),
                               ),
+                            ]),
+                          ),
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(children: <TextSpan>[
+                              TextSpan(
+                                text: 'Knows',
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                              TextSpan(
+                                text: '  Hindi, English, Marathi',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300),
+                              ),
+                            ]),
+                          ),
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: '₹ 400',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ' (Save 20%)',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w300),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.add_circle,
+                                size: 15,
+                              ),
+                              Text("  Nishank Hospital")
                             ],
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.add_circle,
-                              size: 15,
-                            ),
-                            Text("  Nishank Hospital")
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            OutlineButton(
-                              child: Container(
-                                width: 90,
-                                child: Center(
-                                  child: Text(
-                                    "Know More",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                          Row(
+                            children: [
+                              OutlineButton(
+                                child: Container(
+                                  width: 90,
+                                  child: Center(
+                                    child: Text(
+                                      "Know More",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
+                                color: Colors.purple.withOpacity(0.80),
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pushNamed(DoctorKnowMoreScreen.routName);
+                                },
                               ),
-                              color: Colors.purple.withOpacity(0.80),
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(DoctorKnowMoreScreen.routName);
-                              },
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            OutlineButton(
-                              child: Container(
-                                width: 110,
-                                child: Center(
-                                  child: Text(
-                                    "Consult Now",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blue),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              OutlineButton(
+                                child: Container(
+                                  width: 110,
+                                  child: Center(
+                                    child: Text(
+                                      "Consult Now",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue),
+                                    ),
                                   ),
                                 ),
+                                color: Colors.blueAccent.withOpacity(0.50),
+                                onPressed: () {},
                               ),
-                              color: Colors.blueAccent.withOpacity(0.50),
-                              onPressed: () {},
-                            ),
-                          ],
-                        )
-                      ],
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              onTap: () {
+                Navigator.of(context).pushNamed(DoctorKnowMoreScreen.routName);
+              },
             ),
             SizedBox(
               height: 10,
