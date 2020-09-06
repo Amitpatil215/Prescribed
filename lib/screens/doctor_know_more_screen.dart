@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'book_appointment/book_appointment_screen.dart';
+import '../widgets/d_k_m_widgets/d_k_m_address.dart';
 
 class DoctorKnowMoreScreen extends StatelessWidget {
   static const routName = "know-doctor";
@@ -108,15 +109,7 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              height: 300.h,
-              width: double.infinity,
-              margin: EdgeInsets.symmetric(vertical: 20),
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
+            DKMAddress(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
