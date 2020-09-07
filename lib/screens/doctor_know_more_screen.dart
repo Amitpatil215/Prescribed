@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'book_appointment/book_appointment_screen.dart';
+import '../widgets/d_k_m_widgets/d_k_m_address.dart';
 
 class DoctorKnowMoreScreen extends StatelessWidget {
   static const routName = "know-doctor";
@@ -14,15 +15,15 @@ class DoctorKnowMoreScreen extends StatelessWidget {
         backgroundColor: Colors.white.withOpacity(0),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 7),
+        margin: EdgeInsets.symmetric(vertical: 1.h, horizontal: 7.w),
         child: Column(
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 130,
-                  width: 220.h,
+                  height: 130.h,
+                  width: 100.w,
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(15),
@@ -30,7 +31,7 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(
-                    horizontal: 10,
+                    horizontal: 10.w,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,15 +109,7 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              height: 300.h,
-              width: double.infinity,
-              margin: EdgeInsets.symmetric(vertical: 20),
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
+            DKMAddress(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

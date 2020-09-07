@@ -27,11 +27,7 @@ class AppointmentScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Column(
-        children: [
-          ASTabButton(),
-        ],
-      ),
+      body: SingleChildScrollView(child: ASTabButton()),
     );
   }
 }
