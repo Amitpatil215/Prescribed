@@ -15,15 +15,15 @@ class DoctorKnowMoreScreen extends StatelessWidget {
         backgroundColor: Colors.white.withOpacity(0),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 7),
+        margin: EdgeInsets.symmetric(vertical: 1.h, horizontal: 7.w),
         child: Column(
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 130,
-                  width: 220.h,
+                  height: 130.h,
+                  width: 100.w,
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(15),
@@ -31,7 +31,7 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(
-                    horizontal: 10,
+                    horizontal: 10.w,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

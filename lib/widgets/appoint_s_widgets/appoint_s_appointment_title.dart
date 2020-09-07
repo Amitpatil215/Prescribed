@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/appoint_s_widgets/presription_bookAgain_button.dart';
 
 class ASAppointmentTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
       child: Row(
         children: [
           Column(
@@ -23,9 +23,9 @@ class ASAppointmentTile extends StatelessWidget {
           Column(
             children: [
               Container(
-                height: ScreenUtil().setHeight(350),
-                width: ScreenUtil().setWidth(850),
-                margin: EdgeInsets.only(left: ScreenUtil().setWidth(30)),
+                height: 150.h,
+                width: 0.74.wp,
+                margin: EdgeInsets.only(left: 30.w),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
@@ -37,9 +37,9 @@ class ASAppointmentTile extends StatelessWidget {
                         Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(
-                                top: 8.0,
-                                left: 9,
+                              padding: EdgeInsets.only(
+                                top: 8.0.h,
+                                left: 9.w,
                               ),
                               child: Text(
                                 "7:30 PM",
@@ -63,14 +63,20 @@ class ASAppointmentTile extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text(
-                              "Meeting with Dr. Duva",
-                              style: TextStyle(
-                                fontSize: 18,
+                            Container(
+                              width: 190.w,
+                              child: Text(
+                                "Meeting with Dr. Duva mmmmmmmmm",
+                                overflow: TextOverflow.clip,
+                                maxLines: 1,
+                                softWrap: false,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                ),
                               ),
                             ),
                             Container(
-                              width: ScreenUtil().setHeight(500),
+                              width: 190.w,
                               child: Row(
                                 children: [
                                   Icon(Icons.location_on),
@@ -78,25 +84,23 @@ class ASAppointmentTile extends StatelessWidget {
                                     child: Text(
                                       "Indira gandhi international airport",
                                       overflow: TextOverflow.ellipsis,
-                                      softWrap: false,
-                                      maxLines: 1,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(top: 5),
-                              width: ScreenUtil().setHeight(500),
+                              // margin: EdgeInsets.only(top: 5),
+                              width: 190.w,
                               child: Row(
                                 children: [
                                   Icon(Icons.phone),
-                                  Text(
-                                    "Telecomunication",
-                                    overflow: TextOverflow.ellipsis,
-                                    softWrap: false,
-                                    maxLines: 1,
-                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Telecomunication mmmmmmmmmmmmmmmmmmmmmmm",
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  )
                                 ],
                               ),
                             ),

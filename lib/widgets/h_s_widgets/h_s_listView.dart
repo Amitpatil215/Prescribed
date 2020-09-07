@@ -12,8 +12,7 @@ class HSListView extends StatelessWidget {
           children: [
             GestureDetector(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 30.w),
-                width: double.infinity,
+                margin: EdgeInsets.symmetric(horizontal: 10.w),
                 decoration: BoxDecoration(
                   boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 8)],
                   color: Colors.white,
@@ -23,8 +22,8 @@ class HSListView extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      height: 130,
-                      width: 180.h,
+                      height: 140.h,
+                      width: 90.h,
                       decoration: BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(20),
@@ -122,11 +121,10 @@ class HSListView extends StatelessWidget {
                                 },
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               OutlineButton(
                                 child: Container(
-                                  width: 110,
                                   child: Center(
                                     child: Text(
                                       "Consult Now",
@@ -152,7 +150,7 @@ class HSListView extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: 10,
+              height: 10.h,
             ),
           ],
         );
