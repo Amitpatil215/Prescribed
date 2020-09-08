@@ -1,5 +1,6 @@
 import 'package:doctor_duniya/screens/medicine/add_medicine.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class PrescribeMedicineButton extends StatelessWidget {
   static const routName = 'prescribe-medicine';
@@ -80,16 +81,46 @@ class PrescribeMedicineButton extends StatelessWidget {
                             fontSize: 16,
                           ),
                         ),
-                        Text(
-                          "Dosage : 1 Tab/day",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                        Row(
+                          children: [
+                            Icon(FlutterIcons.food_fork_drink_mco),
+                            SizedBox(width: 5),
+                            Text(
+                              "After Meal",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(FlutterIcons.done_mdi),
+                            SizedBox(width: 5),
+                            Text(
+                              "Dosage : 1 Tab/day",
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(FlutterIcons.clock_evi),
+                            SizedBox(width: 5),
+                            Text(
+                              "Duration : 7 Days",
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
                         ),
                         Text(
-                          "Duration : 7 Days",
+                          "Prescribed On : 10 May 2020",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                       ],
