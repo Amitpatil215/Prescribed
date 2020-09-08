@@ -1,5 +1,6 @@
 import 'package:doctor_duniya/screens/medicine/add_medicine.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class PrescribeMedicineButton extends StatelessWidget {
   static const routName = 'prescribe-medicine';
@@ -9,6 +10,7 @@ class PrescribeMedicineButton extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text("Prescribed Medications"),
+        backgroundColor: Theme.of(context).backgroundColor,
       ),
       floatingActionButton: FloatingActionButton.extended(
         icon: Icon(
@@ -55,10 +57,10 @@ class PrescribeMedicineButton extends StatelessWidget {
               width: double.infinity,
               child: Row(
                 children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    color: Colors.blue,
+                  Icon(
+                    FlutterIcons.capsules_faw5s,
+                    size: 30,
+                    color: Colors.deepPurpleAccent,
                   ),
                   SizedBox(
                     width: 20,
@@ -80,17 +82,65 @@ class PrescribeMedicineButton extends StatelessWidget {
                             fontSize: 16,
                           ),
                         ),
-                        Text(
-                          "Dosage : 1 Tab/day",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                        Row(
+                          children: [
+                            Icon(FlutterIcons.food_fork_drink_mco),
+                            SizedBox(width: 5),
+                            Text(
+                              "After Meal",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          "Duration : 7 Days",
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                        Row(
+                          children: [
+                            Icon(FlutterIcons.done_mdi),
+                            SizedBox(width: 5),
+                            Text(
+                              "Dosage : 1 Tab/day",
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(FlutterIcons.clock_evi),
+                            SizedBox(width: 5),
+                            Text(
+                              "Duration : 7 Days",
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(FlutterIcons.stethoscope_faw),
+                            SizedBox(width: 5),
+                            Text(
+                              "Dr. Chaturvardhi",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(FlutterIcons.calendar_ant),
+                            SizedBox(width: 5),
+                            Text(
+                              "10/05/2020",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
