@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PSDetailCard extends StatelessWidget {
+class PSHealthMeasures extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,9 +33,32 @@ class PSDetailCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    "Helath Parameters like Blodd Sugar,\n Presure appears here",
-                  ),
+                  // Text(
+                  //   "Helath Parameters like Blodd Sugar,\n Presure appears here",
+                  // ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Presure : 120 mm/Hg"),
+                      Text("Sugar : 300"),
+                      Text("Heart Rate : 98 b/min"),
+                      Text(
+                        "Allergy :",
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxWidth: 0.6.wp,
+                        ),
+                        child: Text(
+                          "Dust allergy, Sour throt problem freqently,worjdvbsj cdsb ervifub vdisbu wvrbi",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
@@ -41,9 +66,11 @@ class PSDetailCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.amber,
+                  child: Icon(
+                    FlutterIcons.heartbeat_faw,
+                    size: 30,
+                    color: Colors.deepPurple,
+                  ),
                 ),
                 OutlineButton.icon(
                   icon: Icon(Icons.add),
