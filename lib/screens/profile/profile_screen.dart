@@ -5,6 +5,7 @@ import '../../widgets/p_s_widgets/p_s_pic_name_ListTile.dart';
 import '../../widgets/p_s_widgets/p_s_health_measures.dart';
 import '../../widgets/p_s_widgets/p_s_appointment_button.dart';
 import '../../widgets/p_s_widgets/p_s_setting_button.dart';
+import '../../widgets/p_s_widgets/p_s_latest_appointment.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const rountName = '/profile';
@@ -39,6 +40,10 @@ class ProfileScreen extends StatelessWidget {
               child: ListView(
                 children: [
                   PSHealthMeasures(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  PSLatestAppointment(),
                 ],
               ),
             ),

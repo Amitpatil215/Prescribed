@@ -1,9 +1,8 @@
-import 'package:doctor_duniya/screens/profile/health_measure_add_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../screens/book_appointment/book_appointment_screen.dart';
 
-class PSHealthMeasures extends StatelessWidget {
+class PSLatestAppointment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,39 +23,16 @@ class PSHealthMeasures extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.only(top: 10),
                   child: Text(
-                    "Health Measures",
+                    "Latest Appointment",
                     style: TextStyle(
                       fontSize: 18,
                     ),
                   ),
                 ),
                 SizedBox(height: 10),
-                // Text(
-                //   "Helath Parameters like Blodd Sugar,\n Presure appears here",
-                // ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Presure : 120 mm/Hg"),
-                    Text("Sugar : 300"),
-                    Text("Heart Rate : 98 b/min"),
-                    Text(
-                      "Allergy :",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                    ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxWidth: 0.6.wp,
-                      ),
-                      child: Text(
-                        "Dust allergy, Sour throt problem freqently,worjdvbsj cdsb ervifub vdisbu wvrbi",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                    )
-                  ],
-                )
+                Text(
+                  "Your Most recent \nappointment appears here",
+                ),
               ],
             ),
           ),
@@ -65,17 +41,17 @@ class PSHealthMeasures extends StatelessWidget {
             children: [
               Container(
                 child: Icon(
-                  FlutterIcons.heartbeat_faw,
+                  FlutterIcons.calendar_check_o_faw,
                   size: 30,
                   color: Colors.deepPurple,
                 ),
               ),
               OutlineButton.icon(
                 icon: Icon(Icons.add),
-                label: Text("Add"),
+                label: Text("New"),
                 onPressed: () {
                   Navigator.of(context)
-                      .pushNamed(HealthMeasureAddScreen.routeName);
+                      .pushNamed(BookAppointmentScreen.routName);
                 },
               )
             ],
