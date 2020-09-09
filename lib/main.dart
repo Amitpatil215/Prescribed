@@ -1,3 +1,4 @@
+import 'package:doctor_duniya/screens/profile/health_measure_add_screen.dart';
 import 'package:doctor_duniya/screens/profile/profile_edit_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -119,6 +120,9 @@ class MyApp extends StatelessWidget {
         ProfileEditScreen.routName: (ctx) {
           return ProfileEditScreen();
         },
+        HealthMeasureAddScreen.routeName: (ctx) {
+          return HealthMeasureAddScreen();
+        }
       },
     );
   }

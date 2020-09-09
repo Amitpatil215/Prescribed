@@ -1,3 +1,4 @@
+import 'package:doctor_duniya/screens/profile/health_measure_add_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,7 +76,10 @@ class PSHealthMeasures extends StatelessWidget {
                 OutlineButton.icon(
                   icon: Icon(Icons.add),
                   label: Text("Add"),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed(HealthMeasureAddScreen.routeName);
+                  },
                 )
               ],
             )
