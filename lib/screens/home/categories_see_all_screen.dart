@@ -10,8 +10,9 @@ class CatergoriesSeeAllScreen extends StatelessWidget {
         title: Text("Categories"),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        margin: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
         child: GridView.builder(
+          shrinkWrap: true,
           itemCount: 20,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

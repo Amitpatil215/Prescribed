@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/p_s_widgets/p_s_email_phone_Card.dart';
 import '../../widgets/p_s_widgets/p_s_pic_name_ListTile.dart';
-import '../../widgets/p_s_widgets/p_s_details_card.dart';
+import '../../widgets/p_s_widgets/p_s_health_measures.dart';
 import '../../widgets/p_s_widgets/p_s_appointment_button.dart';
 import '../../widgets/p_s_widgets/p_s_setting_button.dart';
+import '../../widgets/p_s_widgets/p_s_latest_appointment.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const rountName = '/profile';
@@ -36,17 +37,16 @@ class ProfileScreen extends StatelessWidget {
             PSEmailPhoneCard(userId),
             PSAppointmentButton(),
             Expanded(
-              child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) => Column(
-                        children: [
-                          PSDetailCard(),
-                          SizedBox(
-                            height: 20,
-                          )
-                        ],
-                      )),
-            )
+              child: ListView(
+                children: [
+                  PSHealthMeasures(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  PSLatestAppointment(),
+                ],
+              ),
+            ),
           ],
         ),
       ),

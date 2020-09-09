@@ -6,6 +6,8 @@ class HSListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
+      physics: ClampingScrollPhysics(),
       itemCount: 5,
       itemBuilder: (context, index) {
         return Column(
