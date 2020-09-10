@@ -1,6 +1,7 @@
 import 'package:doctor_duniya/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/h_s_widgets/h_s_gridview.dart';
 import '../../widgets/h_s_widgets/h_s_listView.dart';
@@ -12,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
+        //backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
             elevation: 9,
             backgroundColor: Colors.white,
@@ -26,7 +27,9 @@ class HomeScreen extends StatelessWidget {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: !innerBoxIsScrolled
+                    ? Colors.white.withOpacity(0)
+                    : Colors.white.withOpacity(0.9),
                 expandedHeight: 0.2.hp,
                 pinned: true,
                 elevation: 0,
@@ -37,16 +40,24 @@ class HomeScreen extends StatelessWidget {
                     vertical: 10,
                   ),
                   title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      Icon(
+                        FlutterIcons.heartbeat_faw,
+                        color: Colors.deepPurple,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text(
                         "Doctor Duniya",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
                         ),
                       ),
+                      Spacer(),
                       GestureDetector(
                         child: CircleAvatar(
                           maxRadius: 12.h,
