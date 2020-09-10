@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class PSPicNameListTile extends StatelessWidget {
   String userId;
@@ -21,7 +22,12 @@ class PSPicNameListTile extends StatelessWidget {
           return ListTile(
             leading: CircleAvatar(
               maxRadius: 50,
-              child: Text("Profile Pic"),
+              child: Hero(
+                tag: "ProfileHeroKey",
+                child: SvgPicture.asset(
+                  "assets/images/male.svg",
+                ),
+              ),
             ),
             title: Text(
               userData != null ? userData['name'] : "Your Name",
