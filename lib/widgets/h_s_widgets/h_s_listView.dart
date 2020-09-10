@@ -1,6 +1,7 @@
 import 'package:doctor_duniya/screens/doctor_know_more_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HSListView extends StatelessWidget {
   @override
@@ -25,10 +26,14 @@ class HSListView extends StatelessWidget {
                   children: [
                     Container(
                       height: 140.h,
-                      width: 90.h,
+                      width: 90.w,
                       decoration: BoxDecoration(
-                        color: Colors.blue,
                         borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: SvgPicture.asset(
+                        "assets/images/login.svg",
+                        height: 140.h,
+                        width: 90.w,
                       ),
                     ),
                     Container(
