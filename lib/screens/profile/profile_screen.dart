@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:doctor_duniya/providers/auth_user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../widgets/p_s_widgets/p_s_email_phone_Card.dart';
 import '../../widgets/p_s_widgets/p_s_pic_name_ListTile.dart';
 import '../../widgets/p_s_widgets/p_s_health_measures.dart';
@@ -9,9 +10,9 @@ import '../../widgets/p_s_widgets/p_s_latest_appointment.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const rountName = '/profile';
-  final userId = FirebaseAuth.instance.currentUser.uid;
   @override
   Widget build(BuildContext context) {
+    final userId = Provider.of<AuthUser>(context).userId;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
