@@ -5,12 +5,9 @@ import 'package:doctor_duniya/screens/profile/profile_edit_screen.dart';
 import 'package:provider/provider.dart';
 
 class PSEmailPhoneCard extends StatelessWidget {
-  bool _isLoading;
-  PSEmailPhoneCard(this._isLoading);
-  Patient userData;
   @override
   Widget build(BuildContext context) {
-    final userData = Provider.of<Patient>(context, listen: true);
+    final _userData = Provider.of<Patient>(context, listen: true);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
       child: Row(
@@ -27,8 +24,8 @@ class PSEmailPhoneCard extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  userData != null
-                      ? Text(userData.email)
+                  _userData != null
+                      ? Text(_userData.email)
                       : CircularProgressIndicator(),
                 ],
               ),
@@ -41,8 +38,8 @@ class PSEmailPhoneCard extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  userData != null
-                      ? Text(userData.phone.toString())
+                  _userData != null
+                      ? Text(_userData.phone.toString())
                       : CircularProgressIndicator(),
                 ],
               ),
