@@ -1,60 +1,50 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctor_duniya/Model/patient.dart';
+import 'package:doctor_duniya/providers/patient_profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:doctor_duniya/screens/profile/profile_edit_screen.dart';
+import 'package:provider/provider.dart';
 
 class PSEmailPhoneCard extends StatelessWidget {
-  String userId;
-  PSEmailPhoneCard(this.userId);
   @override
   Widget build(BuildContext context) {
+    final _userData = Provider.of<Patient>(context, listen: true);
     return Container(
       margin: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("user")
-                  .doc(userId)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                }
-                final userData = snapshot.data.data();
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Icons.email),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(userData != null
-                            ? userData['email']
-                            : "Email Address"),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.phone_android),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(userData != null
-                            ? userData['phone'].toString()
-                            : "Contact Number"),
-                      ],
-                    ),
-                  ],
-                );
-              }),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.email),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  _userData != null
+                      ? Text(_userData.email)
+                      : CircularProgressIndicator(),
+                ],
+              ),
+              SizedBox(
+                height: 2,
+              ),
+              Row(
+                children: [
+                  Icon(Icons.phone_android),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  _userData != null
+                      ? Text(_userData.phone.toString())
+                      : CircularProgressIndicator(),
+                ],
+              ),
+            ],
+          ),
           OutlineButton.icon(
             icon: Icon(Icons.edit),
             label: Text("Edit"),
