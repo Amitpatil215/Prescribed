@@ -33,13 +33,13 @@ class Patient {
   final String allergy;
 
   Patient({
-    @required this.id,
-    @required this.name,
-    @required this.gender,
-    @required this.dateOfBirth,
-    @required this.phone,
-    @required this.email,
-    @required this.location,
+    this.id,
+    this.name,
+    this.gender,
+    this.dateOfBirth,
+    this.phone,
+    this.email,
+    this.location,
     this.orgId,
     this.weight,
     this.bloodPressure,

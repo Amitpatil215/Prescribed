@@ -1,3 +1,5 @@
+import 'package:doctor_duniya/Model/patient.dart';
+import 'package:doctor_duniya/providers/patient_profile_provider.dart';
 import 'package:doctor_duniya/screens/profile/health_measure_add_screen.dart';
 import 'package:doctor_duniya/screens/profile/profile_edit_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,7 +39,13 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: AuthUser(),
-        )
+        ),
+        StreamProvider<Patient>.value(
+          value: PatientProfileProvider().patientData(),
+        ),
+        ChangeNotifierProvider.value(
+          value: PatientProfileProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
