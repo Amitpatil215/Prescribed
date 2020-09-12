@@ -8,18 +8,28 @@ class PatientProfileProvider with ChangeNotifier {
   Patient fetchedPatient;
 
   Stream<Patient> patientData() {
-    var userId = FirebaseAuth.instance.currentUser.uid;
-    return FirebaseFirestore.instance
-        .collection("user")
-        .doc(userId)
-        .snapshots()
-        .map(
-          (event) => Patient(
-            name: event.data()['name'],
-            phone: event.data()['phone'] ?? "+91 123...",
-            email: event.data()['email'] ?? "Your Email address",
-          ),
-        );
+    try {
+      var userId = FirebaseAuth.instance.currentUser.uid;
+      return FirebaseFirestore.instance
+          .collection("user")
+          .doc(userId)
+          .snapshots()
+          .map(
+            (event) => Patient(
+              name: event.data()['name'] ?? "Your Name ",
+              phone: event.data()['phone'] ?? "+91 123...",
+              email: event.data()['email'] ?? "Your Email address",
+              gender: Gender.values.elementAt(event.data()['gender']) ?? 1,
+              location: GeoLocation(
+                longitude: null,
+                latitude: null,
+                address: event.data()['location'],
+              ),
+            ),
+          );
+    } catch (error) {
+      print(error);
+    }
   }
 
   Patient get fetchedPatientDetails {

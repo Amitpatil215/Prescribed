@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 enum Gender {
   Male,
   Female,
+  Other,
 }
 
 class GeoLocation {

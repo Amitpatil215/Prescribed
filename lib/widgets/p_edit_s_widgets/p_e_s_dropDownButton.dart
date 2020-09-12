@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 class GenderDropDownButton extends StatefulWidget {
   int _selectedGender;
-  Function getGenderString;
-  GenderDropDownButton(this._selectedGender, this.getGenderString);
+  Function _selectedGenderIndex;
+  GenderDropDownButton(this._selectedGender, this._selectedGenderIndex);
+
   @override
   _GenderDropDownButtonState createState() => _GenderDropDownButtonState();
 }
@@ -60,7 +62,7 @@ class _GenderDropDownButtonState extends State<GenderDropDownButton> {
                         setState(() {
                           widget._selectedGender = value;
                         });
-                        widget.getGenderString(value);
+                        widget._selectedGenderIndex(value);
                       },
                     ),
                   ),
