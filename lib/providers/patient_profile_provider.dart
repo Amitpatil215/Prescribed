@@ -25,6 +25,10 @@ class PatientProfileProvider with ChangeNotifier {
                 latitude: null,
                 address: event.data()['location'],
               ),
+              bloodSugar: event.data()['bloodSugar'],
+              bloodPressure: event.data()['bloodPressure'],
+              heartRate: event.data()['heartRate'],
+              allergy: event.data()['allergy'],
             ),
           );
     } catch (error) {
@@ -41,6 +45,10 @@ class PatientProfileProvider with ChangeNotifier {
         "location": editedUser.location.address,
         "phone": editedUser.phone,
         "email": editedUser.email,
+        "bloodSugar": editedUser.bloodSugar,
+        "bloodPressure": editedUser.bloodPressure,
+        "heartRate": editedUser.heartRate,
+        "allergy": editedUser.allergy,
       });
     } catch (error) {
       print("Error in storing profile edit page with $error");

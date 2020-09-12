@@ -28,10 +28,10 @@ class Patient {
   final GeoLocation location;
   final String orgId;
   final double weight;
-  final double bloodPressure;
-  final double bloodSugar;
-  final double height;
-  final String allergy;
+  double bloodPressure;
+  double bloodSugar;
+   double heartRate;
+  String allergy;
 
   Patient({
     this.id,
@@ -45,7 +45,7 @@ class Patient {
     this.weight,
     this.bloodPressure,
     this.bloodSugar,
-    this.height,
+    this.heartRate,
     this.allergy,
   });
 }
