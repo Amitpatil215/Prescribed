@@ -46,6 +46,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: PatientProfileProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: PatientProfileProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

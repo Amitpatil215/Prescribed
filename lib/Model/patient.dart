@@ -9,7 +9,7 @@ enum Gender {
 class GeoLocation {
   final int longitude;
   final int latitude;
-  final String address;
+  String address;
 
   GeoLocation({
     @required this.longitude,
@@ -20,11 +20,11 @@ class GeoLocation {
 
 class Patient {
   final String id;
-  final String name;
-  final Gender gender;
+  String name;
+  Gender gender;
   final DateTime dateOfBirth;
-  final int phone;
-  final String email;
+  int phone;
+  String email;
   final GeoLocation location;
   final String orgId;
   final double weight;

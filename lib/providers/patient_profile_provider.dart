@@ -32,6 +32,22 @@ class PatientProfileProvider with ChangeNotifier {
     }
   }
 
+  Future<void> saveEditedUser(Patient editedUser) async {
+    try {
+      var userId = FirebaseAuth.instance.currentUser.uid;
+      await FirebaseFirestore.instance.collection("user").doc(userId).set({
+        "name": editedUser.name,
+        "gender": editedUser.gender.index,
+        "location": editedUser.location.address,
+        "phone": editedUser.phone,
+        "email": editedUser.email,
+      });
+    } catch (error) {
+      print("Error in storing profile edit page with $error");
+    }
+    notifyListeners();
+  }
+
   Patient get fetchedPatientDetails {
     return fetchedPatient;
   }
