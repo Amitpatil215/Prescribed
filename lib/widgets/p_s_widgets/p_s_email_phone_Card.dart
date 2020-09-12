@@ -7,6 +7,7 @@ class PSEmailPhoneCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _userData = Provider.of<Patient>(context, listen: true);
+    
     return Container(
       margin: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
       child: Row(

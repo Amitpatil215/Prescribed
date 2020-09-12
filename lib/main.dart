@@ -100,8 +100,8 @@ class MyApp extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
             );
-
             if (snapshot.hasData) {
+              
               return HomeScreen();
             } else {
               return AuthScreen();

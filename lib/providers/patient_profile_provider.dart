@@ -11,7 +11,7 @@ class PatientProfileProvider with ChangeNotifier {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
       return FirebaseFirestore.instance
-          .collection("user")
+          .collection("patient")
           .doc(userId)
           .snapshots()
           .map(
@@ -32,14 +32,37 @@ class PatientProfileProvider with ChangeNotifier {
             ),
           );
     } catch (error) {
-      print(error);
+      print("error in fetching error $error");
     }
   }
 
-  Future<void> saveEditedUser(Patient editedUser) async {
+  Future<void> createNewUser(Patient editedUser) async {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
-      await FirebaseFirestore.instance.collection("user").doc(userId).set({
+      await FirebaseFirestore.instance.collection("patient").doc(userId).set({
+        "id": editedUser.id ?? " ",
+        "phone": editedUser.phone ?? 1234,
+        "name": "null",
+        "gender": 0,
+        "location": "",
+        "email": null,
+        "bloodSugar": null,
+        "bloodPressure": null,
+        "heartRate": null,
+        "allergy": null,
+      });
+    } catch (error) {
+      print("Error in storing profile edit page with- $error");
+    }
+    notifyListeners();
+    print("Saving to Firestore Done...");
+  }
+
+  Future<void> saveEditedUser(Patient editedUser) async {
+    print(editedUser.id);
+    try {
+      var userId = FirebaseAuth.instance.currentUser.uid;
+      await FirebaseFirestore.instance.collection("patient").doc(userId).set({
         "name": editedUser.name,
         "gender": editedUser.gender.index,
         "location": editedUser.location.address,
@@ -51,7 +74,7 @@ class PatientProfileProvider with ChangeNotifier {
         "allergy": editedUser.allergy,
       });
     } catch (error) {
-      print("Error in storing profile edit page with $error");
+      print("Error in storing profile edit page with- $error");
     }
     notifyListeners();
     print("Saving to Firestore Done...");
