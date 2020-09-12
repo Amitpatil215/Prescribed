@@ -54,6 +54,7 @@ class PatientProfileProvider with ChangeNotifier {
       print("Error in storing profile edit page with $error");
     }
     notifyListeners();
+    print("Saving to Firestore Done...");
   }
 
   Patient get fetchedPatientDetails {

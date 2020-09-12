@@ -1,8 +1,7 @@
-import 'package:doctor_duniya/Model/patient.dart';
-import 'package:doctor_duniya/providers/patient_profile_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:doctor_duniya/screens/profile/profile_edit_screen.dart';
+import '../../screens/profile/profile_edit_screen.dart';
 import 'package:provider/provider.dart';
+import '../../Model/patient.dart';
 
 class PSEmailPhoneCard extends StatelessWidget {
   @override

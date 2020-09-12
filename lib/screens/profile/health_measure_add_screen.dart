@@ -20,9 +20,7 @@ class _HealthMeasureAddScreenState extends State<HealthMeasureAddScreen> {
 
       await Provider.of<PatientProfileProvider>(context, listen: false)
           .saveEditedUser(editedUser)
-          .then((value) {
-        print("Done");
-      });
+          .then((value) {});
       Navigator.of(context).pop();
     }
   }
@@ -172,9 +170,7 @@ class _HealthMeasureAddScreenState extends State<HealthMeasureAddScreen> {
                             ),
                           ),
                           onSaved: (value) {
-                            if (value == null) {
-                              value = "";
-                            }
+                            if (value.isEmpty) value = null;
                             _userData.allergy = value;
                           },
                           keyboardType: TextInputType.number,
