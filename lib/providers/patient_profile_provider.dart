@@ -16,10 +16,10 @@ class PatientProfileProvider with ChangeNotifier {
           .snapshots()
           .map(
             (event) => Patient(
-              name: event.data()['name'] ?? "Your Name ",
-              phone: event.data()['phone'] ?? "+91 123...",
+              name: event.data()['name'],
+              phone: event.data()['phone'],
               email: event.data()['email'],
-              gender: Gender.values.elementAt(event.data()['gender']) ?? 1,
+              gender: Gender.values.elementAt(event.data()['gender']) ?? 0,
               location: GeoLocation(
                 longitude: null,
                 latitude: null,
@@ -40,11 +40,11 @@ class PatientProfileProvider with ChangeNotifier {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
       await FirebaseFirestore.instance.collection("patient").doc(userId).set({
-        "id": editedUser.id ?? null,
-        "phone": editedUser.phone ?? null,
-        "name": "",
+        "id": editedUser.id,
+        "phone": editedUser.phone,
+        "name": null,
         "gender": 0,
-        "location": "",
+        "location": null,
         "email": null,
         "bloodSugar": null,
         "bloodPressure": null,
@@ -59,7 +59,6 @@ class PatientProfileProvider with ChangeNotifier {
   }
 
   Future<void> saveEditedUser(Patient editedUser) async {
-    print(editedUser.id);
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
       await FirebaseFirestore.instance.collection("patient").doc(userId).set({

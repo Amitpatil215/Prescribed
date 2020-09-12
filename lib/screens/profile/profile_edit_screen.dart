@@ -25,16 +25,12 @@ class ProfileEditScreen extends StatelessWidget {
     return null;
   }
 
-  
-
   void _saveForm(BuildContext context, Patient editedUser) async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       await Provider.of<PatientProfileProvider>(context, listen: false)
           .saveEditedUser(editedUser)
-          .then((value) {
-        print("Done");
-      });
+          .then((value) {});
       Navigator.of(context).pop();
     }
   }
@@ -91,8 +87,7 @@ class ProfileEditScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              GenderDropDownButton(
-                  _userData.gender.index, _userData),
+              GenderDropDownButton(_userData.gender.index, _userData),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
@@ -151,7 +146,7 @@ class ProfileEditScreen extends StatelessWidget {
                           ),
                         ),
                         validator: (value) {
-                          if (value.length == 10) {
+                          if (value.length >= 10) {
                             return null;
                           } else {
                             return "Enter Correct Contact Details";
