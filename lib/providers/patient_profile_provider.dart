@@ -18,7 +18,7 @@ class PatientProfileProvider with ChangeNotifier {
             (event) => Patient(
               name: event.data()['name'] ?? "Your Name ",
               phone: event.data()['phone'] ?? "+91 123...",
-              email: event.data()['email'] ?? "Your Email address",
+              email: event.data()['email'],
               gender: Gender.values.elementAt(event.data()['gender']) ?? 1,
               location: GeoLocation(
                 longitude: null,
@@ -40,9 +40,9 @@ class PatientProfileProvider with ChangeNotifier {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
       await FirebaseFirestore.instance.collection("patient").doc(userId).set({
-        "id": editedUser.id ?? " ",
-        "phone": editedUser.phone ?? 1234,
-        "name": "null",
+        "id": editedUser.id ?? null,
+        "phone": editedUser.phone ?? null,
+        "name": "",
         "gender": 0,
         "location": "",
         "email": null,
