@@ -101,7 +101,9 @@ class ProfileEditScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          initialValue: _userData.location.address,
+                          initialValue: _userData.phone != null
+                              ? _userData.location.address
+                              : null,
                           decoration: InputDecoration(
                             hintText: "e.g. Noida",
                             labelText: "Home Location",

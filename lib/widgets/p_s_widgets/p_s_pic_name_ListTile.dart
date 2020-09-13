@@ -27,7 +27,9 @@ class PSPicNameListTile extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        _userData.location.address ?? "Current Location",
+        _userData.phone != null
+            ? _userData.location.address ?? "Current Location"
+            : "Current Location",
       ),
     );
   }
