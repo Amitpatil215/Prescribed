@@ -1,14 +1,17 @@
-import 'package:doctor_duniya/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import '../../widgets/h_s_widgets/h_s_gridview.dart';
 import '../../widgets/h_s_widgets/h_s_listView.dart';
 import '../../widgets/h_s_widgets/h_s_helpButton.dart';
 import '../../screens/home/categories_see_all_screen.dart';
 import '../../screens/home/top_doctors_see_all_screen.dart';
+import '../../Model/patient.dart';
+import '../../providers/patient_profile_provider.dart';
+import '../../screens/profile/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

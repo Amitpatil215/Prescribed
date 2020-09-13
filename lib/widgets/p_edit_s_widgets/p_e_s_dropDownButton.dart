@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../Model/patient.dart';
+
 class GenderDropDownButton extends StatefulWidget {
-  int _selectedGender;
-  Function getGenderString;
-  GenderDropDownButton(this._selectedGender, this.getGenderString);
+  int selectedGender;
+  Patient userData;
+  GenderDropDownButton(this.selectedGender, this.userData);
+
   @override
   _GenderDropDownButtonState createState() => _GenderDropDownButtonState();
 }
@@ -54,13 +57,13 @@ class _GenderDropDownButtonState extends State<GenderDropDownButton> {
                       isDense: true,
                       hint: Text("Select Gender"),
                       items: genderList,
-                      value: widget._selectedGender,
+                      value: widget.selectedGender,
                       isExpanded: true,
                       onChanged: (value) {
                         setState(() {
-                          widget._selectedGender = value;
+                          widget.selectedGender = value;
                         });
-                        widget.getGenderString(value);
+                        widget.userData.gender = Gender.values.elementAt(value);
                       },
                     ),
                   ),

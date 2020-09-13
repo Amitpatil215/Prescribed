@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../providers/auth_user_provider.dart';
 
 class ASTypeButton extends StatefulWidget {
   @override
@@ -17,6 +19,8 @@ class _ASTypeButtonState extends State<ASTypeButton> {
             onTap: () {
               setState(() {
                 _isPatient = !_isPatient;
+                Provider.of<AuthUser>(context, listen: false)
+                    .setUserTypeIsPatient(_isPatient);
               });
             },
             child: Container(
@@ -46,6 +50,8 @@ class _ASTypeButtonState extends State<ASTypeButton> {
           onTap: () {
             setState(() {
               _isPatient = !_isPatient;
+              Provider.of<AuthUser>(context, listen: false)
+                  .setUserTypeIsPatient(_isPatient);
             });
           },
           child: GridTile(

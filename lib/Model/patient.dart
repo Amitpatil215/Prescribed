@@ -3,12 +3,13 @@ import 'package:flutter/foundation.dart';
 enum Gender {
   Male,
   Female,
+  Other,
 }
 
 class GeoLocation {
   final int longitude;
   final int latitude;
-  final String address;
+  String address;
 
   GeoLocation({
     @required this.longitude,
@@ -19,18 +20,18 @@ class GeoLocation {
 
 class Patient {
   final String id;
-  final String name;
-  final Gender gender;
+  String name;
+  Gender gender;
   final DateTime dateOfBirth;
-  final int phone;
-  final String email;
+  int phone;
+  String email;
   final GeoLocation location;
   final String orgId;
   final double weight;
-  final double bloodPressure;
-  final double bloodSugar;
-  final double height;
-  final String allergy;
+  double bloodPressure;
+  double bloodSugar;
+   double heartRate;
+  String allergy;
 
   Patient({
     this.id,
@@ -44,7 +45,7 @@ class Patient {
     this.weight,
     this.bloodPressure,
     this.bloodSugar,
-    this.height,
+    this.heartRate,
     this.allergy,
   });
 }

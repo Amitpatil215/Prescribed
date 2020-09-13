@@ -1,6 +1,9 @@
-import 'package:doctor_duniya/providers/auth_user_provider.dart';
+import 'package:doctor_duniya/Model/patient.dart';
+import 'package:doctor_duniya/providers/patient_profile_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../widgets/p_s_widgets/p_s_email_phone_Card.dart';
 import '../../widgets/p_s_widgets/p_s_pic_name_ListTile.dart';
 import '../../widgets/p_s_widgets/p_s_health_measures.dart';
@@ -8,12 +11,18 @@ import '../../widgets/p_s_widgets/p_s_appointment_button.dart';
 import '../../widgets/p_s_widgets/p_s_setting_button.dart';
 import '../../widgets/p_s_widgets/p_s_latest_appointment.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   static const rountName = '/profile';
 
   @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
   Widget build(BuildContext context) {
-    final userId = Provider.of<AuthUser>(context).userId;
+    var _userData = Provider.of<Patient>(context);
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
@@ -35,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            PSPicNameListTile(userId),
+            PSPicNameListTile(),
             PSEmailPhoneCard(),
             PSAppointmentButton(),
             Expanded(

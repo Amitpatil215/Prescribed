@@ -1,4 +1,5 @@
 import 'package:doctor_duniya/Model/patient.dart';
+import 'package:doctor_duniya/providers/doctors_provider.dart';
 import 'package:doctor_duniya/providers/patient_profile_provider.dart';
 import 'package:doctor_duniya/screens/profile/health_measure_add_screen.dart';
 import 'package:doctor_duniya/screens/profile/profile_edit_screen.dart';
@@ -40,8 +41,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: AuthUser(),
         ),
-        StreamProvider<Patient>.value(
-          value: PatientProfileProvider().patientData(),
+        ChangeNotifierProvider.value(
+          value: PatientProfileProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DoctorsProvider(),
+        ),
+        StreamProvider<Patient>(
+          create: (context) => PatientProfileProvider().patientData(),
+          catchError: (context, error) {
+            print("Stream Provider Error in Main.dart $error");
+            return Patient();
+          },
+          initialData: Patient(),
+          updateShouldNotify: (_, __) => true,
         ),
         ChangeNotifierProvider.value(
           value: PatientProfileProvider(),
@@ -97,7 +110,6 @@ class MyApp extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
             );
-
             if (snapshot.hasData) {
               return HomeScreen();
             } else {
