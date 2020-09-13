@@ -1,5 +1,8 @@
+import 'package:doctor_duniya/Model/doctor.dart';
 import 'package:doctor_duniya/Model/patient.dart';
-import 'package:doctor_duniya/providers/patient_profile_provider.dart';
+import '../../providers/auth_user_provider.dart';
+import '../../providers/doctors_provider.dart';
+import '../../providers/patient_profile_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -52,12 +55,24 @@ class _ASAuthFormState extends State<ASAuthForm> {
           //containes additionl user specific information
           User user = authResult.user;
 
+          // Getting is user is doctor or Patient
+          var isPatient = Provider.of<AuthUser>(context, listen: false)
+              .getUserTypeisPatient;
+          print(isPatient);
           // * Creating Basic Structure of User
-          await Provider.of<PatientProfileProvider>(context, listen: false)
-              .createNewUser(Patient(
-            id: authResult.user.uid,
-            phone: int.tryParse(authResult.user.phoneNumber),
-          ));
+          if (isPatient) {
+            await Provider.of<PatientProfileProvider>(context, listen: false)
+                .createNewUser(Patient(
+              id: authResult.user.uid,
+              phone: int.tryParse(authResult.user.phoneNumber),
+            ));
+          } else {
+            await Provider.of<DoctorsProvider>(context, listen: false)
+                .createNewUser(Doctor(
+              id: authResult.user.uid,
+              phone: int.tryParse(authResult.user.phoneNumber),
+            ));
+          }
 
           print(
               "Signed in user automatically by otp sent no need to provide otp $user");
@@ -103,12 +118,25 @@ class _ASAuthFormState extends State<ASAuthForm> {
               //containes additionl user specific information
               User user = authResult.user;
 
+              // Getting is user is doctor or Patient
+              var isPatient = Provider.of<AuthUser>(context, listen: false)
+                  .getUserTypeisPatient;
+              print(isPatient);
               // * Creating Basic Structure of User
-              await Provider.of<PatientProfileProvider>(context, listen: false)
-                  .createNewUser(Patient(
-                id: authResult.user.uid,
-                phone: int.tryParse(authResult.user.phoneNumber),
-              ));
+              if (isPatient) {
+                await Provider.of<PatientProfileProvider>(context,
+                        listen: false)
+                    .createNewUser(Patient(
+                  id: authResult.user.uid,
+                  phone: int.tryParse(authResult.user.phoneNumber),
+                ));
+              } else {
+                await Provider.of<DoctorsProvider>(context, listen: false)
+                    .createNewUser(Doctor(
+                  id: authResult.user.uid,
+                  phone: int.tryParse(authResult.user.phoneNumber),
+                ));
+              }
               print("Logging in user by otp sent");
             } catch (error) {
               if (error == "invalid-verification-code") {
