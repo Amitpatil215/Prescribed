@@ -40,11 +40,17 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: AuthUser(),
         ),
-        StreamProvider<Patient>.value(
-          value: PatientProfileProvider().patientData(),
-        ),
         ChangeNotifierProvider.value(
           value: PatientProfileProvider(),
+        ),
+        StreamProvider<Patient>(
+          create: (context) => PatientProfileProvider().patientData(),
+          catchError: (context, error) {
+            print("Stream Provider Error in Main.dart $error");
+            return Patient();
+          },
+          initialData: Patient(),
+          updateShouldNotify: (_, __) => true,
         ),
         ChangeNotifierProvider.value(
           value: PatientProfileProvider(),
@@ -101,7 +107,6 @@ class MyApp extends StatelessWidget {
               height: MediaQuery.of(context).size.height,
             );
             if (snapshot.hasData) {
-              
               return HomeScreen();
             } else {
               return AuthScreen();

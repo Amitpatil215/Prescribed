@@ -14,10 +14,8 @@ import '../../providers/patient_profile_provider.dart';
 import '../../screens/profile/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       //backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(

@@ -53,7 +53,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
           User user = authResult.user;
 
           // * Creating Basic Structure of User
-          Provider.of<PatientProfileProvider>(context, listen: false)
+          await Provider.of<PatientProfileProvider>(context, listen: false)
               .createNewUser(Patient(
             id: authResult.user.uid,
             phone: int.tryParse(authResult.user.phoneNumber),
@@ -104,7 +104,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
               User user = authResult.user;
 
               // * Creating Basic Structure of User
-              Provider.of<PatientProfileProvider>(context, listen: false)
+              await Provider.of<PatientProfileProvider>(context, listen: false)
                   .createNewUser(Patient(
                 id: authResult.user.uid,
                 phone: int.tryParse(authResult.user.phoneNumber),

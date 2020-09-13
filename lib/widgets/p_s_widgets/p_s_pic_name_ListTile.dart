@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 import '../../Model/patient.dart';
 
 class PSPicNameListTile extends StatelessWidget {
-  String userId;
-  PSPicNameListTile(this.userId);
   @override
   Widget build(BuildContext context) {
-    final _userData = Provider.of<Patient>(context, listen: true);
+    var _userData = Provider.of<Patient>(context, listen: true);
+    print(_userData);
+
     return ListTile(
       leading: CircleAvatar(
         maxRadius: 50,
@@ -27,9 +27,7 @@ class PSPicNameListTile extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        _userData.location.address != null
-            ? _userData.location.address
-            : "Current Location",
+        _userData.location.address ?? "Current Location",
       ),
     );
   }

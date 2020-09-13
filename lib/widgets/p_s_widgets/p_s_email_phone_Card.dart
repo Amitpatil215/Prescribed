@@ -40,7 +40,7 @@ class PSEmailPhoneCard extends StatelessWidget {
                   ),
                   _userData != null
                       ? Text(_userData.phone != null
-                          ? _userData.phone.toString()
+                          ? "+${_userData.phone.toString()}"
                           : "Your Contact")
                       : CircularProgressIndicator(),
                 ],

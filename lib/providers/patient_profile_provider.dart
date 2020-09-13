@@ -2,45 +2,50 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import '../Model/patient.dart';
 
 class PatientProfileProvider with ChangeNotifier {
   Patient fetchedPatient;
 
   Stream<Patient> patientData() {
+    print("Patient Data Running");
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
-      return FirebaseFirestore.instance
+      var snapshot = FirebaseFirestore.instance
           .collection("patient")
           .doc(userId)
-          .snapshots()
-          .map(
-            (event) => Patient(
-              name: event.data()['name'],
-              phone: event.data()['phone'],
-              email: event.data()['email'],
-              gender: Gender.values.elementAt(event.data()['gender']) ?? 0,
-              location: GeoLocation(
-                longitude: null,
-                latitude: null,
-                address: event.data()['location'],
-              ),
-              bloodSugar: event.data()['bloodSugar'],
-              bloodPressure: event.data()['bloodPressure'],
-              heartRate: event.data()['heartRate'],
-              allergy: event.data()['allergy'],
-            ),
-          );
+          .snapshots();
+
+      return snapshot.map((event) {
+        return Patient(
+          name: event.data()['name'],
+          phone: event.data()['phone'],
+          email: event.data()['email'],
+          gender: Gender.values.elementAt(event.data()['gender']) ?? 0,
+          location: GeoLocation(
+            longitude: null,
+            latitude: null,
+            address: event.data()['location'],
+          ),
+          bloodSugar: event.data()['bloodSugar'],
+          bloodPressure: event.data()['bloodPressure'],
+          heartRate: event.data()['heartRate'],
+          allergy: event.data()['allergy'],
+        );
+      });
     } catch (error) {
       print("error in fetching error $error");
     }
+
+    notifyListeners();
   }
 
-  Future<void> createNewUser(Patient editedUser) async {
+  Future<void> createNewUser([Patient editedUser]) async {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
       await FirebaseFirestore.instance.collection("patient").doc(userId).set({
-        "id": editedUser.id,
+        "id": editedUser.id ?? userId,
         "phone": editedUser.phone,
         "name": null,
         "gender": 0,
