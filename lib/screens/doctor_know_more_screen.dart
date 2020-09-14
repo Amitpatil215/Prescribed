@@ -116,6 +116,13 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    "Availability",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
                     "Information",
                     style: TextStyle(
                       fontSize: 17,
@@ -187,21 +194,23 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 50.h),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: RaisedButton(
-                  color: Colors.white,
-                  elevation: 8,
-                  child: Text("Book Appointment"),
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed(BookAppointmentScreen.routName);
-                  },
-                ),
-              )
             ],
           ),
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text(
+          "Book Appointment",
+          style: TextStyle(color: Colors.black),
+        ),
+        isExtended: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(BookAppointmentScreen.routName);
+        },
       ),
     );
   }
