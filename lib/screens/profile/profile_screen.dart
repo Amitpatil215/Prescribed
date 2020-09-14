@@ -1,9 +1,4 @@
-import 'package:doctor_duniya/Model/patient.dart';
-import 'package:doctor_duniya/providers/patient_profile_provider.dart';
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '../../widgets/p_s_widgets/p_s_email_phone_Card.dart';
 import '../../widgets/p_s_widgets/p_s_pic_name_ListTile.dart';
 import '../../widgets/p_s_widgets/p_s_health_measures.dart';
@@ -21,8 +16,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    var _userData = Provider.of<Patient>(context);
-
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
