@@ -56,6 +56,9 @@ class PatientProfileProvider with ChangeNotifier {
         "heartRate": null,
         "allergy": null,
       });
+      await FirebaseFirestore.instance.collection("user").doc(userId).set({
+        "isPatient": true,
+      });
     } catch (error) {
       print("Error in storing profile edit page with- $error");
     }

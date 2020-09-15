@@ -1,4 +1,3 @@
-import 'package:doctor_duniya/Model/patient.dart';
 import 'package:doctor_duniya/providers/doctors_provider.dart';
 import 'package:doctor_duniya/providers/patient_profile_provider.dart';
 import 'package:doctor_duniya/screens/profile/health_measure_add_screen.dart';
@@ -10,6 +9,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_user_provider.dart';
+import 'DoctorScreens/home_screen_dr.dart';
+import 'Model/userType.dart';
+import 'Model/patient.dart';
 import 'screens/auth_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/profile/profile_screen.dart';
@@ -40,6 +42,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: AuthUser(),
+        ),
+        StreamProvider<UserType>(
+          create: (context) => AuthUser().getUserTypeisPatient(),
         ),
         ChangeNotifierProvider.value(
           value: PatientProfileProvider(),
@@ -110,8 +115,16 @@ class MyApp extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
             );
+
             if (snapshot.hasData) {
-              return HomeScreen();
+              var userType = Provider.of<UserType>(context);
+              if (userType == null) {
+                return CircularProgressIndicator();
+              } else if (userType.isPatient) {
+                return HomeScreen();
+              } else {
+                return HomeScreenDR();
+              }
             } else {
               return AuthScreen();
             }

@@ -56,22 +56,26 @@ class _ASAuthFormState extends State<ASAuthForm> {
           User user = authResult.user;
 
           // Getting is user is doctor or Patient
-          var isPatient = Provider.of<AuthUser>(context, listen: false)
-              .getUserTypeisPatient;
+          var isPatient =
+              Provider.of<AuthUser>(context, listen: false).isPatient;
           print(isPatient);
           // * Creating Basic Structure of User
           if (isPatient) {
             await Provider.of<PatientProfileProvider>(context, listen: false)
-                .createNewUser(Patient(
-              id: authResult.user.uid,
-              phone: int.tryParse(authResult.user.phoneNumber),
-            ));
+                .createNewUser(
+              Patient(
+                id: authResult.user.uid,
+                phone: int.tryParse(authResult.user.phoneNumber),
+              ),
+            );
           } else {
             await Provider.of<DoctorsProvider>(context, listen: false)
-                .createNewUser(Doctor(
-              id: authResult.user.uid,
-              phone: int.tryParse(authResult.user.phoneNumber),
-            ));
+                .createNewUser(
+              Doctor(
+                id: authResult.user.uid,
+                phone: int.tryParse(authResult.user.phoneNumber),
+              ),
+            );
           }
 
           print(
@@ -119,8 +123,8 @@ class _ASAuthFormState extends State<ASAuthForm> {
               User user = authResult.user;
 
               // Getting is user is doctor or Patient
-              var isPatient = Provider.of<AuthUser>(context, listen: false)
-                  .getUserTypeisPatient;
+              var isPatient =
+                  Provider.of<AuthUser>(context, listen: false).isPatient;
               print(isPatient);
               // * Creating Basic Structure of User
               if (isPatient) {
