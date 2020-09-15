@@ -117,8 +117,10 @@ class MyApp extends StatelessWidget {
             );
 
             if (snapshot.hasData) {
-              var isPatient = Provider.of<UserType>(context).isPatient;
-              if (isPatient) {
+              var userType = Provider.of<UserType>(context);
+              if (userType == null) {
+                return CircularProgressIndicator();
+              } else if (userType.isPatient) {
                 return HomeScreen();
               } else {
                 return HomeScreenDR();
