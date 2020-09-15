@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import '../Model/userType.dart';
 
 class AuthUser with ChangeNotifier {
   var isPatient = true;
@@ -20,7 +21,7 @@ class AuthUser with ChangeNotifier {
     notifyListeners();
   }
 
-  Stream<bool> getUserTypeisPatient() {
+  Stream<UserType> getUserTypeisPatient() {
     print("Getting user type from firestore");
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
@@ -28,7 +29,9 @@ class AuthUser with ChangeNotifier {
           FirebaseFirestore.instance.collection("user").doc(userId).snapshots();
 
       return snapshot.map((event) {
-        return event.data()['isPatient'];
+        return UserType(
+          isPatient: event.data()['isPatient'],
+        );
       });
     } catch (error) {
       print("error in fetching error $error");
