@@ -1,3 +1,4 @@
+import 'package:doctor_duniya/Model/doctor.dart';
 import 'package:doctor_duniya/providers/doctors_provider.dart';
 import 'package:doctor_duniya/providers/patient_profile_provider.dart';
 import 'package:doctor_duniya/screens/profile/health_measure_add_screen.dart';
@@ -49,9 +50,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: PatientProfileProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => DoctorsProvider(),
-        ),
         StreamProvider<Patient>(
           create: (context) => PatientProfileProvider().patientData(),
           catchError: (context, error) {
@@ -63,6 +61,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: PatientProfileProvider(),
+        ),
+        StreamProvider<Doctor>(
+          create: (context) => DoctorsProvider().doctorData(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DoctorsProvider(),
         ),
       ],
       child: MaterialApp(
@@ -120,10 +124,14 @@ class MyApp extends StatelessWidget {
               var userType = Provider.of<UserType>(context);
               if (userType == null) {
                 return CircularProgressIndicator();
-              } else if (userType.isPatient) {
-                return HomeScreen();
               } else {
-                return HomeScreenDR();
+                Provider.of<AuthUser>(context)
+                    .setUserTypeIsPatient(userType.isPatient);
+                if (userType.isPatient) {
+                  return HomeScreen();
+                } else {
+                  return HomeScreenDR();
+                }
               }
             } else {
               return AuthScreen();

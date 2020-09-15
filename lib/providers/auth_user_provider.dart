@@ -15,10 +15,9 @@ class AuthUser with ChangeNotifier {
     }
   }
 
-  Future<void> setUserTypeIsPatient(bool isHePatient) async {
+  void setUserTypeIsPatient(bool isHePatient) {
     print("set user as patient- $isHePatient");
     isPatient = isHePatient;
-    notifyListeners();
   }
 
   Stream<UserType> getUserTypeisPatient() {
