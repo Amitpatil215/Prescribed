@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
 class AuthUser with ChangeNotifier {
-  var _isPatient = true;
+  var isPatient = true;
 
   String get userId {
     try {
@@ -13,12 +14,25 @@ class AuthUser with ChangeNotifier {
     }
   }
 
-  void setUserTypeIsPatient(bool isHePatient) {
-    _isPatient = isHePatient;
+  Future<void> setUserTypeIsPatient(bool isHePatient) async {
+    print("set user as patient- $isHePatient");
+    isPatient = isHePatient;
     notifyListeners();
   }
 
-  bool get getUserTypeisPatient {
-    return _isPatient;
+  Stream<bool> getUserTypeisPatient() {
+    print("Getting user type from firestore");
+    try {
+      var userId = FirebaseAuth.instance.currentUser.uid;
+      var snapshot =
+          FirebaseFirestore.instance.collection("user").doc(userId).snapshots();
+
+      return snapshot.map((event) {
+        return event.data()['isPatient'];
+      });
+    } catch (error) {
+      print("error in fetching error $error");
+    }
+    notifyListeners();
   }
 }

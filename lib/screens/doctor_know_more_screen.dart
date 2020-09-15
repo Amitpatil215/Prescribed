@@ -123,6 +123,10 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
+                    "Doctor will be available in next 15 min.",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text(
                     "Information",
                     style: TextStyle(
                       fontSize: 17,

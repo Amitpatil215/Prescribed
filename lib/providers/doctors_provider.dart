@@ -14,6 +14,9 @@ class DoctorsProvider with ChangeNotifier {
         "location": null,
         "email": null,
       });
+      await FirebaseFirestore.instance.collection("user").doc(userId).set({
+        "isPatient": false,
+      });
     } catch (error) {
       print("Error in storing Doctor profile  with- $error");
     }

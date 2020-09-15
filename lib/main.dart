@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_user_provider.dart';
+import 'DoctorScreens/home_screen_dr.dart';
 import 'screens/auth_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/profile/profile_screen.dart';
@@ -110,8 +111,21 @@ class MyApp extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
             );
+            var isPatient = Provider.of<AuthUser>(context, listen: false)
+                .getUserTypeisPatient();
             if (snapshot.hasData) {
-              return HomeScreen();
+              print("Loged in as Patient");
+              return StreamBuilder(
+                stream: Provider.of<AuthUser>(context, listen: false)
+                    .getUserTypeisPatient(),
+                builder: (context, isPatient) {
+                  if (isPatient.data) {
+                    return HomeScreen();
+                  } else {
+                    return HomeScreenDR();
+                  }
+                },
+              );
             } else {
               return AuthScreen();
             }
