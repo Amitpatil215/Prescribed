@@ -48,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   if (_isPatient) PSHealthMeasures(),
                   if (_isPatient) SizedBox(height: 10),
-                  PSLatestAppointment(),
+                  if (_isPatient) PSLatestAppointment(),
                 ],
               ),
             ),

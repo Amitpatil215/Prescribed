@@ -13,7 +13,6 @@ class PSPicNameListTile extends StatelessWidget {
     if (_isPatient) {
       _userData = Provider.of<Patient>(context, listen: true);
     } else {
-      print("Doctor wala running");
       _userData = Provider.of<Doctor>(context, listen: true);
     }
 
@@ -27,17 +26,21 @@ class PSPicNameListTile extends StatelessWidget {
           ),
         ),
       ),
-      title: Text(
-        _userData.name != null ? _userData.name : "Your Name",
-        style: TextStyle(
-          fontSize: 20,
-        ),
-      ),
-      subtitle: Text(
-        _userData.phone != null
-            ? _userData.location.address ?? "Current Location"
-            : "Current Location",
-      ),
+      title: _userData != null
+          ? Text(
+              _userData.name != null ? _userData.name : "Your Name",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            )
+          : CircularProgressIndicator(),
+      subtitle: _userData != null
+          ? Text(
+              _userData.phone != null
+                  ? _userData.location.address ?? "Current Location"
+                  : "Current Location",
+            )
+          : CircularProgressIndicator(),
     );
   }
 }
