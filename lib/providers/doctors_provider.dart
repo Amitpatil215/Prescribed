@@ -32,6 +32,22 @@ class DoctorsProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> saveEditedUser(Doctor editedUser) async {
+    try {
+      var userId = FirebaseAuth.instance.currentUser.uid;
+      await FirebaseFirestore.instance.collection("doctor").doc(userId).set({
+        "name": editedUser.name,
+        "location": editedUser.location.address,
+        "phone": editedUser.phone,
+        "email": editedUser.email,
+      });
+    } catch (error) {
+      print("Error in storing profile edit page with- $error");
+    }
+    notifyListeners();
+    print("Saving to Firestore Done...");
+  }
+
   Future<void> createNewUser([Doctor editedUser]) async {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;

@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Model/patient.dart';
 import '../../widgets/p_edit_s_widgets/p_e_s_dropDownButton.dart';
+import '../../Model/doctor.dart';
+import '../../providers/auth_user_provider.dart';
+import '../../providers/doctors_provider.dart';
 
 class ProfileEditScreen extends StatelessWidget {
   static const routName = '/profile-edit';
   final userId = FirebaseAuth.instance.currentUser.uid;
-
+  var userData;
   final _formKey = GlobalKey<FormState>();
 
   int _genderIndex;
@@ -25,10 +28,15 @@ class ProfileEditScreen extends StatelessWidget {
     return null;
   }
 
-  void _saveForm(BuildContext context, Patient editedUser) async {
+  void _saveForm(BuildContext context, var editedUser, bool isPatient) async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      await Provider.of<PatientProfileProvider>(context, listen: false)
+      if (isPatient) {
+        await Provider.of<PatientProfileProvider>(context, listen: false)
+            .saveEditedUser(editedUser)
+            .then((value) {});
+      }
+      await Provider.of<DoctorsProvider>(context, listen: false)
           .saveEditedUser(editedUser)
           .then((value) {});
       Navigator.of(context).pop();
@@ -37,7 +45,12 @@ class ProfileEditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _userData = Provider.of<Patient>(context, listen: true);
+    var _isPatient = Provider.of<AuthUser>(context).isPatient;
+    if (_isPatient) {
+      userData = Provider.of<Patient>(context, listen: true);
+    } else {
+      userData = Provider.of<Doctor>(context, listen: true);
+    }
 
     return Scaffold(
         resizeToAvoidBottomPadding: false,
@@ -64,7 +77,7 @@ class ProfileEditScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          initialValue: _userData.name,
+                          initialValue: userData.name,
                           decoration: InputDecoration(
                             hintText: "e.g Zakir Khan",
                             labelText: "Your Full Name",
@@ -80,14 +93,15 @@ class ProfileEditScreen extends StatelessWidget {
                             }
                           },
                           onSaved: (value) {
-                            _userData.name = value;
+                            userData.name = value;
                           },
                         ),
                       )
                     ],
                   ),
                 ),
-                GenderDropDownButton(_userData.gender.index ?? 0, _userData),
+                if (_isPatient)
+                  GenderDropDownButton(userData.gender.index ?? 0, userData),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   child: Row(
@@ -101,8 +115,8 @@ class ProfileEditScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          initialValue: _userData.phone != null
-                              ? _userData.location.address
+                          initialValue: userData.phone != null
+                              ? userData.location.address
                               : null,
                           decoration: InputDecoration(
                             hintText: "e.g. Noida",
@@ -119,7 +133,7 @@ class ProfileEditScreen extends StatelessWidget {
                             }
                           },
                           onSaved: (value) {
-                            _userData.location.address = value;
+                            userData.location.address = value;
                           },
                         ),
                       )
@@ -139,7 +153,7 @@ class ProfileEditScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          initialValue: _userData.phone.toString(),
+                          initialValue: userData.phone.toString(),
                           decoration: InputDecoration(
                             hintText: "e.g. +91 1234567890",
                             labelText: "Contact Number",
@@ -155,7 +169,7 @@ class ProfileEditScreen extends StatelessWidget {
                             }
                           },
                           onSaved: (value) {
-                            _userData.phone = int.parse(value);
+                            userData.phone = int.parse(value);
                           },
                         ),
                       )
@@ -175,7 +189,7 @@ class ProfileEditScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          initialValue: _userData.email,
+                          initialValue: userData.email,
                           decoration: InputDecoration(
                             hintText: "e.g. doctorDuniya@gmail.com",
                             labelText: "Email Address",
@@ -191,7 +205,7 @@ class ProfileEditScreen extends StatelessWidget {
                             }
                           },
                           onSaved: (value) {
-                            _userData.email = value;
+                            userData.email = value;
                           },
                         ),
                       )
@@ -209,7 +223,7 @@ class ProfileEditScreen extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        _saveForm(context, _userData);
+                        _saveForm(context, userData, _isPatient);
                       },
                       elevation: 5,
                     )),
