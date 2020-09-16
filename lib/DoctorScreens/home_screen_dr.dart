@@ -1,8 +1,10 @@
+import 'package:doctor_duniya/Model/userType.dart';
 import 'package:doctor_duniya/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreenDR extends StatelessWidget {
   @override

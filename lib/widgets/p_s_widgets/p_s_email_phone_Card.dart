@@ -2,11 +2,19 @@ import 'package:flutter/material.dart';
 import '../../screens/profile/profile_edit_screen.dart';
 import 'package:provider/provider.dart';
 import '../../Model/patient.dart';
+import '../../providers/auth_user_provider.dart';
+import '../../Model/doctor.dart';
 
 class PSEmailPhoneCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _userData = Provider.of<Patient>(context, listen: true);
+    var _userData;
+    var _isPatient = Provider.of<AuthUser>(context).isPatient;
+    if (_isPatient) {
+      _userData = Provider.of<Patient>(context, listen: true);
+    } else {
+      _userData = Provider.of<Doctor>(context, listen: true);
+    }
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 2, horizontal: 40),

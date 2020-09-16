@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 class GeoLocation {
   final int longitude;
   final int latitude;
-  final String address;
+  String address;
 
   GeoLocation({
     @required this.longitude,
@@ -31,16 +31,16 @@ class AvailabilityTime {
 
 class Doctor {
   final String id;
-  final String name;
+  String name;
   final File image;
   final String moreDetails;
   final String field;
   final String language;
   final String degree;
-  final int phone;
-  final String email;
+  int phone;
+  String email;
   final String clinicName;
-  final GeoLocation location;
+  GeoLocation location;
   final DateTime experience;
   final int rating;
   final bool varificationBadge;
