@@ -1,10 +1,9 @@
-import 'package:doctor_duniya/Model/userType.dart';
 import 'package:doctor_duniya/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
+import '../widgets/p_s_widgets/p_s_latest_appointment.dart';
 
 class HomeScreenDR extends StatelessWidget {
   @override
@@ -74,24 +73,27 @@ class HomeScreenDR extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 10.0,
-                  right: 20.0,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Categories",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.only(
+              //     left: 10.0,
+              //     right: 20.0,
+              //   ),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text(
+              //         "Upcoming Clicic Appointment",
+              //         style: TextStyle(
+              //           fontSize: 15,
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              PSLatestAppointment(),
+              SizedBox(height: 10),
+              PSLatestAppointment(),
               SizedBox(
                 height: 10,
               ),

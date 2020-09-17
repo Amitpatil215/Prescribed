@@ -23,6 +23,7 @@ import 'screens/medicine/prescribe_medicine_screen.dart';
 import 'screens/medicine/add_medicine.dart';
 import 'screens/doctor_know_more_screen.dart';
 import 'screens/book_appointment/book_appointment_screen.dart';
+import 'screens/profile/professional_info_add_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -171,7 +172,10 @@ class MyApp extends StatelessWidget {
           },
           HealthMeasureAddScreen.routeName: (ctx) {
             return HealthMeasureAddScreen();
-          }
+          },
+          ProfessionalInfoAddScreen.routName: (ctx) {
+            return ProfessionalInfoAddScreen();
+          },
         },
       ),
     );

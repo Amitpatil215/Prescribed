@@ -23,6 +23,12 @@ class DoctorsProvider with ChangeNotifier {
             latitude: null,
             address: event.data()['location'],
           ),
+          language: event.data()['language'],
+          field: event.data()['field'],
+          degree: event.data()['degree'],
+          experience: event.data()['experience'],
+          university: event.data()['university'],
+          moreDetails: event.data()['moreDetails'],
         );
       });
     } catch (error) {
@@ -40,6 +46,12 @@ class DoctorsProvider with ChangeNotifier {
         "location": editedUser.location.address,
         "phone": editedUser.phone,
         "email": editedUser.email,
+        "language": editedUser.language,
+        "field": editedUser.field,
+        "degree": editedUser.degree,
+        "university": editedUser.university,
+        "moreDetails": editedUser.moreDetails,
+        "experience": editedUser.experience,
       });
     } catch (error) {
       print("Error in storing profile edit page with- $error");
@@ -57,6 +69,12 @@ class DoctorsProvider with ChangeNotifier {
         "name": null,
         "location": null,
         "email": null,
+        "language": null,
+        "field": null,
+        "degree": null,
+        "experience": null,
+        "university": null,
+        "moreDetails": null,
       });
       await FirebaseFirestore.instance.collection("user").doc(userId).set({
         "isPatient": false,
