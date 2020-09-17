@@ -21,11 +21,12 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _userData = Provider.of<Doctor>(context, listen: true);
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: Text("Edit Profille"),
+          title: Text("Professional Information"),
         ),
         body: Container(
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -46,9 +47,9 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          // initialValue: _userData.bloodSugar != null
-                          //     ? _userData.bloodSugar.toString()
-                          //     : "",
+                          initialValue: _userData.field != null
+                              ? _userData.field.toString()
+                              : "",
                           decoration: InputDecoration(
                             hintText: "e.g Psychiatrist",
                             labelText: "Domain",
@@ -58,10 +59,10 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                           ),
                           keyboardType: TextInputType.number,
                           onSaved: (value) {
-                            if (value == null) {
-                              value = "";
+                            if (value.isEmpty) {
+                              value = null;
                             }
-                            // _userData.bloodSugar = double.tryParse(value);
+                            _userData.field = value;
                           },
                         ),
                       )
@@ -81,9 +82,9 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          // initialValue: _userData.bloodPressure != null
-                          //     ? _userData.bloodPressure.toString()
-                          //     : "",
+                          initialValue: _userData.degree != null
+                              ? _userData.degree.toString()
+                              : "",
                           decoration: InputDecoration(
                             hintText: "e.g MBBS,MD",
                             labelText: "Degree",
@@ -92,10 +93,45 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                             ),
                           ),
                           onSaved: (value) {
-                            if (value == null) {
-                              value = "";
+                            if (value.isEmpty) {
+                              value = null;
                             }
-                            // _userData.bloodPressure = double.tryParse(value);
+                            _userData.degree = value;
+                          },
+                          keyboardType: TextInputType.number,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        FlutterIcons.sina_weibo_mco,
+                        size: 30,
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: TextFormField(
+                          initialValue: _userData.experience != null
+                              ? _userData.experience.toString()
+                              : "",
+                          decoration: InputDecoration(
+                            hintText: "e.g 10 yrs",
+                            labelText: "Experience",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          onSaved: (value) {
+                            if (value == null) {
+                              value = "0";
+                            }
+                            _userData.experience = int.tryParse(value);
                           },
                           keyboardType: TextInputType.number,
                         ),
@@ -116,9 +152,9 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          // initialValue: _userData.heartRate != null
-                          //     ? _userData.heartRate.toString()
-                          //     : "",
+                          initialValue: _userData.university != null
+                              ? _userData.university
+                              : "",
                           decoration: InputDecoration(
                             hintText: "e.g. Loyala University",
                             labelText: "University Name",
@@ -127,10 +163,10 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                             ),
                           ),
                           onSaved: (value) {
-                            if (value == null) {
-                              value = "";
+                            if (value.isEmpty) {
+                              value = null;
                             }
-                            // _userData.heartRate = double.tryParse(value);
+                            _userData.university = value;
                           },
                           keyboardType: TextInputType.number,
                         ),
@@ -151,9 +187,9 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          // initialValue: _userData.bloodPressure != null
-                          //     ? _userData.bloodPressure.toString()
-                          //     : "",
+                          initialValue: _userData.language != null
+                              ? _userData.language
+                              : "",
                           decoration: InputDecoration(
                             hintText: "e.g Hindi, English",
                             labelText: "Languages",
@@ -162,10 +198,10 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                             ),
                           ),
                           onSaved: (value) {
-                            if (value == null) {
-                              value = "";
+                            if (value.isEmpty) {
+                              value = null;
                             }
-                            // _userData.bloodPressure = double.tryParse(value);
+                            _userData.language = value;
                           },
                           keyboardType: TextInputType.number,
                         ),
@@ -186,9 +222,9 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          // initialValue: _userData.allergy != null
-                          //     ? _userData.allergy
-                          //     : "",
+                          initialValue: _userData.moreDetails != null
+                              ? _userData.moreDetails
+                              : "",
                           decoration: InputDecoration(
                             hintText:
                                 "Explain about your work, Why one Should appoint you?",
@@ -200,7 +236,7 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                           ),
                           onSaved: (value) {
                             if (value.isEmpty) value = null;
-                            // _userData.allergy = value;
+                            _userData.moreDetails = value;
                           },
                           keyboardType: TextInputType.number,
                           maxLines: 4,
@@ -220,7 +256,7 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      //   _saveForm(context, _userData);
+                      _saveForm(context, _userData);
                     },
                     elevation: 5,
                   ),

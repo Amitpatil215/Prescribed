@@ -33,15 +33,16 @@ class Doctor {
   final String id;
   String name;
   final File image;
-  final String moreDetails;
-  final String field;
-  final String language;
-  final String degree;
+  String moreDetails;
+  String field;
+  String language;
+  String degree;
+  String university;
   int phone;
   String email;
   final String clinicName;
   GeoLocation location;
-  final DateTime experience;
+  int experience;
   final int rating;
   final bool varificationBadge;
   final AvailabilityMode availabilityMode;
@@ -56,6 +57,7 @@ class Doctor {
     this.field,
     this.language,
     this.degree,
+    this.university,
     this.phone,
     this.email,
     this.clinicName,
