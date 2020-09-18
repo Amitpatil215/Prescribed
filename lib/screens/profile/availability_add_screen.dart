@@ -43,24 +43,26 @@ class AvailabilityAddScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  onShowPicker: (context, currentValue) async {
+                  initialValue: _userData.cfrom,
+                  onShowPicker: (context, currentValueCFrom) async {
+                    currentValueCFrom = _userData.cfrom;
                     final date = await showDatePicker(
                       context: context,
                       firstDate: DateTime.now(),
-                      initialDate: currentValue ?? DateTime.now(),
+                      initialDate: currentValueCFrom ?? DateTime.now(),
                       lastDate: DateTime(2025),
                     );
                     if (date != null) {
                       final time = await showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.fromDateTime(
-                            currentValue ?? DateTime.now()),
+                            currentValueCFrom ?? DateTime.now()),
                       );
                       _userData.tfrom = DateTimeField.combine(date, time);
                       return _userData.tfrom;
                     } else {
-                      _userData.tfrom = currentValue;
-                      return currentValue;
+                      _userData.tfrom = currentValueCFrom;
+                      return currentValueCFrom;
                     }
                   },
                 ),
@@ -76,24 +78,26 @@ class AvailabilityAddScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  onShowPicker: (context, currentValue) async {
+                  initialValue: _userData.tto,
+                  onShowPicker: (context, currentValueTTo) async {
+                    currentValueTTo = _userData.tto;
                     final date = await showDatePicker(
                       context: context,
                       firstDate: DateTime.now(),
-                      initialDate: currentValue ?? DateTime.now(),
+                      initialDate: currentValueTTo ?? DateTime.now(),
                       lastDate: DateTime(2025),
                     );
                     if (date != null) {
                       final time = await showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.fromDateTime(
-                            currentValue ?? DateTime.now()),
+                            currentValueTTo ?? DateTime.now()),
                       );
                       _userData.tto = DateTimeField.combine(date, time);
                       return _userData.tto;
                     } else {
-                      _userData.tto = currentValue;
-                      return currentValue;
+                      _userData.tto = currentValueTTo;
+                      return currentValueTTo;
                     }
                   },
                 ),
@@ -111,24 +115,26 @@ class AvailabilityAddScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  onShowPicker: (context, currentValue) async {
+                  initialValue: _userData.cfrom,
+                  onShowPicker: (context, currentValueCFrom) async {
+                    currentValueCFrom = _userData.cfrom;
                     final date = await showDatePicker(
                       context: context,
                       firstDate: DateTime.now(),
-                      initialDate: currentValue ?? DateTime.now(),
+                      initialDate: currentValueCFrom ?? DateTime.now(),
                       lastDate: DateTime(2025),
                     );
                     if (date != null) {
                       final time = await showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.fromDateTime(
-                            currentValue ?? DateTime.now()),
+                            currentValueCFrom ?? DateTime.now()),
                       );
                       _userData.cfrom = DateTimeField.combine(date, time);
                       return _userData.cfrom;
                     } else {
-                      _userData.cfrom = currentValue;
-                      return currentValue;
+                      _userData.cfrom = currentValueCFrom;
+                      return currentValueCFrom;
                     }
                   },
                 ),
@@ -144,24 +150,26 @@ class AvailabilityAddScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  onShowPicker: (context, currentValue) async {
+                  initialValue: _userData.cto,
+                  onShowPicker: (context, currentValueCTo) async {
+                    currentValueCTo = _userData.cto;
                     final date = await showDatePicker(
                       context: context,
                       firstDate: DateTime.now(),
-                      initialDate: currentValue ?? DateTime.now(),
+                      initialDate: currentValueCTo ?? DateTime.now(),
                       lastDate: DateTime(2025),
                     );
                     if (date != null) {
                       final time = await showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.fromDateTime(
-                            currentValue ?? DateTime.now()),
+                            currentValueCTo ?? DateTime.now()),
                       );
                       _userData.cto = DateTimeField.combine(date, time);
                       return _userData.cto;
                     } else {
-                      _userData.cto = currentValue;
-                      return currentValue;
+                      _userData.cto = currentValueCTo;
+                      return currentValueCTo;
                     }
                   },
                 ),
