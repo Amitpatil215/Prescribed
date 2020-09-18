@@ -29,12 +29,15 @@ class DoctorsProvider with ChangeNotifier {
           experience: event.data()['experience'],
           university: event.data()['university'],
           moreDetails: event.data()['moreDetails'],
+          tfrom: DateTime.parse(event.data()['tfrom']),
+          tto: DateTime.parse(event.data()['tto']),
+          cfrom: DateTime.parse(event.data()['cfrom']),
+          cto: DateTime.parse(event.data()['cto']),
         );
       });
     } catch (error) {
       print("error in fetching error $error");
     }
-
     notifyListeners();
   }
 
@@ -52,6 +55,10 @@ class DoctorsProvider with ChangeNotifier {
         "university": editedUser.university,
         "moreDetails": editedUser.moreDetails,
         "experience": editedUser.experience,
+        "tfrom": editedUser.tfrom.toIso8601String(),
+        "tto": editedUser.tto.toIso8601String(),
+        "cfrom": editedUser.cfrom.toIso8601String(),
+        "cto": editedUser.cto.toIso8601String(),
       });
     } catch (error) {
       print("Error in storing profile edit page with- $error");
