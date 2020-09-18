@@ -24,6 +24,7 @@ import 'screens/medicine/add_medicine.dart';
 import 'screens/doctor_know_more_screen.dart';
 import 'screens/book_appointment/book_appointment_screen.dart';
 import 'screens/profile/professional_info_add_screen.dart';
+import 'screens/profile/availability_add_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -176,6 +177,9 @@ class MyApp extends StatelessWidget {
           ProfessionalInfoAddScreen.routName: (ctx) {
             return ProfessionalInfoAddScreen();
           },
+          AvailabilityAddScreen.routName: (ctx) {
+            return AvailabilityAddScreen();
+          }
         },
       ),
     );

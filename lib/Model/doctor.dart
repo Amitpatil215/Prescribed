@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 class GeoLocation {
@@ -45,9 +46,11 @@ class Doctor {
   int experience;
   final int rating;
   final bool varificationBadge;
+  DateTime tfrom;
+  DateTime tto;
+  DateTime cfrom;
+  DateTime cto;
   final AvailabilityMode availabilityMode;
-  final AvailabilityTime teleMedication;
-  final AvailabilityTime physicalConsultation;
 
   Doctor({
     this.id,
@@ -66,7 +69,9 @@ class Doctor {
     this.rating,
     this.varificationBadge,
     this.availabilityMode,
-    this.teleMedication,
-    this.physicalConsultation,
+    this.tfrom,
+    this.tto,
+    this.cto,
+    this.cfrom,
   });
 }
