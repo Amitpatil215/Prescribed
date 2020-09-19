@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import '../../screens/profile/availability_add_screen.dart';
+import '../../Model/doctor.dart';
 
 class PSAvailability extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var _userData = Provider.of<Doctor>(context);
+    var _isTeleAvailable = DateTime.now().isAfter(_userData.tfrom) &&
+        DateTime.now().isBefore(_userData.tto);
+
+    var _isCliAvailable = DateTime.now().isAfter(_userData.cfrom) &&
+        DateTime.now().isBefore(_userData.cto);
+
     return Container(
       height: 150.h,
       margin: EdgeInsets.symmetric(horizontal: 22),
@@ -31,42 +40,45 @@ class PSAvailability extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10),
-                // if (_userData.bloodPressure == null &&
-                //     _userData.bloodSugar == null &&
-                //     _userData.allergy == null &&
-                //     _userData.heartRate == null)
-                Text(
-                  "Your Telemedication, Clinic\n time slots appear here!",
-                ),
-                // if (_userData.bloodPressure != null ||
-                //     _userData.bloodSugar != null ||
-                //     _userData.allergy != null ||
-                //     _userData.heartRate != null)
-                // Column(
-                //   crossAxisAlignment: CrossAxisAlignment.start,
-                //   children: [
-                //     Text(
-                //         "Presure :${_userData.bloodPressure ?? "0.0"} mm/Hg"),
-                //     Text("Sugar : ${_userData.bloodSugar ?? "0.0"}"),
-                //     Text(
-                //         "Heart Rate : ${_userData.heartRate ?? "0.0"} b/min"),
-                //     Text(
-                //       "Allergy :",
-                //       style: TextStyle(
-                //           fontSize: 16, fontWeight: FontWeight.w600),
-                //     ),
-                //     ConstrainedBox(
-                //       constraints: BoxConstraints(
-                //         maxWidth: 0.6.wp,
-                //       ),
-                //       child: Text(
-                //         _userData.allergy ?? "Details Appear Here",
-                //         overflow: TextOverflow.ellipsis,
-                //         maxLines: 1,
-                //       ),
-                //     )
-                //   ],
-                // )
+                if (_userData.tfrom == null &&
+                    _userData.tto == null &&
+                    _userData.cfrom == null &&
+                    _userData.cto == null)
+                  Text(
+                    "Your Telemedication, Clinic\n time slots appear here!",
+                  ),
+                if (_userData.tfrom != null ||
+                    _userData.tto != null ||
+                    _userData.cfrom != null ||
+                    _userData.cto != null)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Currently Online",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          if (_isTeleAvailable) Icon(FlutterIcons.call_mdi),
+                          if (_isCliAvailable) Icon(FlutterIcons.hospital_faw5),
+                        ],
+                      ),
+                      Text(
+                        "Currently Offline",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Row(
+                        children: [
+                          if (!_isTeleAvailable) Icon(FlutterIcons.call_mdi),
+                          if (!_isCliAvailable)
+                            Icon(FlutterIcons.hospital_faw5),
+                        ],
+                      ),
+                    ],
+                  )
               ],
             ),
           ),

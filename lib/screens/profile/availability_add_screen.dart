@@ -21,7 +21,6 @@ class AvailabilityAddScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _userData = Provider.of<Doctor>(context);
-    print(DateFormat("dd-MM-yyyy hh:mm a").format(_userData.cfrom));
     return Scaffold(
       appBar: AppBar(
         title: Text("Update Availability"),
