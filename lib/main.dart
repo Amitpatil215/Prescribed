@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_user_provider.dart';
-import 'DoctorScreens/home_screen_dr.dart';
+import 'screens/DoctorScreens/home_screen_dr.dart';
 import 'Model/userType.dart';
 import 'Model/patient.dart';
 import 'screens/auth_screen.dart';
