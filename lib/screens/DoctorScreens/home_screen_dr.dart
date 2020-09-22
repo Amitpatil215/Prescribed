@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../widgets/p_s_widgets/p_s_latest_appointment.dart';
+import '../../widgets/p_s_widgets/p_s_latest_appointment.dart';
 
 class HomeScreenDR extends StatelessWidget {
   @override
