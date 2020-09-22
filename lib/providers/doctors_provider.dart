@@ -82,6 +82,10 @@ class DoctorsProvider with ChangeNotifier {
         "experience": null,
         "university": null,
         "moreDetails": null,
+        "tfrom": null,
+        "tto": null,
+        "cfrom": null,
+        "cto": null,
       });
       await FirebaseFirestore.instance.collection("user").doc(userId).set({
         "isPatient": false,

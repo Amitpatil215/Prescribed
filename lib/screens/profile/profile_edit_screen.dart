@@ -35,10 +35,12 @@ class ProfileEditScreen extends StatelessWidget {
         await Provider.of<PatientProfileProvider>(context, listen: false)
             .saveEditedUser(editedUser)
             .then((value) {});
+      } else {
+        await Provider.of<DoctorsProvider>(context, listen: false)
+            .saveEditedUser(editedUser)
+            .then((value) {});
       }
-      await Provider.of<DoctorsProvider>(context, listen: false)
-          .saveEditedUser(editedUser)
-          .then((value) {});
+
       Navigator.of(context).pop();
     }
   }
@@ -101,7 +103,9 @@ class ProfileEditScreen extends StatelessWidget {
                   ),
                 ),
                 if (_isPatient)
-                  GenderDropDownButton(userData.gender.index ?? 0, userData),
+                  GenderDropDownButton(
+                      userData.gender != null ? userData.gender.index ?? 0 : 0,
+                      userData),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   child: Row(

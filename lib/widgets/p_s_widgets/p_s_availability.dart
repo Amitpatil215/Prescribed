@@ -10,11 +10,13 @@ class PSAvailability extends StatelessWidget {
   Widget build(BuildContext context) {
     var _userData = Provider.of<Doctor>(context);
     if (_userData != null) {
-      var _isTeleAvailable = DateTime.now().isAfter(_userData.tfrom) &&
-          DateTime.now().isBefore(_userData.tto);
+      var _isTeleAvailable =
+          DateTime.now().isAfter(_userData.tfrom ?? DateTime.now()) &&
+              DateTime.now().isBefore(_userData.tto ?? DateTime.now());
 
-      var _isCliAvailable = DateTime.now().isAfter(_userData.cfrom) &&
-          DateTime.now().isBefore(_userData.cto);
+      var _isCliAvailable =
+          DateTime.now().isAfter(_userData.cfrom ?? DateTime.now()) &&
+              DateTime.now().isBefore(_userData.cto ?? DateTime.now());
 
       return Container(
         height: 150.h,

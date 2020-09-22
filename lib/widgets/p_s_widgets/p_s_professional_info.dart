@@ -10,7 +10,9 @@ class PSProfessionalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     var _userData = Provider.of<Doctor>(context, listen: true);
     return Container(
-      // height: 150.h,
+      constraints: BoxConstraints(
+        minHeight: 150.h,
+      ),
       margin: EdgeInsets.symmetric(horizontal: 22),
       padding: EdgeInsets.symmetric(horizontal: 7),
       decoration: BoxDecoration(

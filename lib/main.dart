@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         StreamProvider<Patient>(
           create: (context) => PatientProfileProvider().patientData(),
           catchError: (context, error) {
-            print("Stream Provider Error in Main.dart $error");
+            print("Patient Stream Provider Error in Main.dart $error");
             return Patient();
           },
           initialData: Patient(),
@@ -66,6 +66,12 @@ class MyApp extends StatelessWidget {
         ),
         StreamProvider<Doctor>(
           create: (context) => DoctorsProvider().doctorData(),
+          catchError: (context, error) {
+            print("Doctor Stream Provider Error in Main.dart $error");
+
+            return Doctor();
+          },
+          updateShouldNotify: (_, __) => true,
         ),
         ChangeNotifierProvider(
           create: (context) => DoctorsProvider(),
