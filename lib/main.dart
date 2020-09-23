@@ -46,11 +46,13 @@ class MyApp extends StatelessWidget {
               if (userType == null) {
                 return CircularProgressIndicator();
               } else {
-                Provider.of<AuthUser>(context)
+                Provider.of<AuthUser>(context, listen: false)
                     .setUserTypeIsPatient(userType.isPatient);
                 if (userType.isPatient) {
+                  print("WC to Patient View");
                   return HomeScreen();
                 } else {
+                  print("WC to Doctor View");
                   return HomeScreenDR();
                 }
               }

@@ -16,18 +16,18 @@ class PatientProfileProvider with ChangeNotifier {
           .collection("patient")
           .doc(userId)
           .snapshots();
-
       return snapshot.map((event) {
         return Patient(
           name: event.data()['name'],
           phone: event.data()['phone'],
           email: event.data()['email'],
           gender: Gender.values.elementAt(event.data()['gender']) ?? 0,
-          location: GeoLocation(
-            longitude: null,
-            latitude: null,
-            address: event.data()['location'],
-          ),
+          // location: GeoLocation(
+          //   longitude: null,
+          //   latitude: null,
+          //   address: event.data()['location'],
+          // ),
+          address: event.data()['address'],
           bloodSugar: event.data()['bloodSugar'],
           bloodPressure: event.data()['bloodPressure'],
           heartRate: event.data()['heartRate'],
@@ -72,7 +72,8 @@ class PatientProfileProvider with ChangeNotifier {
       await FirebaseFirestore.instance.collection("patient").doc(userId).set({
         "name": editedUser.name,
         "gender": editedUser.gender.index,
-        "location": editedUser.location.address,
+        // "location": editedUser.location.address,
+        "address":editedUser.address,
         "phone": editedUser.phone,
         "email": editedUser.email,
         "bloodSugar": editedUser.bloodSugar,

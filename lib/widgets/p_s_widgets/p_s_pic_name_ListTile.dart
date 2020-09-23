@@ -28,7 +28,7 @@ class PSPicNameListTile extends StatelessWidget {
       ),
       title: _userData != null
           ? Text(
-              _userData.name != null ? _userData.name : "Your Name",
+               _userData.name ?? "Your Name",
               style: TextStyle(
                 fontSize: 20,
               ),
@@ -36,9 +36,7 @@ class PSPicNameListTile extends StatelessWidget {
           : CircularProgressIndicator(),
       subtitle: _userData != null
           ? Text(
-              _userData.phone != null
-                  ? _userData.location.address ?? "Current Location"
-                  : "Current Location",
+              _userData.address ?? "Current Location",
             )
           : CircularProgressIndicator(),
     );

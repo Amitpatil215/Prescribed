@@ -43,6 +43,7 @@ class Doctor {
   String email;
   final String clinicName;
   GeoLocation location;
+  String address;
   int experience;
   final int rating;
   final bool varificationBadge;
@@ -65,6 +66,7 @@ class Doctor {
     this.email,
     this.clinicName,
     this.location,
+    this.address,
     this.experience,
     this.rating,
     this.varificationBadge,
