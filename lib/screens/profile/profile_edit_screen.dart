@@ -40,7 +40,6 @@ class ProfileEditScreen extends StatelessWidget {
             .saveEditedUser(editedUser)
             .then((value) {});
       }
-
       Navigator.of(context).pop();
     }
   }
