@@ -18,21 +18,25 @@ class DoctorsProvider with ChangeNotifier {
           name: event.data()['name'],
           phone: event.data()['phone'],
           email: event.data()['email'],
-          location: GeoLocation(
-            longitude: null,
-            latitude: null,
-            address: event.data()['location'],
-          ),
+          address: event.data()['address'],
           language: event.data()['language'],
           field: event.data()['field'],
           degree: event.data()['degree'],
           experience: event.data()['experience'],
           university: event.data()['university'],
           moreDetails: event.data()['moreDetails'],
-          tfrom: DateTime.parse(event.data()['tfrom']),
-          tto: DateTime.parse(event.data()['tto']),
-          cfrom: DateTime.parse(event.data()['cfrom']),
-          cto: DateTime.parse(event.data()['cto']),
+          tfrom: event.data()['tfrom'] != null
+              ? DateTime.parse(event.data()['tfrom'])
+              : null,
+          tto: event.data()['tto'] != null
+              ? DateTime.parse(event.data()['tto'])
+              : null,
+          cfrom: event.data()['cfrom'] != null
+              ? DateTime.parse(event.data()['cfrom'])
+              : null,
+          cto: event.data()['cto'] != null
+              ? DateTime.parse(event.data()['cto'])
+              : null,
         );
       });
     } catch (error) {
@@ -46,7 +50,7 @@ class DoctorsProvider with ChangeNotifier {
       var userId = FirebaseAuth.instance.currentUser.uid;
       await FirebaseFirestore.instance.collection("doctor").doc(userId).set({
         "name": editedUser.name,
-        "location": editedUser.location.address,
+        "address": editedUser.address,
         "phone": editedUser.phone,
         "email": editedUser.email,
         "language": editedUser.language,
@@ -55,10 +59,14 @@ class DoctorsProvider with ChangeNotifier {
         "university": editedUser.university,
         "moreDetails": editedUser.moreDetails,
         "experience": editedUser.experience,
-        "tfrom": editedUser.tfrom.toIso8601String(),
-        "tto": editedUser.tto.toIso8601String(),
-        "cfrom": editedUser.cfrom.toIso8601String(),
-        "cto": editedUser.cto.toIso8601String(),
+        "tfrom": editedUser.tfrom != null
+            ? editedUser.tfrom.toIso8601String()
+            : null,
+        "tto": editedUser.tto != null ? editedUser.tto.toIso8601String() : null,
+        "cfrom": editedUser.cfrom != null
+            ? editedUser.cfrom.toIso8601String()
+            : null,
+        "cto": editedUser.cto != null ? editedUser.cto.toIso8601String() : Null,
       });
     } catch (error) {
       print("Error in storing profile edit page with- $error");
@@ -75,6 +83,7 @@ class DoctorsProvider with ChangeNotifier {
         "phone": editedUser.phone,
         "name": null,
         "location": null,
+        "address": null,
         "email": null,
         "language": null,
         "field": null,

@@ -13,6 +13,7 @@ class ProfileEditScreen extends StatelessWidget {
   static const routName = '/profile-edit';
   final userId = FirebaseAuth.instance.currentUser.uid;
   var userData;
+
   final _formKey = GlobalKey<FormState>();
 
   int _genderIndex;
@@ -51,8 +52,8 @@ class ProfileEditScreen extends StatelessWidget {
       userData = Provider.of<Patient>(context, listen: true);
     } else {
       userData = Provider.of<Doctor>(context, listen: true);
+      print(userData.name);
     }
-
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         backgroundColor: Theme.of(context).backgroundColor,
@@ -118,9 +119,7 @@ class ProfileEditScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextFormField(
-                          initialValue: userData.phone != null
-                              ? userData.location.address
-                              : null,
+                          initialValue: userData.address,
                           decoration: InputDecoration(
                             hintText: "e.g. Noida",
                             labelText: "Home Location",
@@ -136,7 +135,7 @@ class ProfileEditScreen extends StatelessWidget {
                             }
                           },
                           onSaved: (value) {
-                            userData.location.address = value;
+                            userData.address = value;
                           },
                         ),
                       )

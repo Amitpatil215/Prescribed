@@ -26,6 +26,7 @@ class Patient {
   int phone;
   String email;
   final GeoLocation location;
+  String address;
   final String orgId;
   final double weight;
   double bloodPressure;
@@ -41,6 +42,7 @@ class Patient {
     this.phone,
     this.email,
     this.location,
+    this.address,
     this.orgId,
     this.weight,
     this.bloodPressure,
