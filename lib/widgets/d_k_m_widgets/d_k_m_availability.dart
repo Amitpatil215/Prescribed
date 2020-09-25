@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../screens/book_appointment/slot_book_screen.dart';
 
 // ! Do change time to date time
 // * at time of passing data
@@ -7,6 +8,8 @@ class DKMAvailability extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         AvailabilityTile(
           title: "Telemedication",
@@ -35,19 +38,36 @@ class AvailabilityTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(7),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
+      child: GestureDetector(
+        child: Container(
+          padding: const EdgeInsets.all(7),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(title),
+                    SizedBox(height: 5),
+                    Text(time),
+                  ],
+                ),
+              ),
+              Container(
+                child: Icon(
+                  Icons.navigate_next,
+                  size: 25,
+                ),
+              )
+            ],
+          ),
         ),
-        child: Column(
-          children: [
-            Text(title),
-            SizedBox(height: 5),
-            Text(time),
-          ],
-        ),
+        onTap: () {
+          Navigator.of(context).pushNamed(SlotBookScreen.routeName);
+        },
       ),
     );
   }
