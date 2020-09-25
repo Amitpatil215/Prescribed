@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'book_appointment/book_appointment_screen.dart';
 import '../widgets/d_k_m_widgets/d_k_m_address.dart';
+import '../widgets/d_k_m_widgets/d_k_m_availability.dart';
 
 class DoctorKnowMoreScreen extends StatelessWidget {
   static const routName = "know-doctor";
@@ -122,10 +123,7 @@ class DoctorKnowMoreScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    "Doctor will be available in next 15 min.",
-                    style: TextStyle(fontSize: 16),
-                  ),
+                  DKMAvailability(),
                   Text(
                     "Information",
                     style: TextStyle(

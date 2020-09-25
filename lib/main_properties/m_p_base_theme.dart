@@ -23,6 +23,11 @@ ThemeData mPBaseTheme = ThemeData(
       ),
     ),
   ),
+  buttonTheme: ButtonThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+  ),
   cardTheme: CardTheme(
     elevation: 5,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
