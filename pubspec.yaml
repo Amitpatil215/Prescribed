@@ -38,6 +38,7 @@ dependencies:
   flutter_icons: ^1.1.0
   datetime_picker_formfield: ^1.0.0
   intl: ^0.16.1
+  date_picker_timeline: ^1.2.1
 
 dev_dependencies:
   flutter_test:
