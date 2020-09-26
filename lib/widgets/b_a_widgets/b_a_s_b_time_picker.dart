@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import '../../providers/select_time_provider.dart';
 
 class BASBTimePicker extends StatelessWidget {
   static List<TimeOfDay> morningTime;
@@ -46,6 +48,7 @@ class BASBTimePicker extends StatelessWidget {
     final step = Duration(minutes: 30);
     final times = getTimes(startTime, endTime, step).map((tod) => tod).toList();
     partOfDayWiseList(times);
+    var fetchedTime = Provider.of<SelectTimeProvider>(context).fetchTime;
     return Container(
         padding: EdgeInsets.only(left: 10, right: 7),
         child: Column(
@@ -54,46 +57,46 @@ class BASBTimePicker extends StatelessWidget {
               PartOfDayWiseTimeSlot(
                 times: morningTime,
                 title: "Morning",
+                selectedTime: fetchedTime,
               ),
             if (morningTime.isNotEmpty) SizedBox(height: 20),
             if (afterNoonTime.isNotEmpty)
               PartOfDayWiseTimeSlot(
                 times: afterNoonTime,
                 title: "Afternoon",
+                selectedTime: fetchedTime,
               ),
             if (afterNoonTime.isNotEmpty) SizedBox(height: 20),
             if (eveningTime.isNotEmpty)
               PartOfDayWiseTimeSlot(
                 times: eveningTime,
                 title: "Evening",
+                selectedTime: fetchedTime,
               ),
             if (eveningTime.isNotEmpty) SizedBox(height: 20),
             if (nightTime.isNotEmpty)
               PartOfDayWiseTimeSlot(
                 times: nightTime,
                 title: "Night",
+                selectedTime: fetchedTime,
               ),
           ],
         ));
   }
 }
 
-class PartOfDayWiseTimeSlot extends StatefulWidget {
+class PartOfDayWiseTimeSlot extends StatelessWidget {
   final String title;
+  TimeOfDay selectedTime;
   final List<TimeOfDay> times;
 
   PartOfDayWiseTimeSlot({
     Key key,
     this.title,
+    this.selectedTime,
     @required this.times,
   }) : super(key: key);
 
-  @override
-  _PartOfDayWiseTimeSlotState createState() => _PartOfDayWiseTimeSlotState();
-}
-
-class _PartOfDayWiseTimeSlotState extends State<PartOfDayWiseTimeSlot> {
-  TimeOfDay _selectedTime;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -101,14 +104,14 @@ class _PartOfDayWiseTimeSlotState extends State<PartOfDayWiseTimeSlot> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.title, style: TextStyle(fontSize: 18)),
+          Text(title, style: TextStyle(fontSize: 18)),
           SizedBox(height: 10),
           Container(
             height: 40.h,
             width: double.infinity,
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: widget.times.length,
+              itemCount: times.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
                 childAspectRatio: 1 / 2,
@@ -118,27 +121,27 @@ class _PartOfDayWiseTimeSlotState extends State<PartOfDayWiseTimeSlot> {
                 child: Container(
                   child: Center(
                       child: Text(
-                    widget.times.elementAt(index).format(context),
+                    times.elementAt(index).format(context),
                     style: TextStyle(
-                        fontWeight:
-                            _selectedTime == widget.times.elementAt(index)
-                                ? FontWeight.bold
-                                : null),
+                        fontWeight: selectedTime == times.elementAt(index)
+                            ? FontWeight.bold
+                            : null),
                   )),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     border: Border.all(color: Colors.grey),
-                    color: _selectedTime == widget.times.elementAt(index)
+                    color: selectedTime == times.elementAt(index)
                         ? Colors.white
                         : null,
                   ),
                 ),
                 onTap: () {
-                  setState(() {
-                    _selectedTime = widget.times.elementAt(index);
-                  });
+                  Provider.of<SelectTimeProvider>(context, listen: false)
+                      .setTimeSelected(times.elementAt(index));
 
-                  print(_selectedTime.format(context));
+                  print(Provider.of<SelectTimeProvider>(context, listen: false)
+                      .fetchTime
+                      .format(context));
                 },
               ),
             ),
