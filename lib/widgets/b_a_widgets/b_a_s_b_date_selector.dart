@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../providers/select_time_provider.dart';
 
 class BASBDateSelector extends StatefulWidget {
   BASBDateSelector({
@@ -14,8 +16,6 @@ class BASBDateSelector extends StatefulWidget {
 class _BASBDateSelectorState extends State<BASBDateSelector> {
   DatePickerController _controller = DatePickerController();
 
-  DateTime _selectedValue = DateTime.now();
-
   @override
   void initState() {
     super.initState();
@@ -23,6 +23,7 @@ class _BASBDateSelectorState extends State<BASBDateSelector> {
 
   @override
   Widget build(BuildContext context) {
+    var _selectedValue = Provider.of<SelectTimeProvider>(context).fetchDate;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -48,6 +49,8 @@ class _BASBDateSelectorState extends State<BASBDateSelector> {
               setState(() {
                 _selectedValue = date;
               });
+              Provider.of<SelectTimeProvider>(context, listen: false)
+                  .setDateSelected(_selectedValue);
             },
           ),
         ),
