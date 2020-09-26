@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'book_appointment/book_appointment_screen.dart';
+import '../widgets/colors.dart';
 import '../widgets/d_k_m_widgets/d_k_m_address.dart';
 import '../widgets/d_k_m_widgets/d_k_m_availability.dart';
 
@@ -13,7 +14,7 @@ class DoctorKnowMoreScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white.withOpacity(0),
+        backgroundColor: appBarColor,
       ),
       body: SingleChildScrollView(
         child: Container(

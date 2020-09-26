@@ -1,9 +1,10 @@
-import 'package:doctor_duniya/providers/select_time_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import '../../widgets/b_a_widgets/b_a_s_b_date_selector.dart';
 import '../../widgets/b_a_widgets/b_a_s_b_time_picker.dart';
+import '../../providers/select_time_provider.dart';
+import '../../screens/book_appointment/verify_appointmenr_screen.dart';
 
 class SlotBookScreen extends StatelessWidget {
   static const routeName = 'slot-book';
@@ -57,6 +58,7 @@ class SlotBookScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
         onPressed: () {
+          Navigator.of(context).pushNamed(VerifyAppointmentScreen.routeName);
           var date = Provider.of<SelectTimeProvider>(context, listen: false)
               .fetchAppointmentDate;
           print(date);
