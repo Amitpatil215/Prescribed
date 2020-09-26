@@ -6,6 +6,7 @@ import '../providers/auth_user_provider.dart';
 import '../Model/patient.dart';
 import '../providers/doctors_provider.dart';
 import '../providers/patient_profile_provider.dart';
+import '../providers/select_time_provider.dart';
 
 List<SingleChildWidget> mPProviderList = [
   ChangeNotifierProvider(
@@ -17,6 +18,9 @@ List<SingleChildWidget> mPProviderList = [
       print("Error in stream UserType in main.dart $error");
       return;
     },
+  ),
+  ChangeNotifierProvider(
+    create: (context) => SelectTimeProvider(),
   ),
   ChangeNotifierProvider(
     create: (context) => PatientProfileProvider(),
