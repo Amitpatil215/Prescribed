@@ -13,6 +13,7 @@ import '../screens/profile/availability_add_screen.dart';
 import '../screens/profile/health_measure_add_screen.dart';
 import '../screens/profile/profile_edit_screen.dart';
 import '../screens/book_appointment/slot_book_screen.dart';
+import '../screens/book_appointment/verify_appointmenr_screen.dart';
 
 Map<String, Widget Function(BuildContext)> mPRouteTable = {
   AuthScreen.routName: (ctx) {
@@ -57,4 +58,7 @@ Map<String, Widget Function(BuildContext)> mPRouteTable = {
   SlotBookScreen.routeName: (ctx) {
     return SlotBookScreen();
   },
+  VerifyAppointmentScreen.routeName: (ctx) {
+    return VerifyAppointmentScreen();
+  }
 };
