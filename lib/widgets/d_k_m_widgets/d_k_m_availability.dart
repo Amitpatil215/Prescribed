@@ -1,5 +1,7 @@
+import 'package:doctor_duniya/providers/select_DateTimeType_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import '../../screens/book_appointment/slot_book_screen.dart';
 
 // ! Do change time to date time
@@ -12,12 +14,12 @@ class DKMAvailability extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         AvailabilityTile(
-          title: "Telemedication",
+          isTelemedication: true,
           time: "02:00 PM - 04:00 PM",
         ),
         SizedBox(width: 7.w),
         AvailabilityTile(
-          title: "Clinic Consultation",
+          isTelemedication: false,
           time: "06:00 PM - 10:00 PM",
         ),
       ],
@@ -26,13 +28,13 @@ class DKMAvailability extends StatelessWidget {
 }
 
 class AvailabilityTile extends StatelessWidget {
-  final String title;
   final String time;
+  final bool isTelemedication;
 
   AvailabilityTile({
     Key key,
     this.time,
-    this.title,
+    this.isTelemedication,
   }) : super(key: key);
 
   @override
@@ -50,7 +52,9 @@ class AvailabilityTile extends StatelessWidget {
               Expanded(
                 child: Column(
                   children: [
-                    Text(title),
+                    Text(isTelemedication
+                        ? "Telemedication"
+                        : "Clinic Consultation"),
                     SizedBox(height: 5),
                     Text(time),
                   ],
@@ -66,6 +70,8 @@ class AvailabilityTile extends StatelessWidget {
           ),
         ),
         onTap: () {
+          Provider.of<SelectDateTimeTypeProvider>(context, listen: false)
+              .setAppoitmentType(istele: isTelemedication);
           Navigator.of(context).pushNamed(SlotBookScreen.routeName);
         },
       ),

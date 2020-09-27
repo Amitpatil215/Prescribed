@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import '../../providers/select_time_provider.dart';
+import '../../providers/select_DateTimeType_provider.dart';
 
 class BASBTimePicker extends StatelessWidget {
   static List<TimeOfDay> morningTime;
@@ -48,7 +48,8 @@ class BASBTimePicker extends StatelessWidget {
     final step = Duration(minutes: 30);
     final times = getTimes(startTime, endTime, step).map((tod) => tod).toList();
     partOfDayWiseList(times);
-    var fetchedTime = Provider.of<SelectTimeProvider>(context).fetchTime;
+    var fetchedTime =
+        Provider.of<SelectDateTimeTypeProvider>(context).fetchTime;
     return Container(
         padding: EdgeInsets.only(left: 10, right: 7),
         child: Column(
@@ -104,7 +105,11 @@ class PartOfDayWiseTimeSlot extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(fontSize: 18)),
+          Text(title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              )),
           SizedBox(height: 10),
           Container(
             height: 40.h,
@@ -136,10 +141,12 @@ class PartOfDayWiseTimeSlot extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  Provider.of<SelectTimeProvider>(context, listen: false)
+                  Provider.of<SelectDateTimeTypeProvider>(context,
+                          listen: false)
                       .setTimeSelected(times.elementAt(index));
 
-                  print(Provider.of<SelectTimeProvider>(context, listen: false)
+                  print(Provider.of<SelectDateTimeTypeProvider>(context,
+                          listen: false)
                       .fetchTime
                       .format(context));
                 },
