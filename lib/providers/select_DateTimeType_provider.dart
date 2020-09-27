@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class SelectTimeProvider with ChangeNotifier {
+class SelectDateTimeTypeProvider with ChangeNotifier {
   TimeOfDay _selectTime = TimeOfDay(hour: 17, minute: 0);
   DateTime _selectedDate = DateTime.now();
+  bool _isTelemedication = true;
 
   TimeOfDay get fetchTime {
     return _selectTime;
@@ -11,6 +12,10 @@ class SelectTimeProvider with ChangeNotifier {
 
   DateTime get fetchDate {
     return _selectedDate;
+  }
+
+  bool get fetchAppointTypeIsTele {
+    return _isTelemedication;
   }
 
   DateTime get fetchAppointmentDate {
@@ -25,6 +30,11 @@ class SelectTimeProvider with ChangeNotifier {
 
   void setDateSelected(DateTime setDate) {
     _selectedDate = setDate;
+    notifyListeners();
+  }
+
+  void setAppoitmentType({bool istele}) {
+    _isTelemedication = istele;
     notifyListeners();
   }
 }

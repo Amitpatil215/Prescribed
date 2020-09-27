@@ -6,7 +6,7 @@ import '../providers/auth_user_provider.dart';
 import '../Model/patient.dart';
 import '../providers/doctors_provider.dart';
 import '../providers/patient_profile_provider.dart';
-import '../providers/select_time_provider.dart';
+import '../providers/select_DateTimeType_provider.dart';
 
 List<SingleChildWidget> mPProviderList = [
   ChangeNotifierProvider(
@@ -20,7 +20,7 @@ List<SingleChildWidget> mPProviderList = [
     },
   ),
   ChangeNotifierProvider(
-    create: (context) => SelectTimeProvider(),
+    create: (context) => SelectDateTimeTypeProvider(),
   ),
   ChangeNotifierProvider(
     create: (context) => PatientProfileProvider(),
