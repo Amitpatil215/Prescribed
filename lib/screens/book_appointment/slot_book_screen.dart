@@ -65,10 +65,6 @@ class SlotBookScreen extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.of(context).pushNamed(VerifyAppointmentScreen.routeName);
-          var date =
-              Provider.of<SelectDateTimeTypeProvider>(context, listen: false)
-                  .fetchAppointmentDate;
-          print(date);
         },
       ),
     );

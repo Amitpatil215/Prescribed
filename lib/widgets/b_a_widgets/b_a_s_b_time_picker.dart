@@ -144,11 +144,6 @@ class PartOfDayWiseTimeSlot extends StatelessWidget {
                   Provider.of<SelectDateTimeTypeProvider>(context,
                           listen: false)
                       .setTimeSelected(times.elementAt(index));
-
-                  print(Provider.of<SelectDateTimeTypeProvider>(context,
-                          listen: false)
-                      .fetchTime
-                      .format(context));
                 },
               ),
             ),

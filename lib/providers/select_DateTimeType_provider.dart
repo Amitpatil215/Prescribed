@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class SelectDateTimeTypeProvider with ChangeNotifier {
   TimeOfDay _selectTime = TimeOfDay(hour: 17, minute: 0);
   DateTime _selectedDate = DateTime.now();
-  bool _isTelemedication;
+  bool _isTelemedication = true;
 
   TimeOfDay get fetchTime {
     return _selectTime;
