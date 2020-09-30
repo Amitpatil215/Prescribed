@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_duniya/providers/patient_profile_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import '../../widgets/p_edit_s_widgets/p_e_s_dropDownButton.dart';
 import '../../Model/doctor.dart';
 import '../../providers/auth_user_provider.dart';
 import '../../providers/doctors_provider.dart';
+import '../../widgets/p_edit_s_widgets/p_e_s_pick_image.dart';
 
 class ProfileEditScreen extends StatelessWidget {
   static const routName = '/profile-edit';
@@ -66,6 +66,10 @@ class ProfileEditScreen extends StatelessWidget {
           key: _formKey,
           child: Column(
             children: [
+              Container(
+                padding: EdgeInsets.all(30),
+                child: PESPickImage(),
+              ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
