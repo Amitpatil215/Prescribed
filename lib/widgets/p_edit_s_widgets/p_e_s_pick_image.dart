@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
+import '../colors.dart';
 
 class PESPickImage extends StatefulWidget {
   @override
@@ -11,23 +13,40 @@ class PESPickImage extends StatefulWidget {
 class _PESPickImageState extends State<PESPickImage> {
   final picker = ImagePicker();
   File _pickedImage;
+  File croppedImage;
 
   void _pickImage() async {
-    final pickedImage = await picker
-        .getImage(
-      source: ImageSource.gallery,
-      imageQuality: 75,
-      maxWidth: 150,
-    )
-        .catchError((error) {
+    try {
+      final pickedImage = await picker.getImage(
+        source: ImageSource.gallery,
+      );
+      if (pickedImage != null) {
+        croppedImage = await ImageCropper.cropImage(
+          sourcePath: pickedImage.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          compressQuality: 75,
+          maxHeight: 700,
+          maxWidth: 700,
+          compressFormat: ImageCompressFormat.jpg,
+          androidUiSettings: AndroidUiSettings(
+            toolbarTitle: "Crop Image",
+            toolbarColor: appBarColor,
+            cropFrameColor: Colors.white,
+            backgroundColor: appBarColor,
+            dimmedLayerColor: appBarColor,
+            statusBarColor: appBarColor,
+          ),
+        );
+      }
+      if (croppedImage != null) {
+        setState(() {
+          _pickedImage = croppedImage;
+        });
+      } else {
+        return;
+      }
+    } catch (error) {
       print("Error in picking image as $error");
-    });
-    if (pickedImage != null) {
-      setState(() {
-        _pickedImage = File(pickedImage.path);
-      });
-    } else {
-      return;
     }
   }
 
