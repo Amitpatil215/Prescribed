@@ -3,14 +3,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 import '../../widgets/h_s_widgets/h_s_gridview.dart';
 import '../../widgets/h_s_widgets/h_s_listView.dart';
 import '../../widgets/h_s_widgets/h_s_helpButton.dart';
 import '../../screens/home/categories_see_all_screen.dart';
 import '../../screens/home/top_doctors_see_all_screen.dart';
-import '../../Model/patient.dart';
-import '../../providers/patient_profile_provider.dart';
 import '../../screens/profile/profile_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -89,6 +86,45 @@ class HomeScreen extends StatelessWidget {
             children: [
               SizedBox(
                 height: 8,
+              ),
+              Card(
+                elevation: 5,
+                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  height: 80,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.red, Colors.blue],
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "General Physician",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            "Try for cold, fever..",
+                          ),
+                        ],
+                      ),
+                      //?To Do:Image related physician appear here
+                    ],
+                  ),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.only(
