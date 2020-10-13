@@ -1,3 +1,4 @@
+import 'package:doctor_duniya/screens/verification/verify_document_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,8 +56,11 @@ class PSApplyVerification extends StatelessWidget {
               ),
               OutlineButton.icon(
                 icon: Icon(Icons.add),
-                label: Text("New"),
-                onPressed: () {},
+                label: Text("Add"),
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed(VerifyDocumentScreen.routeName);
+                },
               )
             ],
           )
