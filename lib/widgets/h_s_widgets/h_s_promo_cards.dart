@@ -9,9 +9,16 @@ class HSPromoCards extends StatelessWidget {
         crossAxisCount: 1,
         childAspectRatio: 1.5 / 5.5,
         scrollDirection: Axis.horizontal,
+        physics: ScrollPhysics(parent: BouncingScrollPhysics()),
         children: [
-          EachCard(),
-          EachCard(),
+          EachCard(
+            title: "General Physician",
+            subTitle: "Try for cold, fever..",
+          ),
+          EachCard(
+            title: "General Physician",
+            subTitle: "Try for cold, fever..",
+          ),
         ],
       ),
     );
@@ -19,7 +26,11 @@ class HSPromoCards extends StatelessWidget {
 }
 
 class EachCard extends StatelessWidget {
-  const EachCard({
+  final String title;
+  final String subTitle;
+  EachCard({
+    this.title,
+    this.subTitle,
     Key key,
   }) : super(key: key);
 
@@ -46,13 +57,13 @@ class EachCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "General Physician",
+                  title,
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 Text(
-                  "Try for cold, fever..",
+                  subTitle,
                 ),
               ],
             ),
