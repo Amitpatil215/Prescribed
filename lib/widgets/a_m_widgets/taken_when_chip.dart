@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TakenWhenChip extends StatefulWidget {
-  var medicine;
+  final medicine;
   TakenWhenChip(this.medicine);
   @override
   _TakenWhenChipState createState() => _TakenWhenChipState();

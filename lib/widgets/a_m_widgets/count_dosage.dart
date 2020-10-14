@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CountDosage extends StatefulWidget {
-  var medicine;
+  final medicine;
   CountDosage(this.medicine);
 
   @override

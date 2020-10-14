@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TimeOfDayChip extends StatefulWidget {
-  var medicine;
+  final medicine;
   TimeOfDayChip(this.medicine);
   @override
   _TimeOfDayChipState createState() => _TimeOfDayChipState();

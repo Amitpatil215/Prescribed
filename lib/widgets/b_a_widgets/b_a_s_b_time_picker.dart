@@ -88,7 +88,7 @@ class BASBTimePicker extends StatelessWidget {
 
 class PartOfDayWiseTimeSlot extends StatelessWidget {
   final String title;
-  TimeOfDay selectedTime;
+  final TimeOfDay selectedTime;
   final List<TimeOfDay> times;
 
   PartOfDayWiseTimeSlot({
