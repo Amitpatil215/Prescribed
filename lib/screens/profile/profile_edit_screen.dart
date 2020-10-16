@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:doctor_duniya/providers/firestor_image_upload_provider.dart';
 import 'package:doctor_duniya/providers/patient_profile_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +16,11 @@ class ProfileEditScreen extends StatelessWidget {
   static const routName = '/profile-edit';
   final userId = FirebaseAuth.instance.currentUser.uid;
   var userData;
+  static File image;
+
+  void _pickedImage(File fnctionImage) {
+    image = fnctionImage;
+  }
 
   final _formKey = GlobalKey<FormState>();
 
@@ -41,7 +49,11 @@ class ProfileEditScreen extends StatelessWidget {
             .saveEditedUser(editedUser)
             .then((value) {});
       }
-      Navigator.of(context).pop();
+      if (image != null) {
+        await Provider.of<FirestoreImageUpload>(context, listen: false)
+            .uploadProfileImage(image, context);
+        Navigator.of(context).pop();
+      }
     }
   }
 
@@ -68,7 +80,9 @@ class ProfileEditScreen extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.all(30),
-                child: PESPickImage(),
+                child: PESPickImage(
+                  imagePickedFn: _pickedImage,
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),

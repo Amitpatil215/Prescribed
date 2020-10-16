@@ -6,6 +6,12 @@ import 'package:image_cropper/image_cropper.dart';
 import '../colors.dart';
 
 class PESPickImage extends StatefulWidget {
+  //! this is a call back function
+  //* We getting a function named imagePickedFn
+  //* We execute it here by passing a picked image
+  final void Function(File pickedImage) imagePickedFn;
+
+  const PESPickImage({Key key, this.imagePickedFn}) : super(key: key);
   @override
   _PESPickImageState createState() => _PESPickImageState();
 }
@@ -42,6 +48,7 @@ class _PESPickImageState extends State<PESPickImage> {
         setState(() {
           _pickedImage = croppedImage;
         });
+        widget.imagePickedFn(_pickedImage);
       } else {
         return;
       }

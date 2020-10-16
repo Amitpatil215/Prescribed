@@ -7,6 +7,7 @@ import '../Model/patient.dart';
 import '../providers/doctors_provider.dart';
 import '../providers/patient_profile_provider.dart';
 import '../providers/select_DateTimeType_provider.dart';
+import '../providers/firestor_image_upload_provider.dart';
 
 List<SingleChildWidget> mPProviderList = [
   ChangeNotifierProvider(
@@ -47,5 +48,8 @@ List<SingleChildWidget> mPProviderList = [
     },
     initialData: Doctor(),
     updateShouldNotify: (_, __) => true,
+  ),
+  ChangeNotifierProvider(
+    create: (context) => FirestoreImageUpload(),
   ),
 ];
