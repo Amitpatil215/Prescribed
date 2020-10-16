@@ -7,7 +7,7 @@ import '../../widgets/a_m_widgets/medicine_type_grid.dart';
 
 class AddMedicine extends StatelessWidget {
   static const routeName = 'add-medicine';
-  Map<String, dynamic> medicine = {
+  final Map<String, dynamic> medicine = {
     "medicineName": '',
     "medicineType": 'Tablet',
     "timeOfday": ["Morning", "Night"],
@@ -124,7 +124,7 @@ class AddMedicine extends StatelessWidget {
 }
 
 class NameOfSubTitle extends StatelessWidget {
-  String subTitle;
+  final String subTitle;
   NameOfSubTitle(this.subTitle);
 
   @override

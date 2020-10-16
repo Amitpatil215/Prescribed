@@ -12,6 +12,7 @@ class AuthUser with ChangeNotifier {
       return _uid;
     } catch (error) {
       print("Error in Auth User Provider - $error");
+      return null;
     }
   }
 
