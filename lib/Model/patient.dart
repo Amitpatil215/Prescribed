@@ -33,6 +33,7 @@ class Patient {
   double bloodSugar;
    double heartRate;
   String allergy;
+  String profileImageUrl;
 
   Patient({
     this.id,
@@ -49,5 +50,6 @@ class Patient {
     this.bloodSugar,
     this.heartRate,
     this.allergy,
+    this.profileImageUrl,
   });
 }

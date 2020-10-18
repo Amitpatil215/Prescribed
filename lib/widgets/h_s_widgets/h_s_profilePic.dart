@@ -1,11 +1,13 @@
-import 'package:doctor_duniya/Model/doctor.dart';
-import 'package:doctor_duniya/Model/userType.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import '../../Model/doctor.dart';
 import '../../Model/patient.dart';
+import '../../Model/userType.dart';
+import '../../screens/profile/profile_screen.dart';
 
-class PSPicNameListTile extends StatelessWidget {
+class HSProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _isPatient = Provider.of<UserType>(context).isPatient;
@@ -15,10 +17,9 @@ class PSPicNameListTile extends StatelessWidget {
     } else {
       _userData = Provider.of<Doctor>(context, listen: true);
     }
-
-    return ListTile(
-      leading: CircleAvatar(
-        maxRadius: 70,
+    return GestureDetector(
+      child: CircleAvatar(
+        maxRadius: 12.h,
         child: Hero(
           tag: "ProfileHeroKey",
           child: ClipOval(
@@ -32,19 +33,9 @@ class PSPicNameListTile extends StatelessWidget {
           ),
         ),
       ),
-      title: _userData != null
-          ? Text(
-              _userData.name ?? "Your Name",
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            )
-          : CircularProgressIndicator(),
-      subtitle: _userData != null
-          ? Text(
-              _userData.address ?? "Current Location",
-            )
-          : CircularProgressIndicator(),
+      onTap: () {
+        Navigator.of(context).pushNamed(ProfileScreen.rountName);
+      },
     );
   }
 }

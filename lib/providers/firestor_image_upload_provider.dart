@@ -34,7 +34,7 @@ class FirestoreImageUpload with ChangeNotifier {
           .doc(userId)
           .update(
         {
-          "profile_image_url": imageUrl,
+          "profileImageUrl": imageUrl,
         },
       );
 
