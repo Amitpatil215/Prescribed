@@ -3,23 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:provider/provider.dart';
 import '../colors.dart';
+import '../../Model/doctor.dart';
+import '../../Model/patient.dart';
+import '../../Model/userType.dart';
 
-class PESPickImage extends StatefulWidget {
+class PESPickImage extends StatelessWidget {
+  final picker = ImagePicker();
+
+  static File croppedImage;
   //! this is a call back function
   //* We getting a function named imagePickedFn
   //* We execute it here by passing a picked image
   final void Function(File pickedImage) imagePickedFn;
 
-  const PESPickImage({Key key, this.imagePickedFn}) : super(key: key);
-  @override
-  _PESPickImageState createState() => _PESPickImageState();
-}
-
-class _PESPickImageState extends State<PESPickImage> {
-  final picker = ImagePicker();
-  File _pickedImage;
-  File croppedImage;
+  PESPickImage({Key key, this.imagePickedFn}) : super(key: key);
 
   void _pickImage() async {
     try {
@@ -45,10 +44,7 @@ class _PESPickImageState extends State<PESPickImage> {
         );
       }
       if (croppedImage != null) {
-        setState(() {
-          _pickedImage = croppedImage;
-        });
-        widget.imagePickedFn(_pickedImage);
+        imagePickedFn(croppedImage);
       } else {
         return;
       }
@@ -59,6 +55,13 @@ class _PESPickImageState extends State<PESPickImage> {
 
   @override
   Widget build(BuildContext context) {
+    var _isPatient = Provider.of<UserType>(context).isPatient;
+    var _userData;
+    if (_isPatient) {
+      _userData = Provider.of<Patient>(context, listen: true);
+    } else {
+      _userData = Provider.of<Doctor>(context, listen: true);
+    }
     return Container(
       child: Stack(
         children: [
@@ -66,11 +69,15 @@ class _PESPickImageState extends State<PESPickImage> {
             tag: "ProfileHeroKey",
             child: CircleAvatar(
               maxRadius: 40,
-              backgroundImage:
-                  _pickedImage != null ? FileImage(_pickedImage) : null,
-              child: _pickedImage == null
-                  ? SvgPicture.asset("assets/images/male.svg")
-                  : null,
+              child: ClipOval(
+                child: _userData.profileImageUrl == null
+                    ? SvgPicture.asset(
+                        "assets/images/male.svg",
+                      )
+                    : Image.network(
+                        "${_userData.profileImageUrl}",
+                      ),
+              ),
             ),
           ),
           Positioned(
