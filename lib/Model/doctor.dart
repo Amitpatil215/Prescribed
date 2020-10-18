@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:flutter/foundation.dart';
 
 class GeoLocation {
@@ -33,6 +32,7 @@ class AvailabilityTime {
 class Doctor {
   final String id;
   String name;
+  String profileImageUrl;
   final File image;
   String moreDetails;
   String field;
@@ -56,6 +56,7 @@ class Doctor {
   Doctor({
     this.id,
     this.name,
+    this.profileImageUrl,
     this.image,
     this.moreDetails,
     this.field,

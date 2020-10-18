@@ -16,6 +16,7 @@ class DoctorsProvider with ChangeNotifier {
       return snapshot.map((event) {
         return Doctor(
           name: event.data()['name'],
+          profileImageUrl: event.data()['profileImageUrl'],
           phone: event.data()['phone'],
           email: event.data()['email'],
           address: event.data()['address'],
@@ -82,6 +83,7 @@ class DoctorsProvider with ChangeNotifier {
         "id": editedUser.id ?? userId,
         "phone": editedUser.phone,
         "name": null,
+        "profileImageUrl": null,
         "location": null,
         "address": null,
         "email": null,
