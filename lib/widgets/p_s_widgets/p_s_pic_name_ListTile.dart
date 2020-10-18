@@ -18,17 +18,23 @@ class PSPicNameListTile extends StatelessWidget {
 
     return ListTile(
       leading: CircleAvatar(
-        maxRadius: 50,
+        maxRadius: 70,
         child: Hero(
           tag: "ProfileHeroKey",
-          child: SvgPicture.asset(
-            "assets/images/male.svg",
+          child: ClipOval(
+            child: _userData.profileImageUrl == null
+                ? SvgPicture.asset(
+                    "assets/images/male.svg",
+                  )
+                : Image.network(
+                    "${_userData.profileImageUrl}",
+                  ),
           ),
         ),
       ),
       title: _userData != null
           ? Text(
-               _userData.name ?? "Your Name",
+              _userData.name ?? "Your Name",
               style: TextStyle(
                 fontSize: 20,
               ),

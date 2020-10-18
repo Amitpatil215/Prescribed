@@ -32,6 +32,7 @@ class PatientProfileProvider with ChangeNotifier {
           bloodPressure: event.data()['bloodPressure'],
           heartRate: event.data()['heartRate'],
           allergy: event.data()['allergy'],
+          profileImageUrl: event.data()['profileImageUrl'],
         );
       });
     } catch (error) {
@@ -55,6 +56,7 @@ class PatientProfileProvider with ChangeNotifier {
         "bloodPressure": null,
         "heartRate": null,
         "allergy": null,
+        "profileImageUrl": null,
       });
       await FirebaseFirestore.instance.collection("user").doc(userId).set({
         "isPatient": true,
@@ -73,7 +75,7 @@ class PatientProfileProvider with ChangeNotifier {
         "name": editedUser.name,
         "gender": editedUser.gender.index,
         // "location": editedUser.location.address,
-        "address":editedUser.address,
+        "address": editedUser.address,
         "phone": editedUser.phone,
         "email": editedUser.email,
         "bloodSugar": editedUser.bloodSugar,
