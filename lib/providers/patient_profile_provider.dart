@@ -71,7 +71,7 @@ class PatientProfileProvider with ChangeNotifier {
   Future<void> saveEditedUser(Patient editedUser) async {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
-      await FirebaseFirestore.instance.collection("patient").doc(userId).set({
+      await FirebaseFirestore.instance.collection("patient").doc(userId).update({
         "name": editedUser.name,
         "gender": editedUser.gender.index,
         // "location": editedUser.location.address,

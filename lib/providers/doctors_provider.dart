@@ -49,7 +49,7 @@ class DoctorsProvider with ChangeNotifier {
   Future<void> saveEditedUser(Doctor editedUser) async {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
-      await FirebaseFirestore.instance.collection("doctor").doc(userId).set({
+      await FirebaseFirestore.instance.collection("doctor").doc(userId).update({
         "name": editedUser.name,
         "address": editedUser.address,
         "phone": editedUser.phone,
