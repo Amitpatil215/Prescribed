@@ -52,8 +52,8 @@ class ProfileEditScreen extends StatelessWidget {
       if (image != null) {
         await Provider.of<FirestoreImageUpload>(context, listen: false)
             .uploadProfileImage(image, context);
-        Navigator.of(context).pop();
       }
+      Navigator.of(context).pop();
     }
   }
 
