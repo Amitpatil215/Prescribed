@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: "!2.x"
-      - uses: subosito/flutter-action
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
       - run: flutter pub get
