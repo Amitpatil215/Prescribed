@@ -2,7 +2,7 @@ name: CI
 on: 
   pill_request:
     branches:
-      - submaster
+      - master
 
 jobs:
   flutter_test:
@@ -19,4 +19,3 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
-      
