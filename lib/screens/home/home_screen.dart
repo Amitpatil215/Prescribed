@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      "Prescribed",
+                      "Prescribed Health",
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w300,
