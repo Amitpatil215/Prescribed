@@ -1,6 +1,6 @@
 name: CI
 on: 
-  pill_request:
+  pull_request:
     branches:
       - master
 
