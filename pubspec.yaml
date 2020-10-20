@@ -82,10 +82,10 @@ flutter:
           weight: 700
     - family: ProductSans
       fonts:
-        - asset: assets\fonts\ProductSans-Light.ttf
-        - asset: assets\fonts\ProductSans-Regular.ttf
-        - asset: assets\fonts\ProductSans-Medium.ttf
-        - asset: assets\fonts\ProductSans-Bold.ttf
+        - asset: assets/fonts/ProductSans-Light.ttf
+        - asset: assets/fonts/ProductSans-Regular.ttf
+        - asset: assets/fonts/ProductSans-Medium.ttf
+        - asset: assets/fonts/ProductSans-Bold.ttf
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
