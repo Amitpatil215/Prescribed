@@ -66,8 +66,8 @@ class ProfileEditScreen extends StatelessWidget {
       userData = Provider.of<Doctor>(context, listen: true);
       print(userData.name);
     }
-    bool _showFloating = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text("Edit Profille"),
@@ -75,188 +75,181 @@ class ProfileEditScreen extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Form(
-            key: _formKey,
-            child: ListView(
-              children: [
-                Column(
+          key: _formKey,
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.all(30),
+                child: PESPickImage(
+                  imagePickedFn: _pickedImage,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(30),
-                      child: PESPickImage(
-                        imagePickedFn: _pickedImage,
-                      ),
+                    Icon(
+                      Icons.person,
+                      size: 30,
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                              initialValue: userData.name,
-                              decoration: InputDecoration(
-                                hintText: "e.g Zakir Khan",
-                                labelText: "Your Full Name",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value.isNotEmpty) {
-                                  return null;
-                                } else {
-                                  return "Please provide your name";
-                                }
-                              },
-                              onSaved: (value) {
-                                userData.name = value;
-                              },
-                            ),
-                          )
-                        ],
-                      ),
+                    SizedBox(
+                      width: 15,
                     ),
-                    if (_isPatient)
-                      GenderDropDownButton(
-                          userData.gender != null
-                              ? userData.gender.index ?? 0
-                              : 0,
-                          userData),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            size: 30,
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: userData.name,
+                        decoration: InputDecoration(
+                          hintText: "e.g Zakir Khan",
+                          labelText: "Your Full Name",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
                           ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                              initialValue: userData.address,
-                              decoration: InputDecoration(
-                                hintText: "e.g. Noida",
-                                labelText: "Home Location",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value.isNotEmpty) {
-                                  return null;
-                                } else {
-                                  return "Enter Valid Location";
-                                }
-                              },
-                              onSaved: (value) {
-                                userData.address = value;
-                              },
-                            ),
-                          )
-                        ],
+                        ),
+                        validator: (value) {
+                          if (value.isNotEmpty) {
+                            return null;
+                          } else {
+                            return "Please provide your name";
+                          }
+                        },
+                        onSaved: (value) {
+                          userData.name = value;
+                        },
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.phone,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                              initialValue: userData.phone.toString(),
-                              decoration: InputDecoration(
-                                hintText: "e.g. +91 1234567890",
-                                labelText: "Contact Number",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value.length >= 10) {
-                                  return null;
-                                } else {
-                                  return "Enter Correct Contact Details";
-                                }
-                              },
-                              onSaved: (value) {
-                                userData.phone = int.parse(value);
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.email,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                              initialValue: userData.email,
-                              decoration: InputDecoration(
-                                hintText: "e.g. doctorDuniya@gmail.com",
-                                labelText: "Email Address",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value.isNotEmpty) {
-                                  return null;
-                                } else {
-                                  return "Enter Valid Email Address";
-                                }
-                              },
-                              onSaved: (value) {
-                                userData.email = value;
-                              },
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    )
                   ],
                 ),
-              ],
-            )),
+              ),
+              if (_isPatient)
+                GenderDropDownButton(
+                    userData.gender != null ? userData.gender.index ?? 0 : 0,
+                    userData),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: userData.address,
+                        decoration: InputDecoration(
+                          hintText: "e.g. Noida",
+                          labelText: "Home Location",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value.isNotEmpty) {
+                            return null;
+                          } else {
+                            return "Enter Valid Location";
+                          }
+                        },
+                        onSaved: (value) {
+                          userData.address = value;
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.phone,
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: userData.phone.toString(),
+                        decoration: InputDecoration(
+                          hintText: "e.g. +91 1234567890",
+                          labelText: "Contact Number",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value.length >= 10) {
+                            return null;
+                          } else {
+                            return "Enter Correct Contact Details";
+                          }
+                        },
+                        onSaved: (value) {
+                          userData.phone = int.parse(value);
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.email,
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        initialValue: userData.email,
+                        decoration: InputDecoration(
+                          hintText: "e.g. doctorDuniya@gmail.com",
+                          labelText: "Email Address",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value.isNotEmpty) {
+                            return null;
+                          } else {
+                            return "Enter Valid Email Address";
+                          }
+                        },
+                        onSaved: (value) {
+                          userData.email = value;
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: _showFloating
-          ? FloatingActionButton.extended(
-              label: Text(
-                "Save",
-                style: TextStyle(color: Colors.black),
-              ),
-              isExtended: true,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              onPressed: () {
-                _saveForm(context, userData, _isPatient);
-              },
-            )
-          : null,
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text(
+          "Save",
+          style: TextStyle(color: Colors.black),
+        ),
+        isExtended: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        onPressed: () {
+          _saveForm(context, userData, _isPatient);
+        },
+      ),
     );
   }
 }
