@@ -9,6 +9,7 @@ class PriceSetScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    bool _showFloating = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
@@ -140,21 +141,23 @@ class PriceSetScreen extends StatelessWidget {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        label: Row(
-          children: [
-            Text(
-              "Save",
-              style: TextStyle(color: Colors.black),
-            ),
-          ],
-        ),
-        isExtended: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        onPressed: () {},
-      ),
+      floatingActionButton: _showFloating
+          ? FloatingActionButton.extended(
+              label: Row(
+                children: [
+                  Text(
+                    "Save",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
+              isExtended: true,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              onPressed: () {},
+            )
+          : null,
     );
   }
 }
