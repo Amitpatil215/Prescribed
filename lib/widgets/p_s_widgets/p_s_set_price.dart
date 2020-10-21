@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../screens/profile/price_set_screen.dart';
 
 class PSSetPrice extends StatelessWidget {
   @override
@@ -56,7 +57,9 @@ class PSSetPrice extends StatelessWidget {
               OutlineButton.icon(
                 icon: Icon(Icons.add),
                 label: Text("Add"),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(PriceSetScreen.routeName);
+                },
               )
             ],
           )
