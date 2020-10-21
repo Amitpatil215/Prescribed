@@ -10,7 +10,6 @@ import '../../widgets/p_s_widgets/p_s_latest_appointment.dart';
 import '../../widgets/p_s_widgets/p_s_professional_info.dart';
 import '../../widgets/p_s_widgets/p_s_availability.dart';
 import '../../widgets/p_s_widgets/P_s_apply_verification.dart';
-import '../../widgets/p_s_widgets/p_s_set_price.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const rountName = '/profile';
@@ -54,8 +53,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   if (_isPatient) SizedBox(height: 10),
                   if (_isPatient) PSLatestAppointment(),
                   if (!_isPatient) PSAvailability(),
-                  if (!_isPatient) SizedBox(height: 10),
-                  if (!_isPatient) PSSetPrice(),
                   if (!_isPatient) SizedBox(height: 10),
                   if (!_isPatient) PSProfessionalInfo(),
                   SizedBox(height: 10),
