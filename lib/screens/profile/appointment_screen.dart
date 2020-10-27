@@ -1,33 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../../widgets/appoint_s_widgets/appoint_s_tab_button.dart';
+import '../../widgets/appoint_s_widgets/appoint_s_Tab_Bar.dart';
 
 class AppointmentScreen extends StatelessWidget {
   static const routName = '/appointment';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        title: Text(
-          "My Appointments",
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
+        appBar: AppBar(
+          title: Text(
+            "My Appointments",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          backgroundColor: Theme.of(context).backgroundColor,
+          elevation: 0,
+          bottom: TabBar(
+            labelColor: Colors.black,
+            tabs: [
+              Tab(
+                text: "Upcoming",
+              ),
+              Tab(
+                text: "Previous",
+              ),
+            ],
+          ),
         ),
+        body: AppointSTabBar(),
       ),
-      body: SingleChildScrollView(child: ASTabButton()),
     );
   }
 }
