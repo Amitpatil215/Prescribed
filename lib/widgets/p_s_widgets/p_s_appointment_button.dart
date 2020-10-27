@@ -1,4 +1,4 @@
-import 'package:doctor_duniya/screens/profile/appointment_screen.dart';
+import 'package:doctor_duniya/screens/profile/my_appointment_screen.dart';
 import 'package:flutter/material.dart';
 
 class PSAppointmentButton extends StatelessWidget {
