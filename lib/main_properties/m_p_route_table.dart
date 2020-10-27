@@ -1,7 +1,8 @@
+import 'package:doctor_duniya/screens/appointment_connect/appointment_connect_screen.dart';
 import 'package:doctor_duniya/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/profile/profile_screen.dart';
-import '../screens/profile/appointment_screen.dart';
+import '../screens/profile/my_appointment_screen.dart';
 import '../screens/home/categories_see_all_screen.dart';
 import '../screens/home/top_doctors_see_all_screen.dart';
 import '../screens/medicine/prescribe_medicine_screen.dart';
@@ -68,5 +69,8 @@ Map<String, Widget Function(BuildContext)> mPRouteTable = {
   },
   PriceSetScreen.routeName: (ctx) {
     return PriceSetScreen();
+  },
+  AppointmentConnectScreen.routeName: (ctx) {
+    return AppointmentConnectScreen();
   },
 };
