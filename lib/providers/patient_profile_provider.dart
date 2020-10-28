@@ -37,9 +37,8 @@ class PatientProfileProvider with ChangeNotifier {
       });
     } catch (error) {
       print("error in fetching error $error");
+      return null;
     }
-
-    notifyListeners();
   }
 
   Future<void> createNewUser([Patient editedUser]) async {

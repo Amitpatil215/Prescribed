@@ -35,7 +35,7 @@ class AuthUser with ChangeNotifier {
       });
     } catch (error) {
       print("error in fetching error $error");
+      return null;
     }
-    notifyListeners();
   }
 }

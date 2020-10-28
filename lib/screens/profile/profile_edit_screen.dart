@@ -15,7 +15,7 @@ import '../../widgets/p_edit_s_widgets/p_e_s_pick_image.dart';
 class ProfileEditScreen extends StatelessWidget {
   static const routName = '/profile-edit';
   final userId = FirebaseAuth.instance.currentUser.uid;
-  var userData;
+  static var userData;
   static File image;
 
   void _pickedImage(File fnctionImage) {
@@ -23,8 +23,6 @@ class ProfileEditScreen extends StatelessWidget {
   }
 
   final _formKey = GlobalKey<FormState>();
-
-  int _genderIndex;
 
   int genderIndex(String _initialValue) {
     if (_initialValue == "Male") {
