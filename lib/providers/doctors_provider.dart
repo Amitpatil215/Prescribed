@@ -15,35 +15,35 @@ class DoctorsProvider with ChangeNotifier {
 
       return snapshot.map((event) {
         return Doctor(
-          name: event.data()['name'],
-          profileImageUrl: event.data()['profileImageUrl'],
-          phone: event.data()['phone'],
-          email: event.data()['email'],
-          address: event.data()['address'],
-          language: event.data()['language'],
-          field: event.data()['field'],
-          degree: event.data()['degree'],
-          experience: event.data()['experience'],
-          university: event.data()['university'],
-          moreDetails: event.data()['moreDetails'],
-          tfrom: event.data()['tfrom'] != null
+          name: event?.data()['name'],
+          profileImageUrl: event?.data()['profileImageUrl'],
+          phone: event?.data()['phone'],
+          email: event?.data()['email'],
+          address: event?.data()['address'],
+          language: event?.data()['language'],
+          field: event?.data()['field'],
+          degree: event?.data()['degree'],
+          experience: event?.data()['experience'],
+          university: event?.data()['university'],
+          moreDetails: event?.data()['moreDetails'],
+          tfrom: event?.data()['tfrom'] != null
               ? DateTime.parse(event.data()['tfrom'])
               : null,
-          tto: event.data()['tto'] != null
+          tto: event?.data()['tto'] != null
               ? DateTime.parse(event.data()['tto'])
               : null,
-          cfrom: event.data()['cfrom'] != null
+          cfrom: event?.data()['cfrom'] != null
               ? DateTime.parse(event.data()['cfrom'])
               : null,
-          cto: event.data()['cto'] != null
+          cto: event?.data()['cto'] != null
               ? DateTime.parse(event.data()['cto'])
               : null,
         );
       });
     } catch (error) {
       print("error in fetching error $error");
+      return null;
     }
-    notifyListeners();
   }
 
   Future<void> saveEditedUser(Doctor editedUser) async {
@@ -82,21 +82,6 @@ class DoctorsProvider with ChangeNotifier {
       await FirebaseFirestore.instance.collection("doctor").doc(userId).set({
         "id": editedUser.id ?? userId,
         "phone": editedUser.phone,
-        "name": null,
-        "profileImageUrl": null,
-        "location": null,
-        "address": null,
-        "email": null,
-        "language": null,
-        "field": null,
-        "degree": null,
-        "experience": null,
-        "university": null,
-        "moreDetails": null,
-        "tfrom": null,
-        "tto": null,
-        "cfrom": null,
-        "cto": null,
       });
       await FirebaseFirestore.instance.collection("user").doc(userId).set({
         "isPatient": false,

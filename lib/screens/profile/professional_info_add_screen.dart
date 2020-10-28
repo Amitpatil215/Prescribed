@@ -34,41 +34,7 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
           key: _formKey,
           child: Column(
             children: [
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      FlutterIcons.profile_ant,
-                      size: 30,
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        initialValue: _userData.field != null
-                            ? _userData.field.toString()
-                            : "",
-                        decoration: InputDecoration(
-                          hintText: "e.g Psychiatrist",
-                          labelText: "Domain",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        keyboardType: TextInputType.number,
-                        onSaved: (value) {
-                          if (value.isEmpty) {
-                            value = null;
-                          }
-                          _userData.field = value;
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              ChooseDomain(userData: _userData),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
@@ -262,6 +228,54 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
         onPressed: () {
           _saveForm(context, _userData);
         },
+      ),
+    );
+  }
+}
+
+class ChooseDomain extends StatelessWidget {
+  const ChooseDomain({
+    Key key,
+    @required Doctor userData,
+  })  : _userData = userData,
+        super(key: key);
+
+  final Doctor _userData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: [
+          Icon(
+            FlutterIcons.profile_ant,
+            size: 30,
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          Expanded(
+            child: TextFormField(
+              initialValue:
+                  _userData.field != null ? _userData.field.toString() : "",
+              decoration: InputDecoration(
+                hintText: "e.g Psychiatrist",
+                labelText: "Domain",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+              keyboardType: TextInputType.number,
+              onSaved: (value) {
+                if (value.isEmpty) {
+                  value = null;
+                }
+                _userData.field = value;
+              },
+            ),
+          )
+        ],
       ),
     );
   }

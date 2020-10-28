@@ -32,9 +32,7 @@ class PSEmailPhoneCard extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  _userData != null
-                      ? Text(_userData.email ?? "Your Email")
-                      : CircularProgressIndicator(),
+                  Text(_userData?.email ?? "Your Email")
                 ],
               ),
               SizedBox(
@@ -46,11 +44,7 @@ class PSEmailPhoneCard extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  _userData != null
-                      ? Text(_userData.phone != null
-                          ? "+${_userData.phone.toString()}"
-                          : "Your Contact")
-                      : CircularProgressIndicator(),
+                  Text("+${_userData?.phone?.toString() ?? "Contact Detail"}"),
                 ],
               ),
             ],
