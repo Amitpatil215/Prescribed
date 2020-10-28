@@ -18,21 +18,21 @@ class PatientProfileProvider with ChangeNotifier {
           .snapshots();
       return snapshot.map((event) {
         return Patient(
-          name: event.data()['name'],
-          phone: event.data()['phone'],
-          email: event.data()['email'],
-          gender: Gender.values.elementAt(event.data()['gender']) ?? 0,
+          name: event?.data()['name'],
+          phone: event?.data()['phone'],
+          email: event?.data()['email'],
+          gender: Gender.values.elementAt(event?.data()['gender'] ?? 0),
           // location: GeoLocation(
           //   longitude: null,
           //   latitude: null,
           //   address: event.data()['location'],
           // ),
-          address: event.data()['address'],
-          bloodSugar: event.data()['bloodSugar'],
-          bloodPressure: event.data()['bloodPressure'],
-          heartRate: event.data()['heartRate'],
-          allergy: event.data()['allergy'],
-          profileImageUrl: event.data()['profileImageUrl'],
+          address: event?.data()['address'],
+          bloodSugar: event?.data()['bloodSugar'],
+          bloodPressure: event?.data()['bloodPressure'],
+          heartRate: event?.data()['heartRate'],
+          allergy: event?.data()['allergy'],
+          profileImageUrl: event?.data()['profileImageUrl'],
         );
       });
     } catch (error) {
@@ -48,15 +48,6 @@ class PatientProfileProvider with ChangeNotifier {
       await FirebaseFirestore.instance.collection("patient").doc(userId).set({
         "id": editedUser.id ?? userId,
         "phone": editedUser.phone,
-        "name": null,
-        "gender": 0,
-        "location": null,
-        "email": null,
-        "bloodSugar": null,
-        "bloodPressure": null,
-        "heartRate": null,
-        "allergy": null,
-        "profileImageUrl": null,
       });
       await FirebaseFirestore.instance.collection("user").doc(userId).set({
         "isPatient": true,
@@ -71,7 +62,10 @@ class PatientProfileProvider with ChangeNotifier {
   Future<void> saveEditedUser(Patient editedUser) async {
     try {
       var userId = FirebaseAuth.instance.currentUser.uid;
-      await FirebaseFirestore.instance.collection("patient").doc(userId).update({
+      await FirebaseFirestore.instance
+          .collection("patient")
+          .doc(userId)
+          .update({
         "name": editedUser.name,
         "gender": editedUser.gender.index,
         // "location": editedUser.location.address,
