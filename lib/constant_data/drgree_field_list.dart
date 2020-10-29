@@ -20,4 +20,8 @@ class DegreeField {
       return e['degree'];
     }).toList();
   }
+
+  get allDegree {
+    return _degreeField.map((e) => e['degree'] as String).toList();
+  }
 }
