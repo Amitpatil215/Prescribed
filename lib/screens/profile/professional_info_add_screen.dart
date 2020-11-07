@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import '../../Model/doctor.dart';
 import '../../providers/doctors_provider.dart';
+import '../../widgets/p_i_a_s_widgets/p_i_a_s_chooseLanguageField.dart';
 
 class ProfessionalInfoAddScreen extends StatelessWidget {
   static const routName = "profession-info";
@@ -106,41 +107,7 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      FlutterIcons.graduation_cap_ent,
-                      size: 30,
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        initialValue: _userData.language != null
-                            ? _userData.language
-                            : "",
-                        decoration: InputDecoration(
-                          hintText: "e.g Hindi, English",
-                          labelText: "Languages",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        onSaved: (value) {
-                          if (value.isEmpty) {
-                            value = null;
-                          }
-                          _userData.language = value;
-                        },
-                        keyboardType: TextInputType.number,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              PIASChooseLanguageField(userData: _userData),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Row(

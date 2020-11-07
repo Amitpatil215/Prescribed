@@ -3,28 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-class PIASChooseDomainField extends StatelessWidget {
-  PIASChooseDomainField({
+class PIASChooseLanguageField extends StatelessWidget {
+  PIASChooseLanguageField({
     Key key,
     @required Doctor userData,
   })  : _userData = userData,
         super(key: key);
-
   final Doctor _userData;
-  final TextEditingController domainController = TextEditingController();
+  final TextEditingController languageController = TextEditingController();
 
-  final List<String> platform = ["Dentist", "Psychatrist", "Physio"];
+  final List<String> language = ["Marathi", "Hindi", "English"];
 
   @override
   Widget build(BuildContext context) {
-    domainController.text =
-        _userData.field != null ? _userData?.field?.toString() : "";
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
           Icon(
-            FlutterIcons.profile_ant,
+            FlutterIcons.sina_weibo_mco,
             size: 30,
           ),
           SizedBox(
@@ -37,17 +34,17 @@ class PIASChooseDomainField extends StatelessWidget {
                   title: Text(itemData),
                 );
               },
-              suggestionsCallback: (pattern) => platform.where(
+              suggestionsCallback: (pattern) => language.where(
                 (item) => item.toLowerCase().contains(pattern.toLowerCase()),
               ),
               onSuggestionSelected: (suggestion) {
-                this.domainController.text = suggestion;
+                this.languageController.text = suggestion;
               },
               textFieldConfiguration: TextFieldConfiguration(
-                controller: domainController,
+                controller: languageController,
                 decoration: InputDecoration(
-                  hintText: "e.g Psychiatrist",
-                  labelText: "Domain",
+                  hintText: "e.g Hindi, English",
+                  labelText: "Languages",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -60,6 +57,7 @@ class PIASChooseDomainField extends StatelessWidget {
                 } else {
                   value = value[0].toUpperCase() + value.substring(1);
                 }
+
                 _userData.field = value;
               },
             ),
