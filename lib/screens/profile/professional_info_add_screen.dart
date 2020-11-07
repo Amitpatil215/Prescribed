@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/p_i_a_s_widgets/p_i_a_s_chooseDegreeField.dart';
 import '../../widgets/p_i_a_s_widgets/p_i_a_s_chooseDomainField.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -11,7 +12,6 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
   void _saveForm(BuildContext context, Doctor editedUser) async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-
       await Provider.of<DoctorsProvider>(context, listen: false)
           .saveEditedUser(editedUser)
           .then((value) {});
@@ -35,41 +35,7 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
           child: Column(
             children: [
               PIASChooseDomainField(userData: _userData),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      FlutterIcons.graduation_cap_ent,
-                      size: 30,
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      child: TextFormField(
-                        initialValue: _userData.degree != null
-                            ? _userData.degree.toString()
-                            : "",
-                        decoration: InputDecoration(
-                          hintText: "e.g MBBS,MD",
-                          labelText: "Degree",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        onSaved: (value) {
-                          if (value.isEmpty) {
-                            value = null;
-                          }
-                          _userData.degree = value;
-                        },
-                        keyboardType: TextInputType.number,
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              PIASChooseDegreeField(userData: _userData),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
