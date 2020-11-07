@@ -3,28 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-class PIASChooseDomainField extends StatelessWidget {
-  PIASChooseDomainField({
+class PIASChooseDegreeField extends StatelessWidget {
+  PIASChooseDegreeField({
     Key key,
     @required Doctor userData,
   })  : _userData = userData,
         super(key: key);
 
   final Doctor _userData;
-  final TextEditingController domainController = TextEditingController();
+  final TextEditingController degreeController = TextEditingController();
 
-  final List<String> platform = ["Dentist", "Psychatrist", "Physio"];
-
+  final List<String> degree = ["MD-Physco", "MBBS", "BAMS"];
   @override
   Widget build(BuildContext context) {
-    domainController.text =
+    degreeController.text =
         _userData.field != null ? _userData?.field?.toString() : "";
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
           Icon(
-            FlutterIcons.profile_ant,
+            FlutterIcons.graduation_cap_ent,
             size: 30,
           ),
           SizedBox(
@@ -37,17 +36,17 @@ class PIASChooseDomainField extends StatelessWidget {
                   title: Text(itemData),
                 );
               },
-              suggestionsCallback: (pattern) => platform.where(
+              suggestionsCallback: (pattern) => degree.where(
                 (item) => item.toLowerCase().contains(pattern.toLowerCase()),
               ),
               onSuggestionSelected: (suggestion) {
-                this.domainController.text = suggestion;
+                this.degreeController.text = suggestion;
               },
               textFieldConfiguration: TextFieldConfiguration(
-                controller: domainController,
+                controller: degreeController,
                 decoration: InputDecoration(
-                  hintText: "e.g Psychiatrist",
-                  labelText: "Domain",
+                  hintText: "e.g MBBS,MD",
+                  labelText: "Degree",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
