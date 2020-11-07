@@ -1,3 +1,5 @@
+[![time tracker](https://wakatime.com/badge/github/Amitpatil215/Doctor-Duniya.svg)](https://wakatime.com/badge/github/Amitpatil215/Doctor-Duniya)
+
 # Doctor Duniya
 
 Doctors appointment booking
