@@ -55,7 +55,6 @@ Note:
 
 ## Login Mobile Numbers And OTP
 
-Shahrukh
 
 * Doctor : 1122 3344 55
 * Patient : 2233 4455 66
