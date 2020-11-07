@@ -70,12 +70,12 @@ git commit -m "your message"
 Push changes to your forked repo: 
 
 ```git
-git push origin master
+git push origin branch_name
 ```
 
 **Step 4:**
 
-Create a pull request to **master** branch of main repo
+Create a pull request from forked repo **branch_name -> master** branch of upstream repo
 
 *Note:*
 
