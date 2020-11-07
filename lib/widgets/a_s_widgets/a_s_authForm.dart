@@ -41,7 +41,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
       final _auth = FirebaseAuth.instance;
       var _autoVerifiedFlag = false;
 
-      String _verificationId;
+      // String _verificationId;
       await _auth.verifyPhoneNumber(
         phoneNumber: '\+91$phoneNo',
         timeout: Duration(minutes: 2),
@@ -87,7 +87,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
         },
         codeSent: (String verificationId, [int resendToken]) async {
           print("Code Sent run start");
-          _verificationId = verificationId;
+          //  _verificationId = verificationId;
 
           await Navigator.of(context)
               .push(MaterialPageRoute(
@@ -120,7 +120,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
               // signing in user by credentials
               final authResult = await _auth.signInWithCredential(credential);
               //containes additionl user specific information
-              User user = authResult.user;
+              //User user = authResult.user;
 
               // Getting is user is doctor or Patient
               var isPatient =
@@ -156,7 +156,7 @@ class _ASAuthFormState extends State<ASAuthForm> {
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           print("code auto retrival running");
-          _verificationId = verificationId;
+          // _verificationId = verificationId;
         },
       );
     } on PlatformException catch (error) {

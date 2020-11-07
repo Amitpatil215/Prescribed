@@ -23,7 +23,7 @@ class _ASOTPFormState extends State<ASOTPForm>
   int _fourthDigit;
   int _fifthDigit;
   int _sixthDigit;
-  var _isResendOTP = false;
+  //var _isResendOTP = false;
 
   Timer timer;
   int totalTimeInSeconds;
@@ -117,7 +117,10 @@ class _ASOTPFormState extends State<ASOTPForm>
             new SizedBox(
               width: 5.0,
             ),
-            OtpTimer(_controller, 15.0, Colors.purple)
+            OtpTimer(
+                controller: _controller,
+                fontSize: 15.0,
+                timeColor: Colors.purple)
           ],
         ),
       ),
@@ -426,9 +429,9 @@ class _ASOTPFormState extends State<ASOTPForm>
 class OtpTimer extends StatelessWidget {
   final AnimationController controller;
   final double fontSize;
-  Color timeColor = Colors.black;
+  final Color timeColor;
 
-  OtpTimer(this.controller, this.fontSize, this.timeColor);
+  OtpTimer({this.controller, this.fontSize, this.timeColor = Colors.black});
 
   String get timerString {
     Duration duration = controller.duration * controller.value;
