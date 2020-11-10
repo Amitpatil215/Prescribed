@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../widgets/p_s_widgets/p_s_latest_appointment.dart';
+import '../../widgets/d_s_widgets/d_s_progress_card_widget.dart';
 
 class HomeScreenDR extends StatelessWidget {
   @override
@@ -73,6 +73,7 @@ class HomeScreenDR extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
+              DSProgressCard(),
               // Padding(
               //   padding: EdgeInsets.only(
               //     left: 10.0,
@@ -91,13 +92,6 @@ class HomeScreenDR extends StatelessWidget {
               //     ],
               //   ),
               // ),
-              PSLatestAppointment(),
-              SizedBox(height: 10),
-              PSLatestAppointment(),
-              SizedBox(
-                height: 10,
-              ),
-              // HSListView(),
             ],
           ),
         ),
