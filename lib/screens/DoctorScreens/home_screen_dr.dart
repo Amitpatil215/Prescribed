@@ -4,6 +4,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../widgets/d_s_widgets/d_s_progress_card_widget.dart';
+import '../../widgets/d_s_widgets/d_s_recently_requested_widget.dart';
 
 class HomeScreenDR extends StatelessWidget {
   @override
@@ -74,6 +75,14 @@ class HomeScreenDR extends StatelessWidget {
                 height: 8,
               ),
               DSProgressCard(),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                child: Text(
+                  "Requested Appointments",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+              DSRecentlyRequested(),
               // Padding(
               //   padding: EdgeInsets.only(
               //     left: 10.0,
