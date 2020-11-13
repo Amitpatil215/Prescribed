@@ -29,7 +29,7 @@ class _DKMAddressState extends State<DKMAddress> {
               ),
               SizedBox(width: 5),
               Container(
-                width: 200,
+                width: 150,
                 child: Text(
                   "21 Nirmla Appartments Heights Kothrud, Pune-413225 working there",
                   overflow: TextOverflow.clip,

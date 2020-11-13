@@ -25,16 +25,18 @@ class HSListView extends StatelessWidget {
                 padding: EdgeInsets.all(0),
                 child: Row(
                   children: [
-                    Container(
-                      height: 140.h,
-                      width: 90.w,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: SvgPicture.asset(
-                        "assets/images/login.svg",
+                    Expanded(
+                      child: Container(
                         height: 140.h,
                         width: 90.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: SvgPicture.asset(
+                          "assets/images/login.svg",
+                          height: 140.h,
+                          width: 90.w,
+                        ),
                       ),
                     ),
                     Container(

@@ -25,12 +25,14 @@ class DoctorKnowMoreScreen extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 130.h,
-                    width: 100.w,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(15),
+                  Expanded(
+                    child: Container(
+                      height: 130.h,
+                      width: 100.w,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                     ),
                   ),
                   Container(

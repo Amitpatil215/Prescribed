@@ -43,20 +43,24 @@ class HomeScreen extends StatelessWidget {
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(
-                      FlutterIcons.heartbeat_faw,
-                      color: Colors.deepPurple,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "Prescribed Health",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.black,
-                      ),
+                    Row(
+                      children: [
+                        Icon(
+                          FlutterIcons.heartbeat_faw,
+                          color: Colors.deepPurple,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Prescribed Health",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                     Spacer(),
                     HSProfilePic(),
