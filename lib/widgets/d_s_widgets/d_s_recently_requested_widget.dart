@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../screens/DoctorScreens/requested_review_screen.dart';
 
 class DSRecentlyRequested extends StatelessWidget {
   @override
@@ -35,7 +36,10 @@ class DSRecentlyRequested extends StatelessWidget {
                 ],
               ),
               trailing: Icon(Icons.navigate_next),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context)
+                    .pushNamed(RequestedReviewScreen.routeName);
+              },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
             ),
