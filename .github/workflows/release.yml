@@ -5,7 +5,7 @@
 on:
   push:
     tags:
-      -v*
+      - v*
 name: Continuous Delivery Release apk
 jobs:
   build:
