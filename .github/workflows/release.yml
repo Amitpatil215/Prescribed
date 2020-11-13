@@ -4,9 +4,8 @@ name: release
 # events but only for the master branch
 on:
   push:
-    branches: [ release ]
-  pull_request:
-    branches: [ release ]
+    tags:
+    -v*
 jobs:
   build:
     name: Build APK
