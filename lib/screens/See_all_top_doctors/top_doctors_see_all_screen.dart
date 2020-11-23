@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../widgets/h_s_widgets/h_s_listView.dart';
+import '../home/widgets/h_s_listView.dart';
 
 class TopDoctorsSeeAllScreen extends StatelessWidget {
   static const routeName = "TopDoctors-seeAll";

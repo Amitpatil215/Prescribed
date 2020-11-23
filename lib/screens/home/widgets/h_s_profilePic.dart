@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import '../../Model/doctor.dart';
-import '../../Model/patient.dart';
-import '../../Model/userType.dart';
-import '../../screens/profile/profile_screen.dart';
+import '../../../Model/doctor.dart';
+import '../../../Model/patient.dart';
+import '../../../Model/userType.dart';
+import '../../profile/profile_screen.dart';
 
 class HSProfilePic extends StatelessWidget {
   @override

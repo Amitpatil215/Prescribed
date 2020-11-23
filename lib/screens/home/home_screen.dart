@@ -3,13 +3,13 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../widgets/h_s_widgets/h_s_gridview.dart';
-import '../../widgets/h_s_widgets/h_s_listView.dart';
-import '../../widgets/h_s_widgets/h_s_helpButton.dart';
-import '../../screens/home/categories_see_all_screen.dart';
-import '../../screens/home/top_doctors_see_all_screen.dart';
-import '../../widgets/h_s_widgets/h_s_profilePic.dart';
-import '../../widgets/h_s_widgets/h_s_promo_cards.dart';
+import 'widgets/h_s_gridview.dart';
+import 'widgets/h_s_listView.dart';
+import 'widgets/h_s_helpButton.dart';
+import '../See_all_categories/categories_see_all_screen.dart';
+import '../See_all_top_doctors/top_doctors_see_all_screen.dart';
+import 'widgets/h_s_profilePic.dart';
+import 'widgets/h_s_promo_cards.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
