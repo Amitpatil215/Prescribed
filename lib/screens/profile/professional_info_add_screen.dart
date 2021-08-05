@@ -24,7 +24,7 @@ class ProfessionalInfoAddScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var _userData = Provider.of<Doctor>(context, listen: true);
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text("Professional Information"),

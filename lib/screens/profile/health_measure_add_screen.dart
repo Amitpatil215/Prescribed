@@ -29,7 +29,7 @@ class _HealthMeasureAddScreenState extends State<HealthMeasureAddScreen> {
   Widget build(BuildContext context) {
     var _userData = Provider.of<Patient>(context, listen: true);
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text("Edit Profille"),
