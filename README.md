@@ -4,6 +4,14 @@
 
 Doctors appointment booking
 
+## Features
+- Login For Doctor and Patient
+- Book / Schedule an appointment
+- Time line view for scheduled/Historic appointments
+- Prescribe and View medication
+- Add health details
+- add doctor education detials
+
 ## Interested in contributing?
 
 See the [contributor's guide](CONTRIBUTING.md)!
